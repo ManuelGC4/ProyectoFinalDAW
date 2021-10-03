@@ -1,0 +1,14 @@
+{% extends 'blog/blogBase.html.twig' %}
+
+{% block titulo %}
+	{% trans %}nuevaNoticia.titulo{% endtrans %}
+	-
+	{{ parent() }}
+{% endblock %}
+
+{% block main %}
+	<p class="small">
+		<a href="{{ path('index') }}">← {% trans %}noticia.volver{% endtrans %}</a>
+	</p>
+	<strong>{% trans %}noticiaCreada.mensaje{% endtrans %}</strong>
+{% endblock %}
