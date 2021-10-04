@@ -3,7 +3,7 @@
 Para clonar el repositorio lo que haremos será escribir en el terminal la siguiente sentencia con la url del proyecto en el directorio que lo queramos:
 
 ``` bash
-git clone https://github.com/ManuelGC4/symfonyBlog.git
+git clone https://github.com/ManuelGC4/ProyectoFinalDAW.git
 ```
 
 También podemos usar ``` git clone ``` a través de *Visual Studio Code*, solo tenemos que darle a *View* y a *Command Palette...*, entonces se nos abrirá un caja donde solo tenemos que escribir el comando ``` git clone ```, después la url del proyecto y finalmente indicar donde queremos que nos lo guarde.
