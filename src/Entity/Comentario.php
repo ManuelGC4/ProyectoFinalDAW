@@ -28,12 +28,6 @@ class Comentario
     private $fecha;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Noticia::class, inversedBy="comentarios")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $noticia;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Usuario::class, inversedBy="comentarios")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -69,18 +63,6 @@ class Comentario
     public function setFecha(\DateTimeInterface $fecha): self
     {
         $this->fecha = $fecha;
-
-        return $this;
-    }
-
-    public function getNoticia(): ?Noticia
-    {
-        return $this->noticia;
-    }
-
-    public function setNoticia(?Noticia $noticia): self
-    {
-        $this->noticia = $noticia;
 
         return $this;
     }

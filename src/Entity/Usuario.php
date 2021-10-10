@@ -57,11 +57,6 @@ class Usuario implements UserInterface
     private $comentarios;
 
     /**
-     * @ORM\OneToMany(targetEntity=Noticia::class, mappedBy="autor")
-     */
-    private $noticias;
-
-    /**
      * @ORM\OneToMany(targetEntity=Video::class, mappedBy="usuario")
      */
     private $videos;
@@ -69,7 +64,6 @@ class Usuario implements UserInterface
     public function __construct()
     {
         $this->comentarios = new ArrayCollection();
-        $this->noticias = new ArrayCollection();
         $this->videos = new ArrayCollection();
     }
 
@@ -199,36 +193,6 @@ class Usuario implements UserInterface
             // set the owning side to null (unless already changed)
             if ($comentario->getUsuario() === $this) {
                 $comentario->setUsuario(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Noticia[]
-     */
-    public function getNoticias(): Collection
-    {
-        return $this->noticias;
-    }
-
-    public function addNoticia(Noticia $noticia): self
-    {
-        if (!$this->noticias->contains($noticia)) {
-            $this->noticias[] = $noticia;
-            $noticia->setAutor($this);
-        }
-
-        return $this;
-    }
-
-    public function removeNoticia(Noticia $noticia): self
-    {
-        if ($this->noticias->removeElement($noticia)) {
-            // set the owning side to null (unless already changed)
-            if ($noticia->getAutor() === $this) {
-                $noticia->setAutor(null);
             }
         }
 
