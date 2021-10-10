@@ -47,6 +47,11 @@ class Usuario implements UserInterface
     private $nombre;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $apellidos;
+
+    /**
      * @ORM\OneToMany(targetEntity=Comentario::class, mappedBy="usuario")
      */
     private $comentarios;
@@ -56,10 +61,16 @@ class Usuario implements UserInterface
      */
     private $noticias;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Video::class, mappedBy="usuario")
+     */
+    private $videos;
+
     public function __construct()
     {
         $this->comentarios = new ArrayCollection();
         $this->noticias = new ArrayCollection();
+        $this->videos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -218,6 +229,48 @@ class Usuario implements UserInterface
             // set the owning side to null (unless already changed)
             if ($noticia->getAutor() === $this) {
                 $noticia->setAutor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getApellidos(): ?string
+    {
+        return $this->apellidos;
+    }
+
+    public function setApellidos(string $apellidos): self
+    {
+        $this->apellidos = $apellidos;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Video[]
+     */
+    public function getVideos(): Collection
+    {
+        return $this->videos;
+    }
+
+    public function addVideo(Video $video): self
+    {
+        if (!$this->videos->contains($video)) {
+            $this->videos[] = $video;
+            $video->setUsuario($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVideo(Video $video): self
+    {
+        if ($this->videos->removeElement($video)) {
+            // set the owning side to null (unless already changed)
+            if ($video->getUsuario() === $this) {
+                $video->setUsuario(null);
             }
         }
 

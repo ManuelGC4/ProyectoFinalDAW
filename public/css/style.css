@@ -3,22 +3,24 @@
     margin: auto;
     border-left: 1px solid #666;
     border-right: 1px solid #666;
-    background-color: #ffffff;
+    background-color: black;
     padding: 4px 20px;
+    color: #EEE;
 }
 
 body {
-    background-color: #333;
+    background-color: #1CBAA5;
     margin: 0px;
     font-family: Verdana, sans-serif;
 }
 
 #container {
-    background-color: #EEE;
+    background-color: black;
+    color: #EEE;
 }
 
 header {
-    background-color: #333;
+    background-color: #1CBAA5;
     color: #EEE;
     padding: 2px 10px;
     border-bottom: 5px solid #ad8b0f;
