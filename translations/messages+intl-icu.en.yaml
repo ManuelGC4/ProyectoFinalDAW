@@ -1,31 +1,29 @@
-noticiaCreada.mensaje: 'Your request was completed correctly'
-nuevaNoticia.titulo: 'Adding news'
-noticiaBorrada.titulo: 'News deleted'
-noticia.volver: 'Return to the main page'
-noticiaBorrada.mensaje: 'Your news was deleted correctly'
-noticia.publicado: 'Publish by '
-noticia.editar: Edit
-noticia.borrar: Delete
-noticia.comentario: Comments
-noticia.en: 'on'
-noticia.comentarioMensaje: 'There are no comments'
-noticia.noEncontrada: 'There is no news with id '
-index.entradas: 'Last news'
+videoCreada.mensaje: 'Your request was completed correctly'
+nuevaVideo.titulo: 'Adding videos'
+videoBorrada.titulo: 'Videos deleted'
+video.volver: 'Return to the main page'
+videoBorrada.mensaje: 'Your videos was deleted correctly'
+video.publicado: 'Publish by '
+video.editar: Edit
+video.borrar: Delete
+video.comentario: Comments
+video.en: 'on'
+video.comentarioMensaje: 'There are no comments'
+video.noEncontrada: 'There is no videos with id '
+index.entradas: 'Last videos'
 index.leer: 'Read more'
 index.publicada: 'Publish on'
 index.comentarios: comments
-index.noticias: 'There are no news'
+index.videos: 'There are no videos'
 formulario.texto: 'Leave a comment:'
 formulario.añadirComentario: 'Add comment'
-formulario.titular: Title
-formulario.entradilla: 'Opening line'
-formulario.cuerpo: Body
-formulario.añadirNoticia: 'Add news'
-formulario.editar: 'Edit news'
+formulario.titulo: Title
+formulario.añadirVideo: 'Add videos'
+formulario.editar: 'Edit videos'
 formulario.fecha: Date
-editarNoticia.titulo: 'Editing news'
-index.añadir: 'Add News'
-noticia.desconocido: unknown
+editarVideo.titulo: 'Editing videos'
+index.añadir: 'Add Videos'
+video.desconocido: unknown
 login.titulo: "Log In"
 login.aviso: "You are logged in as"
 login.cerrar: "Logout"

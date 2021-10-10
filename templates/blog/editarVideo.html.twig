@@ -1,7 +1,7 @@
 {% extends 'blog/blogBase.html.twig' %}
 
 {% block titulo %}
-	{% trans %}nuevaNoticia.titulo{% endtrans %}
+	{% trans %}editarVideo.titulo{% endtrans %}
 	-
 	{{ parent() }}
 {% endblock %}
@@ -9,14 +9,15 @@
 {% block main %}
 	<p class="small">
 		<a href="{{ path('index') }}">←
-			{% trans %}noticia.volver{% endtrans %}</a>
+			{% trans %}video.volver{% endtrans %}</a>
 	</p>
 	{{ form_start(form) }}
-	<p>{{ form_label(form.titular) }}
-		{{ form_widget(form.titular) }}
-		<br/>{{ form_help(form.titular) }}</p>
+	{#
+	<p>{{ form_label(form.titulo) }}
+		{{ form_widget(form.titulo) }}
+		<br/>{{ form_help(form.titulo) }}</p>
 	<div class="form-error">
-		{{ form_errors(form.titular) }}
+		{{ form_errors(form.titulo) }}
 	</div>
 
 	<p>{{ form_label(form.entradilla) }}<br/>
@@ -33,6 +34,15 @@
 		{{ form_help(form.cuerpo) }}</p>
 	<div class="form-error">
 		{{ form_errors(form.cuerpo) }}
+	</div>
+	#}
+
+	<p>{{ form_label(form.fecha) }}
+		{{ form_widget(form.fecha) }}
+		<br/>
+		{{ form_help(form.fecha) }}</p>
+	<div class="form-error">
+		{{ form_errors(form.fecha) }}
 	</div>
 
 	{{form_row(form.save) }}

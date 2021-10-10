@@ -8,53 +8,53 @@ indexSinLocale:
     path: /
     controller: App\Controller\BlogController::indexSinLocale
 
-verNoticia:
-    path: /{_locale}/noticia/{id}
-    controller: App\Controller\BlogController::verNoticia
+verVideo:
+    path: /{_locale}/video/{id}
+    controller: App\Controller\BlogController::verVideo
     requirements:
         _locale: en|es
         id: '\d+'
 
-verNoticiaSinLocale:
-    path: /noticia/{id}
-    controller: App\Controller\BlogController::verNoticiaSinLocale
+verVideoSinLocale:
+    path: /video/{id}
+    controller: App\Controller\BlogController::verVideoSinLocale
 
-nuevaNoticia:
-    path: /{_locale}/noticia/nueva
-    controller: App\Controller\BlogController::nuevaNoticia
+nuevaVideo:
+    path: /{_locale}/video/nueva
+    controller: App\Controller\BlogController::nuevaVideo
     requirements:
         _locale: en|es
 
-nuevaNoticiaSinLocale:
-    path: /noticia/nueva
-    controller: App\Controller\BlogController::nuevaNoticiaSinLocale
+nuevaVideoSinLocale:
+    path: /video/nueva
+    controller: App\Controller\BlogController::nuevaVideoSinLocale
 
-noticiaCreada:
-    path: /{_locale}/noticia/creada
-    controller: App\Controller\BlogController::noticiaCreada
+videoCreada:
+    path: /{_locale}/video/creada
+    controller: App\Controller\BlogController::videoCreada
     requirements:
         _locale: en|es
 
-noticiaCreadaSinLocale:
-    path: /noticia/creada
-    controller: App\Controller\BlogController::noticiaCreadaSinLocale
+videoCreadaSinLocale:
+    path: /video/creada
+    controller: App\Controller\BlogController::videoCreadaSinLocale
 
-editarNoticia:
-    path: /{_locale}/noticia/editar/{id}
-    controller: App\Controller\BlogController::editarNoticia
+editarVideo:
+    path: /{_locale}/video/editar/{id}
+    controller: App\Controller\BlogController::editarVideo
     requirements:
         _locale: en|es
 
-editarNoticiaSinLocale:
-    path: /noticia/editar/{id}
-    controller: App\Controller\BlogController::editarNoticiaSinLocale
+editarVideoSinLocale:
+    path: /video/editar/{id}
+    controller: App\Controller\BlogController::editarVideoSinLocale
 
-borrarNoticia:
-    path: /{_locale}/noticia/borrar/{id}
-    controller: App\Controller\BlogController::borrarNoticia
+borrarVideo:
+    path: /{_locale}/video/borrar/{id}
+    controller: App\Controller\BlogController::borrarVideo
     requirements:
         _locale: en|es
 
-borrarNoticiaSinLocale:
-    path: /noticia/borrar/{id}
-    controller: App\Controller\BlogController::borrarNoticiaSinLocale
+borrarVideoSinLocale:
+    path: /video/borrar/{id}
+    controller: App\Controller\BlogController::borrarVideoSinLocale

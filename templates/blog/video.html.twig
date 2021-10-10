@@ -1,7 +1,7 @@
 {% extends 'blog/blogBase.html.twig' %}
 
 {% block titulo %}
-	{{noticia.titular}}
+	{{video.titulo}}
 	-
 	{{ parent() }}
 {% endblock %}
@@ -9,46 +9,45 @@
 {% block main %}
 	<p class="small">
 		<a href="{{ path('index') }}">←
-			{% trans %}noticia.volver{% endtrans %}</a>
+			{% trans %}video.volver{% endtrans %}</a>
 	</p>
-	<h2>{{noticia.titular}}</h2>
+	<h2>{{video.titulo}}</h2>
 	<p class="small">
-		{% trans %}noticia.publicado{% endtrans %}
-		{% if noticia.autor is null %}
-			{% trans %}noticia.desconocido{% endtrans %}
+		{% trans %}video.publicado{% endtrans %}
+		{% if video.usuario is null %}
+			{% trans %}video.desconocido{% endtrans %}
 		{% else %}
-			{{noticia.autor.nick}}
+			{{video.usuario.nick}}
 		{% endif %}
 
-		{% trans %}noticia.en{% endtrans %}
-		{{noticia.fecha|date("Y-m-d H:i:s")}}
+		{% trans %}video.en{% endtrans %}
+		{{video.fecha|date("Y-m-d H:i:s")}}
 	</p>
-	<div id="imgcover"><img src="{{ asset('images/cover-' ~ noticia.id ~ '.jpg') }}"/></div>
-	{{noticia.cuerpo|raw}}
+	<div id="imgcover"><img src="{{ asset('images/cover-' ~ video.id ~ '.jpg') }}"/></div>
 
 	{% if is_granted('ROLE_ADMIN') %}
 		<p>
-			<a href="{{ path('editarNoticia', {'id' : noticia.id}) }}">{% trans %}noticia.editar{% endtrans %}</a>
+			<a href="{{ path('editarVideo', {'id' : video.id}) }}">{% trans %}video.editar{% endtrans %}</a>
 		</p>
 		<p>
-			<a href="{{ path('borrarNoticia', {'id' : noticia.id}) }}">{% trans %}noticia.borrar{% endtrans %}</a>
+			<a href="{{ path('borrarVideo', {'id' : video.id}) }}">{% trans %}video.borrar{% endtrans %}</a>
 		</p>
 	{% endif %}
 
-	<h2>{% trans %}noticia.comentario{% endtrans %}</h2>
+	<h2>{% trans %}video.comentario{% endtrans %}</h2>
 	<ul>
-		{% for comentario in noticia.comentarios %}
+		{% for comentario in video.comentarios %}
 			<li class='bloqueComentario'>
-				<p class="{% if noticia.autor == comentario.usuario %}autor{% endif %}">
+				<p class="{% if video.usuario == comentario.usuario %}usuario{% endif %}">
 					<strong>
 						<a href="mailto:{{ comentario.usuario.email }}">{{ comentario.usuario.nick }}</a>
 					</strong>
-					{% trans %}noticia.en{% endtrans %}
+					{% trans %}video.en{% endtrans %}
 					{{ comentario.fecha|date("Y-m-d H:i:s") }}:</p>
 				<p>{{ comentario.texto|raw }}</p>
 			</li>
 		{% else %}
-			<li>{% trans %}noticia.comentarioMensaje{% endtrans %}</li>
+			<li>{% trans %}video.comentarioMensaje{% endtrans %}</li>
 		{% endfor %}
 	</ul>
 	{% if is_granted('ROLE_USER') %}

@@ -1,0 +1,14 @@
+{% extends 'blog/blogBase.html.twig' %}
+
+{% block titulo %}
+	{% trans %}nuevaVideo.titulo{% endtrans %}
+	-
+	{{ parent() }}
+{% endblock %}
+
+{% block main %}
+	<p class="small">
+		<a href="{{ path('index') }}">← {% trans %}video.volver{% endtrans %}</a>
+	</p>
+	<strong>{% trans %}videoCreada.mensaje{% endtrans %}</strong>
+{% endblock %}

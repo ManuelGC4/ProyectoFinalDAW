@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
-use App\Entity\Noticia;
+use App\Entity\Video;
 use App\Entity\Comentario;
-use App\Form\Type\NoticiaAnadirType;
-use App\Form\Type\NoticiaEditarType;
+use App\Form\Type\VideoAnadirType;
+use App\Form\Type\VideoEditarType;
 use App\Form\Type\ComentarioType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,10 +17,10 @@ class BlogController extends AbstractController
     {
         $entityManager = $this->getDoctrine()->getManager();
 
-        $noticias = $entityManager->getRepository(Noticia::class)->findAll();
+        $videos = $entityManager->getRepository(Video::class)->findAll();
 
         return $this->render('blog/index.html.twig', array(
-            'noticias' => $noticias,
+            'videos' => $videos,
         ));
     }
 
@@ -29,15 +29,15 @@ class BlogController extends AbstractController
         return $this->redirectToRoute('index', ['_locale' => 'es']);
     }
 
-    public function verNoticia($id, Request $request, TranslatorInterface $translator)
+    public function verVideo($id, Request $request, TranslatorInterface $translator)
     {
         $entityManager = $this->getDoctrine()->getManager();
 
-        $noticia = $entityManager->getRepository(Noticia::class)->find($id);
+        $video = $entityManager->getRepository(Video::class)->find($id);
 
-        if (!$noticia) {
+        if (!$video) {
             throw $this->createNotFoundException(
-                $translator->trans('noticia.noEncontrada') . $id
+                $translator->trans('video.noEncontrada') . $id
             );
         }
 
@@ -51,7 +51,7 @@ class BlogController extends AbstractController
             $comentario = $form->getData();
 
             $comentario->setFecha(new \DateTime());
-            $comentario->setNoticia($noticia);
+            $comentario->setVideo($video);
 
             $usuario = $this->getUser();
             $comentario->setUsuario($usuario);
@@ -62,116 +62,116 @@ class BlogController extends AbstractController
 
             $entityManager->flush();
 
-            return $this->redirectToRoute('verNoticia', array('id' => $id));
+            return $this->redirectToRoute('verVideo', array('id' => $id));
         }
 
-        return $this->render('blog/noticia.html.twig', array(
-            'noticia' => $noticia, 'form' => $form->createView(),
+        return $this->render('blog/video.html.twig', array(
+            'video' => $video, 'form' => $form->createView(),
         ));
     }
 
-    public function verNoticiaSinLocale()
+    public function verVideoSinLocale()
     {
-        return $this->redirectToRoute('verNoticia', ['_locale' => 'es']);
+        return $this->redirectToRoute('verVideo', ['_locale' => 'es']);
     }
 
-    public function nuevaNoticia(Request $request)
+    public function nuevaVideo(Request $request)
     {
-        $noticia = new Noticia();
+        $video = new Video();
 
-        $form = $this->createForm(NoticiaAnadirType::class, $noticia);
+        $form = $this->createForm(VideoAnadirType::class, $video);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $noticia = $form->getData();
+            $video = $form->getData();
 
-            $noticia->setFecha(new \DateTime());
+            $video->setFecha(new \DateTime());
 
             $usuario = $this->getUser();
-            $noticia->setAutor($usuario);
+            $video->setUsuario($usuario);
 
             $entityManager = $this->getDoctrine()->getManager();
 
-            $entityManager->persist($noticia);
+            $entityManager->persist($video);
 
             $entityManager->flush();
 
-            return $this->redirectToRoute('noticiaCreada');
+            return $this->redirectToRoute('videoCreada');
         }
 
-        return $this->render('blog/nuevaNoticia.html.twig', array(
+        return $this->render('blog/nuevaVideo.html.twig', array(
             'form' => $form->createView(),
         ));
     }
 
-    public function nuevaNoticiaSinLocale()
+    public function nuevaVideoSinLocale()
     {
-        return $this->redirectToRoute('nuevaNoticia', ['_locale' => 'es']);
+        return $this->redirectToRoute('nuevaVideo', ['_locale' => 'es']);
     }
 
-    public function noticiaCreada()
+    public function videoCreada()
     {
-        return $this->render('blog/noticiaCreada.html.twig');
+        return $this->render('blog/videoCreada.html.twig');
     }
 
-    public function noticiaCreadaSinLocale()
+    public function videoCreadaSinLocale()
     {
-        return $this->redirectToRoute('noticiaCreada', ['_locale' => 'es']);
+        return $this->redirectToRoute('videoCreada', ['_locale' => 'es']);
     }
 
-    public function editarNoticia(Request $request, $id, TranslatorInterface $translator)
+    public function editarVideo(Request $request, $id, TranslatorInterface $translator)
     {
         $entityManager = $this->getDoctrine()->getManager();
 
-        $noticia = $entityManager->getRepository(Noticia::class)->find($id);
+        $video = $entityManager->getRepository(Video::class)->find($id);
 
-        if (!$noticia) {
+        if (!$video) {
             throw $this->createNotFoundException(
-                $translator->trans('noticia.noEncontrada') . $id
+                $translator->trans('video.noEncontrada') . $id
             );
         }
 
-        $form = $this->createForm(NoticiaEditarType::class, $noticia);
+        $form = $this->createForm(VideoEditarType::class, $video);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $noticia = $form->getData();
+            $video = $form->getData();
 
             $entityManager->flush();
 
-            return $this->redirectToRoute('verNoticia', array('id' => $id));
+            return $this->redirectToRoute('verVideo', array('id' => $id));
         }
 
-        return $this->render('blog/editarNoticia.html.twig', array(
+        return $this->render('blog/editarVideo.html.twig', array(
             'form' => $form->createView(),
         ));
     }
 
-    public function editarNoticiaSinLocale()
+    public function editarVideoSinLocale()
     {
-        return $this->redirectToRoute('editarNoticia', ['_locale' => 'es']);
+        return $this->redirectToRoute('editarVideo', ['_locale' => 'es']);
     }
 
-    public function borrarNoticia($id, TranslatorInterface $translator)
+    public function borrarVideo($id, TranslatorInterface $translator)
     {
         $entityManager = $this->getDoctrine()->getManager();
 
-        $noticia = $entityManager->getRepository(Noticia::class)->find($id);
+        $video = $entityManager->getRepository(Video::class)->find($id);
 
-        if (!$noticia) {
+        if (!$video) {
             throw $this->createNotFoundException(
-                $translator->trans('noticia.noEncontrada') . $id
+                $translator->trans('video.noEncontrada') . $id
             );
         }
-        $entityManager->remove($noticia);
+        $entityManager->remove($video);
         $entityManager->flush();
-        return $this->render('blog/noticiaBorrada.html.twig');
+        return $this->render('blog/videoBorrada.html.twig');
     }
 
-    public function borrarNoticiaSinLocale()
+    public function borrarVideoSinLocale()
     {
-        return $this->redirectToRoute('borrarNoticia', ['_locale' => 'es']);
+        return $this->redirectToRoute('borrarVideo', ['_locale' => 'es']);
     }
 }

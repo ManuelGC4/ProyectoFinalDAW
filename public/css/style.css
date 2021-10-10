@@ -59,11 +59,11 @@ h2>a, h3>a {
     font-size: 20px;
 }
 
-.listaNoticias {
+.listaVideos {
     padding: 0px 20px;
 }
 
-.bloqueNoticia img {
+.bloqueVideo img {
     float: left;
     border: 1px solid #666;
     margin-right: 10px;
@@ -71,7 +71,7 @@ h2>a, h3>a {
     height: 200px;
 }
 
-.bloqueNoticia {
+.bloqueVideo {
     clear: both;
     list-style: none;
     margin-bottom: 10px;
@@ -113,6 +113,6 @@ footer span {
     width: 100%;
 }
 
-p.autor a{
+p.usuario a{
     color: red;
 }

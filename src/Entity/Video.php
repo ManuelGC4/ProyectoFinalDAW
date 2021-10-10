@@ -20,6 +20,11 @@ class Video
     private $id;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $titulo;
+    
+    /**
      * @ORM\Column(type="datetime")
      */
     private $fecha;
@@ -95,6 +100,18 @@ class Video
                 $comentario->setVideo(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTitulo(): ?string
+    {
+        return $this->titulo;
+    }
+
+    public function setTitulo(string $titulo): self
+    {
+        $this->titulo = $titulo;
 
         return $this;
     }
