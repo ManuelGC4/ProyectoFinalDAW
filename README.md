@@ -33,8 +33,15 @@ En el caso de usar sqlite o postgresql usaremos las siguientes líneas en lugar 
 - postgresql: ``` "postgresql://db_user:db_password@127.0.0.1:5432/db_name?serverVersion=13&charset=utf8" ```
 
 ## Ejecutar migraciones
-Finalmente para ejecutar las migraciones, volveremos al terminal y escribiremos la siguiente sentencia:
+Para ejecutar las migraciones y cargar las tablas en la base de datos, volveremos al terminal y escribiremos la siguiente sentencia:
 
 ``` bash
 php bin/console doctrine:migrations:migrate
+```
+
+## Cargar fixtures
+Para cargar las fixtures y de esta forma añadir los datos en la base de datos, volveremos al terminal y escribiremos la siguiente sentencia:
+
+``` bash
+php bin/console doctrine:fixtures:load 
 ```
