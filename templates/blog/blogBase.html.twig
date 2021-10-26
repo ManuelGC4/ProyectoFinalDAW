@@ -10,44 +10,83 @@
 			{% endblock %}
 		</title>
 		{% block stylesheets %}
-			<link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
+			<link
+			id="css" href="{{ asset('css/claro.css') }}" rel="stylesheet"/>
+
+			<!-- Bootstrap -->
+			<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+		<!-- Favicon (Logo en <title>) -->
+
 		{% endblock %}
 	</head>
 
 	<body>
 		<header>
-			<h1>
-				<a href="{{ path('index') }}">ViewTube</a>
-			</h1>
-		</header>
-		<div id="container">
-			<div id="main">
-				{% if is_granted('ROLE_USER') %}
-					<div align="right">
-						<p>Hola
-							{{ app.user.nick }}
-							<a href="{{ path("app_logout") }}">Cerrar sesión</a>
-						</p>
+			<div class="row">
+				<div class="col-3">
+					<h1>
+						<a href="{{ path('index') }}">ViewTube</a>
+					</h1>
+				</div>
+				<div class="col-6">
+					Buscador
+				</div>
+				<div class="col-3">
+					<div class="row">
+						<div class="col-6">
+							<div class="row">
+								<div class="col-4">
+									<img id="sol" src="{{ asset('images/icons/sol.png') }}">
+								</div>
+								<div class="col-4">
+									<div class="form-check form-switch">
+										<input id="cambioCss" class="form-check-input" type="checkbox" role="switch" value="tema" checked>
+									</div>
+								</div>
+								<div class="col-4">
+									<img id="luna" src="{{ asset('images/icons/luna.png') }}">
+								</div>
+							</div>
+						</div>
+						<div class="col-6">
+							{% if is_granted('ROLE_USER') %}
+								<div>
+									<!-- {{ app.user.nick }} -->
+									<a href="{{ path("app_logout") }}"><img id="avatar" class="img-thumbnail" src="{{ asset('images/icons/sinFoto.png') }}"></a>
+								</div>
+							{% else %}
+								<div>
+									<a href="{{ path("app_login") }}"><img id="avatar" class="img-thumbnail" src="{{ asset('images/icons/sinFoto.png') }}"></a>
+								</div>
+							{% endif %}
+						</div>
 					</div>
-				{% else %}
-					<div align="right">
-						<p>
-							<a href="{{ path("app_login") }}">Iniciar sesión</a>
-						</p>
-					</div>
-				{% endif %}
-				{% block main %}{% endblock %}
+				</div>
 			</div>
-		</div>
-		<footer>Copyright ©
-			{{ "now"|date("Y") }}
-			<span>
-				<a href='{{ path('index') }}'>ViewTube</a>
-			</span>
-		</footer>
+		</header>
 
-		{% block javascripts %}{% endblock %}
+		<div id="container">
+			<div class="row">
+				<div id="lateral" class="col-2"> {% block lateral %}{% endblock %}
+					</div>
 
-	</body>
+					<div id="main" class="col-10"> {% block main %}{% endblock %}
+						</div>
+					</div>
+				</div>
 
-</html>
+				<footer>Copyright ©
+					{{ "now"|date("Y") }}
+					<span>
+						<a href='{{ path('index') }}'>ViewTube</a>
+					</span>
+				</footer>
+
+				{% block javascripts %}
+					<script src="{{ asset('js/cambioCss.js') }}"></script>
+				{% endblock %}
+
+			</body>
+		</html>
