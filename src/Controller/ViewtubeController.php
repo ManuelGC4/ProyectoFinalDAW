@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Usuario;
 use App\Entity\Video;
 use App\Entity\Comentario;
 use App\Form\Type\VideoAnadirType;
@@ -173,5 +174,25 @@ class ViewtubeController extends AbstractController
     public function borrarVideoSinLocale()
     {
         return $this->redirectToRoute('borrarVideo', ['_locale' => 'es']);
+    }
+
+    public function verPerfil($id, Request $request, TranslatorInterface $translator)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $usuario = $entityManager->getRepository(Usuario::class)->find($id);
+
+        if (!$usuario) {
+            throw $this->createNotFoundException(
+                $translator->trans('usuario.noEncontrado') . $id
+            );
+        }
+
+        return $this->render('blog/perfil.html.twig', array('usuario' => $usuario));
+    }
+
+    public function verPerfilSinLocale()
+    {
+        return $this->redirectToRoute('verPerfil', ['_locale' => 'es']);
     }
 }

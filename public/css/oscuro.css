@@ -1,6 +1,7 @@
 #main {
     margin: auto;
     border-left: 1px solid #666;
+    border-right: 1px solid #666;
     background-color: #181818;
     padding: 4px 20px;
     color: #EEE;
@@ -140,17 +141,17 @@ p.usuario a {
 }
 
 #sol {
-    width: 150%;
+    width: 20%;
     height: auto;
 }
 
 #luna {
-    width: 100%;
+    width: 10%;
     height: auto;
 }
 
 #avatar {
-    width: 25%;
+    width: 14%;
     height: auto;
     border-radius: 50%;
     border-color: #2C3DB7;
@@ -159,4 +160,10 @@ p.usuario a {
 
 #avatar:hover {
     opacity: 0.3;
+}
+
+header * {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

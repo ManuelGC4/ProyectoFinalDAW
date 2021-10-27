@@ -34,59 +34,58 @@
 					Buscador
 				</div>
 				<div class="col-3">
-					<div class="row">
-						<div class="col-6">
-							<div class="row">
-								<div class="col-4">
-									<img id="sol" src="{{ asset('images/icons/sol.png') }}">
-								</div>
-								<div class="col-4">
-									<div class="form-check form-switch">
-										<input id="cambioCss" class="form-check-input" type="checkbox" role="switch" value="tema" checked>
-									</div>
-								</div>
-								<div class="col-4">
-									<img id="luna" src="{{ asset('images/icons/luna.png') }}">
-								</div>
-							</div>
+					{% if is_granted('ROLE_USER') %}
+						<div class="dropdown">
+							<a id="menuAvatar" class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<img id="avatar" title="{{ app.user.nick }}" class="img-thumbnail" src="{{ asset('images/icons/sinFoto.png') }}">
+							</a>
+							<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="menuAvatar">
+								<li>
+									<a href="{{ path('verPerfil', {'id': app.user.id}) }}" class="dropdown-item">{% trans %}base.perfil{% endtrans %}</a>
+								</li>
+								<li>
+									<a href="{{ path('nuevaVideo') }}" class="dropdown-item">{% trans %}base.añadir{% endtrans %}</a>
+								</li>
+								<li><hr class="dropdown-divider"></li>
+								<li>
+									<button id="claro" class="dropdown-item" type="button">{% trans %}base.claro{% endtrans %}<img id="sol" src="{{ asset('images/icons/sol.png') }}"></button>
+								</li>
+								<li>
+									<button id="oscuro" class="dropdown-item" type="button"><span>{% trans %}base.oscuro{% endtrans %}<img id="luna" src="{{ asset('images/icons/luna.png') }}"></span></button>
+								</li>
+								<li>
+									<a href="{{ path("app_logout") }}" class="dropdown-item">{% trans %}base.cerrar{% endtrans %}</a>
+								</li>
+							</ul>
 						</div>
-						<div class="col-6">
-							{% if is_granted('ROLE_USER') %}
-								<div>
-									<!-- {{ app.user.nick }} -->
-									<a href="{{ path("app_logout") }}"><img id="avatar" class="img-thumbnail" src="{{ asset('images/icons/sinFoto.png') }}"></a>
-								</div>
-							{% else %}
-								<div>
-									<a href="{{ path("app_login") }}"><img id="avatar" class="img-thumbnail" src="{{ asset('images/icons/sinFoto.png') }}"></a>
-								</div>
-							{% endif %}
+					{% else %}
+						<div>
+							<a href="{{ path("app_login") }}"><img id="avatar" title="{% trans %}base.iniciar{% endtrans %}" class="img-thumbnail" src="{{ asset('images/icons/sinFoto.png') }}"></a>
 						</div>
-					</div>
+					{% endif %}
 				</div>
 			</div>
 		</header>
 
 		<div id="container">
-			<div class="row">
-				<div id="lateral" class="col-2"> {% block lateral %}{% endblock %}
-					</div>
-
-					<div id="main" class="col-10"> {% block main %}{% endblock %}
-						</div>
-					</div>
+			<div class="row"> {% block izquierda %}{% endblock %}{% block main %}{% endblock %}{% block derecha %}{% endblock %}
 				</div>
+			</div>
 
-				<footer>Copyright ©
-					{{ "now"|date("Y") }}
-					<span>
-						<a href='{{ path('index') }}'>ViewTube</a>
-					</span>
-				</footer>
+			<footer>Copyright ©
+				{{ "now"|date("Y") }}
+				<span>
+					<a href='{{ path('index') }}'>ViewTube</a>
+				</span>
+			</footer>
 
-				{% block javascripts %}
-					<script src="{{ asset('js/cambioCss.js') }}"></script>
-				{% endblock %}
+			{% block javascripts %}
+				<!-- Bootstrap -->
+				<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-			</body>
-		</html>
+				<!-- Mis scripts -->
+				<script src="{{ asset('js/cambioCss.js') }}"></script>
+			{% endblock %}
+
+		</body>
+	</html>

@@ -58,3 +58,14 @@ borrarVideo:
 borrarVideoSinLocale:
     path: /video/borrar/{id}
     controller: App\Controller\ViewtubeController::borrarVideoSinLocale
+
+verPerfil:
+    path: /{_locale}/perfil/{id}
+    controller: App\Controller\ViewtubeController::verPerfil
+    requirements:
+        _locale: en|es
+        id: '\d+'
+
+verPerfilSinLocale:
+    path: /perfil/{id}
+    controller: App\Controller\ViewtubeController::verPerfilSinLocale

@@ -40,6 +40,11 @@ class Video
      */
     private $comentarios;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $descripcion;
+
     public function __construct()
     {
         $this->comentarios = new ArrayCollection();
@@ -112,6 +117,18 @@ class Video
     public function setTitulo(string $titulo): self
     {
         $this->titulo = $titulo;
+
+        return $this;
+    }
+
+    public function getDescripcion(): ?string
+    {
+        return $this->descripcion;
+    }
+
+    public function setDescripcion(?string $descripcion): self
+    {
+        $this->descripcion = $descripcion;
 
         return $this;
     }

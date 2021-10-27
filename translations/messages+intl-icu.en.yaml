@@ -10,7 +10,6 @@ video.comentario: Comments
 video.en: 'on'
 video.comentarioMensaje: 'There are no comments'
 video.noEncontrada: 'There is no videos with id '
-index.entradas: 'Last videos'
 index.leer: 'Read more'
 index.publicada: 'Publish on'
 index.comentarios: comments
@@ -22,7 +21,7 @@ formulario.añadirVideo: 'Add videos'
 formulario.editar: 'Edit videos'
 formulario.fecha: Date
 editarVideo.titulo: 'Editing videos'
-index.añadir: 'Add Videos'
+base.añadir: 'Add Video'
 video.desconocido: unknown
 login.titulo: "Log In"
 login.aviso: "You are logged in as"
@@ -31,4 +30,9 @@ login.mensaje: "Sign in"
 login.correo: "Email"
 login.contraseña: "Password"
 login.boton: "Login"
-formulario.switch: "Dark mode"
+video.noEncontrado: 'There is no videos with id '
+base.iniciar: "Log in"
+base.cerrar: "Log out"
+base.perfil: "Your profile"
+base.claro: "Light theme"
+base.oscuro: "Dark theme"

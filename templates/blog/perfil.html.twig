@@ -1,6 +1,8 @@
 {% extends 'blog/blogBase.html.twig' %}
 
 {% block titulo %}
+	{{usuario.nick}}
+	-
 	{{ parent() }}
 {% endblock %}
 
@@ -10,8 +12,9 @@
 
 {% block main %}
 	<div id="main" class="col-10">
-		<ul class="listaVideos">
-			{% for video in videos %}
+		<h2>{{usuario.nick}}</h2>
+		<ul>
+			{% for video in usuario.videos %}
 				<li class='bloqueVideo'>
 					<img src="{{ asset('images/thumbnail-' ~ video.id ~ '.jpg') }}"/>
 					<h3>
