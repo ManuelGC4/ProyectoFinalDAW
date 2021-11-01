@@ -61,6 +61,16 @@ class Usuario implements UserInterface
      */
     private $videos;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $tema;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $idioma;
+
     public function __construct()
     {
         $this->comentarios = new ArrayCollection();
@@ -237,6 +247,30 @@ class Usuario implements UserInterface
                 $video->setUsuario(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTema(): ?string
+    {
+        return $this->tema;
+    }
+
+    public function setTema(string $tema): self
+    {
+        $this->tema = $tema;
+
+        return $this;
+    }
+
+    public function getIdioma(): ?string
+    {
+        return $this->idioma;
+    }
+
+    public function setIdioma(string $idioma): self
+    {
+        $this->idioma = $idioma;
 
         return $this;
     }

@@ -82,7 +82,7 @@ h3>a {
     padding: 0px 20px;
 }
 
-.bloqueVideo img {
+.bloqueVideo video {
     float: left;
     border: 1px solid #666;
     margin-right: 10px;
@@ -99,7 +99,7 @@ h3>a {
     padding-left: 10px;
 }
 
-#imgcover {
+#vidcover {
     text-align: center;
     background-color: #181818;
 }
@@ -149,7 +149,17 @@ p.usuario a {
     opacity: 0.3;
 }
 
-#claro {
+#sol {
+    width: 70%;
+    height: auto;
+}
+
+#luna {
+    width: 50%;
+    height: auto;
+}
+
+#dropdownMenu * {
     display: flex;
-    align-items: left;
+    justify-content: left;
 }

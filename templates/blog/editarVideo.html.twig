@@ -7,12 +7,7 @@
 {% endblock %}
 
 {% block main %}
-	<p class="small">
-		<a href="{{ path('index') }}">←
-			{% trans %}video.volver{% endtrans %}</a>
-	</p>
 	{{ form_start(form) }}
-	{#
 	<p>{{ form_label(form.titulo) }}
 		{{ form_widget(form.titulo) }}
 		<br/>{{ form_help(form.titulo) }}</p>
@@ -20,22 +15,13 @@
 		{{ form_errors(form.titulo) }}
 	</div>
 
-	<p>{{ form_label(form.entradilla) }}<br/>
-		{{ form_widget(form.entradilla) }}
+	<p>{{ form_label(form.descripcion) }}<br/>
+		{{ form_widget(form.descripcion) }}
 		<br/>
-		{{ form_help(form.entradilla) }}</p>
+		{{ form_help(form.descripcion) }}</p>
 	<div class="form-error">
-		{{ form_errors(form.entradilla) }}
+		{{ form_errors(form.descripcion) }}
 	</div>
-
-	<p>{{ form_label(form.cuerpo) }}<br/>
-		{{ form_widget(form.cuerpo) }}
-		<br/>
-		{{ form_help(form.cuerpo) }}</p>
-	<div class="form-error">
-		{{ form_errors(form.cuerpo) }}
-	</div>
-	#}
 
 	<p>{{ form_label(form.fecha) }}
 		{{ form_widget(form.fecha) }}

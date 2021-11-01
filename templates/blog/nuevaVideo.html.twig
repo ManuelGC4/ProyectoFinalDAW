@@ -11,6 +11,7 @@
 		<a href="{{ path('index') }}">←
 			{% trans %}video.volver{% endtrans %}</a>
 	</p>
+	{#
 	{{ form_start(form) }}
 	<p>{{ form_label(form.titulo) }}
 		{{ form_widget(form.titulo) }}
@@ -18,7 +19,7 @@
 	<div class="form-error">
 		{{ form_errors(form.titulo) }}
 	</div>
-{#
+
 	<p>{{ form_label(form.entradilla) }}<br/>
 		{{ form_widget(form.entradilla) }}
 		<br/>
@@ -34,9 +35,10 @@
 	<div class="form-error">
 		{{ form_errors(form.cuerpo) }}
 	</div>
-#}
+
 	{{form_row(form.save) }}
 	{{ form_end(form) }}
+	#}
 {% endblock %}
 
 {% block javascripts %}

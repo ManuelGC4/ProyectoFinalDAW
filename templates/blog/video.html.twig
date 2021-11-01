@@ -24,7 +24,7 @@
 			{% trans %}video.en{% endtrans %}
 			{{video.fecha|date("Y-m-d H:i:s")}}
 		</p>
-		<div id="imgcover"><img src="{{ asset('images/cover-' ~ video.id ~ '.jpg') }}"/></div>
+		<div id="vidcover"><video src="{{ asset('videos/video-' ~ video.id ~ '.mp4') }}" width="100%" height="auto" controls/></div>
 
 		{% if is_granted('ROLE_ADMIN') %}
 			<p>

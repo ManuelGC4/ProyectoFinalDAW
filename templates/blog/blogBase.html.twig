@@ -10,8 +10,12 @@
 			{% endblock %}
 		</title>
 		{% block stylesheets %}
-			<link
-			id="css" href="{{ asset('css/claro.css') }}" rel="stylesheet"/>
+			{% if is_granted('ROLE_USER') %}
+				<link id="cssClaro" href="{{ asset('css/' ~ app.user.tema ~ '.css') }}" rel="stylesheet"/>
+			{% else %}
+				<link id="cssClaro" href="{{ asset('css/claro.css') }}" rel="stylesheet"/>
+				<link id="cssOscuro" href="{{ asset('css/oscuro.css') }}" rel="stylesheet" disabled/>
+			{% endif %}
 
 			<!-- Bootstrap -->
 			<link
@@ -36,31 +40,83 @@
 				<div class="col-3">
 					{% if is_granted('ROLE_USER') %}
 						<div class="dropdown">
-							<a id="menuAvatar" class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<img id="avatar" title="{{ app.user.nick }}" class="img-thumbnail" src="{{ asset('images/icons/sinFoto.png') }}">
-							</a>
-							<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="menuAvatar">
+							<img id="avatar" class="dropdown-toggle img-thumbnail" src="{{ asset('images/icons/sinFoto.png') }}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<ul id="dropdownMenu" class="dropdown-menu" aria-labelledby="menuAvatar">
 								<li>
 									<a href="{{ path('verPerfil', {'id': app.user.id}) }}" class="dropdown-item">{% trans %}base.perfil{% endtrans %}</a>
 								</li>
 								<li>
 									<a href="{{ path('nuevaVideo') }}" class="dropdown-item">{% trans %}base.añadir{% endtrans %}</a>
 								</li>
+								<li>
+									<button id="claro" class="dropdown-item" onclick="cambiarTemaColor('claro')" type="button">
+										<div class="row">
+											<div class="col-9">{% trans %}base.claro{% endtrans %}</div>
+											<div id="solDiv" class="col-3"><img id="sol" class="img-fluid" src="{{ asset('images/icons/sol.png') }}"></div>
+										</div>
+									</button>
+								</li>
+								<li>
+									<button id="oscuro" class="dropdown-item" onclick="cambiarTemaColor('oscuro')" type="button">
+										<div class="row">
+											<div class="col-9">{% trans %}base.oscuro{% endtrans %}</div>
+											<div id="lunaDiv" class="col-3"><img id="luna" class="img-fluid" src="{{ asset('images/icons/luna.png') }}"></div>
+										</div>
+									</button>
+								</li>
 								<li><hr class="dropdown-divider"></li>
-								<li>
-									<button id="claro" class="dropdown-item" type="button">{% trans %}base.claro{% endtrans %}<img id="sol" src="{{ asset('images/icons/sol.png') }}"></button>
-								</li>
-								<li>
-									<button id="oscuro" class="dropdown-item" type="button"><span>{% trans %}base.oscuro{% endtrans %}<img id="luna" src="{{ asset('images/icons/luna.png') }}"></span></button>
-								</li>
 								<li>
 									<a href="{{ path("app_logout") }}" class="dropdown-item">{% trans %}base.cerrar{% endtrans %}</a>
 								</li>
 							</ul>
 						</div>
+						<div class="dropdown">
+							<button id="idiomaDrop" class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+							<ul id="dropdownIdioma" class="dropdown-menu" aria-labelledby="idiomaDrop">
+								<li>
+									<button class="dropdown-item" onclick="cambiarIdioma('ES')" type="button">ES</button>
+								</li>
+								<li>
+									<button class="dropdown-item" onclick="cambiarIdioma('EN')" type="button">EN</button>
+								</li>
+							</ul>
+						</div>
 					{% else %}
-						<div>
-							<a href="{{ path("app_login") }}"><img id="avatar" title="{% trans %}base.iniciar{% endtrans %}" class="img-thumbnail" src="{{ asset('images/icons/sinFoto.png') }}"></a>
+						<div class="dropdown">
+							<img id="avatar" class="dropdown-toggle img-thumbnail" src="{{ asset('images/icons/sinFoto.png') }}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<ul id="dropdownMenu" class="dropdown-menu" aria-labelledby="menuAvatar">
+								<li>
+									<a href="{{ path("app_login") }}" class="dropdown-item">{% trans %}base.iniciar{% endtrans %}</a>
+								</li>
+								<li><hr class="dropdown-divider"></li>
+								<li>
+									<button id="claro" class="dropdown-item" onclick="cambiarTemaColor('claro')" type="button">
+										<div class="row">
+											<div class="col-9">{% trans %}base.claro{% endtrans %}</div>
+											<div id="solDiv" class="col-3"><img id="sol" class="img-fluid" src="{{ asset('images/icons/sol.png') }}"></div>
+										</div>
+									</button>
+								</li>
+								<li>
+									<button id="oscuro" class="dropdown-item" onclick="cambiarTemaColor('oscuro')" type="button">
+										<div class="row">
+											<div class="col-9">{% trans %}base.oscuro{% endtrans %}</div>
+											<div id="lunaDiv" class="col-3"><img id="luna" class="img-fluid" src="{{ asset('images/icons/luna.png') }}"></div>
+										</div>
+									</button>
+								</li>
+							</ul>
+						</div>
+						<div class="dropdown">
+							<button id="idiomaDrop" class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+							<ul id="dropdownIdioma" class="dropdown-menu" aria-labelledby="idiomaDrop">
+								<li>
+									<button class="dropdown-item" onclick="cambiarIdioma('ES')" type="button">ES</button>
+								</li>
+								<li>
+									<button class="dropdown-item" onclick="cambiarIdioma('EN')" type="button">EN</button>
+								</li>
+							</ul>
 						</div>
 					{% endif %}
 				</div>
@@ -84,7 +140,7 @@
 				<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 				<!-- Mis scripts -->
-				<script src="{{ asset('js/cambioCss.js') }}"></script>
+				<script src="{{ asset('js/menuBase.js') }}"></script>
 			{% endblock %}
 
 		</body>
