@@ -3,14 +3,36 @@
     border-left: 1px solid #666;
     border-right: 1px solid #666;
     background-color: #181818;
-    padding: 4px 20px;
+    padding: 1%;
     color: #EEE;
+}
+
+#perfilInfo {
+    margin: auto;
+    border-bottom: 5px solid #2C3DB7;
+    background-color: #181818;
+    padding: 1%;
+    color: #EEE;
+}
+
+#perfilInfo #avatar {
+    width: 30%;
+    height: auto;
+    border-radius: 50%;
+    border-color: #2C3DB7;
+    border-width: 2px;
+}
+
+#avatarPerfil {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #lateral {
     margin: auto;
     background-color: #212121;
-    padding: 4px 20px;
+    padding: 1%;
     color: #EEE;
 }
 
@@ -40,6 +62,14 @@ header * {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#tituloCabecera * {
+    justify-content: flex-start;
+}
+
+#menus * {
+    justify-content: flex-end;
 }
 
 header h1 {
@@ -82,24 +112,27 @@ h3>a {
 }
 
 .listaVideos {
-    padding: 0px 20px;
+    padding: 1%;
 }
 
-.bloqueVideo video {
+.bloqueVideo img {
     float: left;
     border: 1px solid #666;
-    margin-right: 10px;
-    width: 200px;
-    height: 200px;
+    margin-bottom: 1%;
+    width: 100%;
+    height: auto;
+}
+
+#nickUsuario {
+    color: #2C3DB7;
+    text-decoration: none;
 }
 
 .bloqueVideo {
     clear: both;
     list-style: none;
-    margin-bottom: 10px;
     min-height: 200px;
-    border-left: 3px dashed #2C3DB7;
-    padding-left: 10px;
+    padding: 1%;
 }
 
 #vidcover {
@@ -151,7 +184,7 @@ p.usuario a {
 }
 
 #avatar {
-    width: 14%;
+    width: 15%;
     height: auto;
     border-radius: 50%;
     border-color: #2C3DB7;

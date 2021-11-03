@@ -38,7 +38,7 @@ class ViewtubeController extends AbstractController
 
         if (!$video) {
             throw $this->createNotFoundException(
-                $translator->trans('video.noEncontrada') . $id
+                $translator->trans('video.noEncontrada')
             );
         }
 
@@ -129,7 +129,7 @@ class ViewtubeController extends AbstractController
 
         if (!$video) {
             throw $this->createNotFoundException(
-                $translator->trans('video.noEncontrada') . $id
+                $translator->trans('video.noEncontrada')
             );
         }
 
@@ -163,7 +163,7 @@ class ViewtubeController extends AbstractController
 
         if (!$video) {
             throw $this->createNotFoundException(
-                $translator->trans('video.noEncontrada') . $id
+                $translator->trans('video.noEncontrada')
             );
         }
         $entityManager->remove($video);
@@ -184,11 +184,13 @@ class ViewtubeController extends AbstractController
 
         if (!$usuario) {
             throw $this->createNotFoundException(
-                $translator->trans('usuario.noEncontrado') . $id
+                $translator->trans('usuario.noEncontrado')
             );
         }
 
-        return $this->render('blog/perfil.html.twig', array('usuario' => $usuario));
+        $videos = $entityManager->getRepository(Video::class)->findAll();
+
+        return $this->render('blog/perfil.html.twig', array('usuario' => $usuario, 'videos' => $videos));
     }
 
     public function verPerfilSinLocale()

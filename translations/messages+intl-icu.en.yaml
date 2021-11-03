@@ -9,9 +9,10 @@ video.borrar: Delete
 video.comentario: Comments
 video.en: 'on'
 video.comentarioMensaje: 'There are no comments'
-video.noEncontrada: 'There is no videos with id '
+video.noEncontrada: 'It has not been possible find the video'
 index.leer: 'Read more'
 index.publicada: 'Publish on'
+index.comentario: comment
 index.comentarios: comments
 index.videos: 'There are no videos'
 formulario.texto: 'Leave a comment:'
@@ -27,10 +28,10 @@ login.titulo: "Log In"
 login.aviso: "You are logged in as"
 login.cerrar: "Logout"
 login.mensaje: "Sign in"
-login.correo: "Email"
+general.correo: "Email"
 login.contraseña: "Password"
 login.boton: "Login"
-video.noEncontrado: 'There is no videos with id '
+video.noEncontrado: 'It has not been possible find the user'
 base.iniciar: "Log in"
 base.cerrar: "Log out"
 base.perfil: "Your profile"

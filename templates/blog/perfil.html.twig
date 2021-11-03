@@ -6,31 +6,109 @@
 	{{ parent() }}
 {% endblock %}
 
+{% block perfil %}
+	<div id="perfilInfo" class="row">
+		<div id="avatarPerfil" class="col-3">
+			{% if asset('images/avatares/avatar-' ~ usuario.id ~ '.png') %}
+				<img id="avatar" class="dropdown-toggle img-thumbnail" src="{{ asset('images/avatares/sinFoto.png') }}" title="{{ usuario.nick }}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+			{% else %}
+				<img id="avatar" class="dropdown-toggle img-thumbnail" src="{{ asset('images/avatares/sinFoto.png') }}" title="{{ usuario.nick }}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+			{% endif %}
+		</div>
+		<div class="col-6">
+			<div class="row row-cols-1">
+				<div class="col">
+					<h3>{{usuario.nick}}</h3>
+				</div>
+			</div>
+			{% if app.user.id == usuario.id %}
+				<div class="row row-cols-1">
+					<div class="col">
+						<p>{% trans %}general.correo{% endtrans %}:
+							{{usuario.nick}}</p>
+					</div>
+				</div>
+				<div class="row row-cols-2">
+					<div class="col">
+						<p>Nombre:
+							{{usuario.nombre}}</p>
+					</div>
+					<div class="col">
+						<p>Apellidos:
+							{{usuario.apellidos}}</p>
+					</div>
+				</div>
+				<div class="row row-cols-2">
+					<div class="col">
+						<p>Idioma:
+							{{usuario.idioma}}</p>
+					</div>
+					<div class="col">
+						<p>Tema de color:
+							{{usuario.tema}}</p>
+					</div>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}
+
 {% block izquierda %}
 	<div id="lateral" class="col-2"></div>
 {% endblock %}
 
 {% block main %}
 	<div id="main" class="col-10">
-		<h2>{{usuario.nick}}</h2>
 		<ul>
-			{% for video in usuario.videos %}
-				<li class='bloqueVideo'>
-					<img src="{{ asset('images/thumbnail-' ~ video.id ~ '.jpg') }}"/>
-					<h3>
-						<a href='{{ path('verVideo', {'id': video.id}) }}'>{{video.titulo}}</a>
-					</h3>
-					<p>{{video.descripcion|raw}}</p>
-					<p>
-						<a href='{{ path('verVideo', {'id': video.id}) }}'>{% trans %}index.leer{% endtrans %}</a>
-					</p>
-					<p>{% trans %}index.publicada{% endtrans %}:
-						{{video.fecha|date("Y-m-d H:i:s")}}. ({{video.comentarios|length}})
-						{% trans %}index.comentarios{% endtrans %}.</p>
-				</li>
-			{% else %}
-				<li class='bloqueVideo'>{% trans %}index.videos{% endtrans %}</li>
-			{% endfor %}
-		</ul>
-	</div>
-{% endblock %}
+			<ul class="listaVideos">
+				<div class="row">
+					{% for video in videos %}
+						<div class="col-4">
+							<li class='bloqueVideo'>
+								<div class="container">
+									<div class="row">
+										<div class="col">
+											<img src="{{ asset('images/videos/img-' ~ video.id ~ '.jpg') }}"/>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col">
+											<h3 id="tituloVideo">
+												<a href='{{ path('verVideo', {'id': video.id}) }}'>{{video.titulo}}</a>
+											</h3>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col">
+											<a id="nickUsuario" href="{{ path('verPerfil', {'id': video.usuario.id}) }}">{{video.usuario.nick}}</a>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col">
+											{{video.fecha|date("Y-m-d H:i:s")}}
+										</div>
+									</div>
+									<div class="row">
+										<div class="col">
+											{{video.comentarios|length}}
+											{% trans %}index.comentarios{% endtrans %}
+										</div>
+									</div>
+								</div>
+							</li>
+						</div>
+						{% if (video.id % 3) == 0 %}
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+						{% endif %}
+					{% else %}
+						<div class="col">
+							<li class='bloqueVideo'>{% trans %}index.videos{% endtrans %}</li>
+						</div>
+					{% endfor %}
+				</div>
+			</ul>
+		</div>
+	{% endblock %}

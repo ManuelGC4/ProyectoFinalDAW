@@ -11,23 +11,54 @@
 {% block main %}
 	<div id="main" class="col-10">
 		<ul class="listaVideos">
-			{% for video in videos %}
-				<li class='bloqueVideo'>
-					<img src="{{ asset('images/thumbnail-' ~ video.id ~ '.jpg') }}"/>
-					<h3>
-						<a href='{{ path('verVideo', {'id': video.id}) }}'>{{video.titulo}}</a>
-					</h3>
-					<p>{{video.descripcion|raw}}</p>
-					<p>
-						<a href='{{ path('verVideo', {'id': video.id}) }}'>{% trans %}index.leer{% endtrans %}</a>
-					</p>
-					<p>{% trans %}index.publicada{% endtrans %}:
-						{{video.fecha|date("Y-m-d H:i:s")}}. ({{video.comentarios|length}})
-						{% trans %}index.comentarios{% endtrans %}.</p>
-				</li>
-			{% else %}
-				<li class='bloqueVideo'>{% trans %}index.videos{% endtrans %}</li>
-			{% endfor %}
+			<div class="row">
+				{% for video in videos %}
+					<div class="col-4">
+						<li class='bloqueVideo'>
+							<div class="container">
+								<div class="row">
+									<div class="col">
+										<img src="{{ asset('images/videos/img-' ~ video.id ~ '.jpg') }}"/>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										<h3 id="tituloVideo">
+											<a href='{{ path('verVideo', {'id': video.id}) }}'>{{video.titulo}}</a>
+										</h3>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										<a id="nickUsuario" href="{{ path('verPerfil', {'id': video.usuario.id}) }}">{{video.usuario.nick}}</a>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										{{video.fecha|date("Y-m-d H:i:s")}}
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										{{video.comentarios|length}}
+										{% trans %}index.comentarios{% endtrans %}
+									</div>
+								</div>
+							</div>
+						</li>
+					</div>
+					{% if (video.id % 3) == 0 %}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+					{% endif %}
+				{% else %}
+					<div class="col">
+						<li class='bloqueVideo'>{% trans %}index.videos{% endtrans %}</li>
+					</div>
+				{% endfor %}
+			</div>
 		</ul>
 	</div>
 {% endblock %}

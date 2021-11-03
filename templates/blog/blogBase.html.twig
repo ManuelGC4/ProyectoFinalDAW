@@ -29,18 +29,18 @@
 	<body>
 		<header>
 			<div class="row">
-				<div class="col-3">
+				<div id="tituloCabecera" class="col-3">
 					<h1>
 						<a href="{{ path('index') }}">ViewTube</a>
 					</h1>
 				</div>
-				<div class="col-6">
+				<div id="buscador" class="col-6">
 					Buscador
 				</div>
-				<div class="col-3">
+				<div id="menus" class="col-3">
 					{% if is_granted('ROLE_USER') %}
 						<div class="dropdown">
-							<img id="avatar" class="dropdown-toggle img-thumbnail" src="{{ asset('images/icons/sinFoto.png') }}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<img id="avatar" class="dropdown-toggle img-thumbnail" src="{{ asset('images/avatares/sinFoto.png') }}" title="{{ app.user.nick }}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 							<ul id="dropdownMenu" class="dropdown-menu" aria-labelledby="menuAvatar">
 								<li>
 									<a href="{{ path('verPerfil', {'id': app.user.id}) }}" class="dropdown-item">{% trans %}base.perfil{% endtrans %}</a>
@@ -83,7 +83,7 @@
 						</div>
 					{% else %}
 						<div class="dropdown">
-							<img id="avatar" class="dropdown-toggle img-thumbnail" src="{{ asset('images/icons/sinFoto.png') }}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<img id="avatar" class="dropdown-toggle img-thumbnail" src="{{ asset('images/avatares/sinFoto.png') }}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 							<ul id="dropdownMenu" class="dropdown-menu" aria-labelledby="menuAvatar">
 								<li>
 									<a href="{{ path("app_login") }}" class="dropdown-item">{% trans %}base.iniciar{% endtrans %}</a>
@@ -123,7 +123,7 @@
 			</div>
 		</header>
 
-		<div id="container">
+		<div id="container"> {% block perfil %}{% endblock %}
 			<div class="row"> {% block izquierda %}{% endblock %}{% block main %}{% endblock %}{% block derecha %}{% endblock %}
 				</div>
 			</div>

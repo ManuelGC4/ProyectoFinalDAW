@@ -70,3 +70,8 @@ function cambiarTemaColor(tema) {
 
     window.localStorage.setItem('tema', tema);
 }
+
+/*
+window.onload = function getUrl() {
+}
+*/
