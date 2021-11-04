@@ -11,10 +11,10 @@
 		</title>
 		{% block stylesheets %}
 			<!--{% if is_granted('ROLE_USER') %}
-																																		<link id="cssClaro" href="{{ asset('css/' ~ app.user.tema ~ '.css') }}" rel="stylesheet"/>
-																																	{% else %}
-																																		
-																																	{% endif %} -->
+																																																																																					<link id="cssClaro" href="{{ asset('css/' ~ app.user.tema ~ '.css') }}" rel="stylesheet"/>
+																																																																																				{% else %}
+																																																																																					
+																																																																																				{% endif %} -->
 
 			<link id="cssClaro" href="{{ asset('css/claro.css') }}" rel="stylesheet"/>
 			<link
@@ -126,25 +126,23 @@
 			</div>
 		</header>
 
-		<div id="container"> {% block perfil %}{% endblock %}
-			<div class="row"> {% block izquierda %}{% endblock %}{% block main %}{% endblock %}{% block derecha %}{% endblock %}
-				</div>
-			</div>
+		<div id="container"> {% block main %}{% endblock %}
+			<span></span>
+		</div>
 
-			<footer>Copyright ©
-				{{ "now"|date("Y") }}
-				<span>
-					<a href='{{ path('index') }}'>ViewTube</a>
-				</span>
-			</footer>
+		<footer>Copyright ©
+			{{ "now"|date("Y") }}
+			<span>
+				<a href='{{ path('index') }}'>ViewTube</a>
+			</span>
+		</footer>
 
-			{% block javascripts %}
-				<!-- Bootstrap -->
-				<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+		{% block javascripts %}
+			<!-- Bootstrap -->
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-				<!-- Mis scripts -->
-				<script src="{{ asset('js/menuBase.js') }}"></script>
-			{% endblock %}
-
-		</body>
-	</html>
+			<!-- Mis scripts -->
+			<script src="{{ asset('js/menuBase.js') }}"></script>
+		{% endblock %}
+	</body>
+</html>

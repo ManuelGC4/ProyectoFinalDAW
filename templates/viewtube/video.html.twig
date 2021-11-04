@@ -7,156 +7,162 @@
 {% endblock %}
 
 {% block main %}
-	<div id="main" class="col-8">
-		<div class="container">
-		
-			<div class="row-cols-1">
-				<div class="col">
-					<h2>{{video.titulo}}</h2>
-				</div>
-				<div id="vidcover" class="col">
-					<video id="video" src="{{ asset('videos/video-' ~ video.id ~ '.mp4') }}" width="100%" height="auto" controls/>
-				</div>
-			</div>
-			<div id="videoInfo" class="row">
-				<div class="col">
-					<div class="row mt-2">
-						<div class="col">
-							<span class="small">
-								{% trans %}video.publicado{% endtrans %}
-								{% if video.usuario is null %}
-									{% trans %}video.desconocido{% endtrans %}
-								{% else %}
-									<a id="nickUsuario" href="{{ path('verPerfil', {'id': video.usuario.id}) }}">{{video.usuario.nick}}</a>
-								{% endif %}
-								{% trans %}video.en{% endtrans %}
-								{{video.fecha|date("Y-m-d H:i:s")}}
-							</span>
-						</div>
-					</div>
-					<div class="row mt-2">
-						<div class="col">
-							{% trans %}video.descripcion{% endtrans %}
-						</div>
-					</div>
-					<div class="row mt-2">
-						<div class="col">
-							{{video.descripcion}}
-						</div>
-					</div>
-				</div>
-			</div>
+	<div class="row">
+		<div id="main" class="col-9">
+			<div class="container">
 
-			{% if is_granted('ROLE_USER') %}
-				{% if (is_granted('ROLE_ADMIN') or app.user.id == video.usuario.id) %}
-					<div id="modificarVideo" class="row mt-3">
+				<div class="row-cols-1">
+					<div class="col">
+						<h2>{{video.titulo}}</h2>
+					</div>
+					<div id="vidcover" class="col">
+						<video id="video" src="{{ asset('videos/video-' ~ video.id ~ '.mp4') }}" width="100%" height="auto" controls/>
+					</div>
+				</div>
+				<div id="videoInfo" class="row">
+					<div class="col">
+						<div class="row mt-2">
+							<div class="col">
+								<span class="small">
+									{% trans %}video.publicado{% endtrans %}
+									{% if video.usuario is null %}
+										{% trans %}video.desconocido{% endtrans %}
+									{% else %}
+										<a id="nickUsuario" href="{{ path('verPerfil', {'id': video.usuario.id}) }}">{{video.usuario.nick}}</a>
+									{% endif %}
+									{% trans %}video.en{% endtrans %}
+									{{video.fecha|date("Y-m-d H:i:s")}}
+								</span>
+							</div>
+						</div>
+						<div class="row mt-2">
+							<div class="col">
+								{% trans %}video.descripcion{% endtrans %}
+							</div>
+						</div>
+						<div class="row mt-2">
+							<div class="col">
+								{{video.descripcion}}
+							</div>
+						</div>
+					</div>
+				</div>
+
+				{% if is_granted('ROLE_USER') %}
+					{% if (is_granted('ROLE_ADMIN') or app.user.id == video.usuario.id) %}
+						<div id="modificarVideo" class="row mt-3">
+							<div class="col">
+								<a href="{{ path('editarVideo', {'id' : video.id}) }}">{% trans %}video.editar{% endtrans %}</a>
+								<a href="{{ path('borrarVideo', {'id' : video.id}) }}">{% trans %}video.borrar{% endtrans %}</a>
+							</div>
+						</div>
+					{% endif %}
+				{% endif %}
+
+				{% if is_granted('ROLE_USER') %}
+					<div class="row-cols-1 mt-3">
+						{{ form_start(form) }}
+						<div class="col mb-2">{{ form_label(form.texto) }}</div>
+						<div class="col mb-2">{{ form_widget(form.texto) }}</div>
+						<div class="col mb-2">{{ form_help(form.texto) }}</div>
+						<div class="col mb-2 form-error">{{ form_errors(form.texto) }}</div>
+						<div class="col mb-2">{{form_row(form.save) }}{{ form_end(form) }}</div>
+					</div>
+				{% else %}
+					<div class="row-cols-1 mt-3" align="center">
 						<div class="col">
-							<a href="{{ path('editarVideo', {'id' : video.id}) }}">{% trans %}video.editar{% endtrans %}</a>
-							<a href="{{ path('borrarVideo', {'id' : video.id}) }}">{% trans %}video.borrar{% endtrans %}</a>
+							{% trans %}video.noSesion{% endtrans %}
+						</div>
+						<div class="col">
+							<a href="{{ path("app_login") }}">{% trans %}base.iniciar{% endtrans %}</a>
 						</div>
 					</div>
 				{% endif %}
-			{% endif %}
 
-			{% if is_granted('ROLE_USER') %}
 				<div class="row-cols-1 mt-3">
-					{{ form_start(form) }}
-					<div class="col mb-2">{{ form_label(form.texto) }}</div>
-					<div class="col mb-2">{{ form_widget(form.texto) }}</div>
-					<div class="col mb-2">{{ form_help(form.texto) }}</div>
-					<div class="col mb-2 form-error">{{ form_errors(form.texto) }}</div>
-					<div class="col mb-2">{{form_row(form.save) }}{{ form_end(form) }}</div>
-				</div>
-			{% else %}
-				<div class="row-cols-1 mt-3" align="center">
 					<div class="col">
-						{% trans %}video.noSesion{% endtrans %}
+						<h2>{% trans %}video.comentario{% endtrans %}</h2>
 					</div>
-					<div class="col">
-						<a href="{{ path("app_login") }}">{% trans %}base.iniciar{% endtrans %}</a>
-					</div>
+					<ul>
+						{% for comentario in video.comentarios %}
+							<li class='bloqueComentario'>
+								<div class="col">
+									<strong>
+										<a id="{% if video.usuario == comentario.usuario %}usuarioVideo{% else %}nickUsuario{% endif %}" href="{{ path('verPerfil', {'id': video.usuario.id}) }}">{{ comentario.usuario.nick }}</a>
+										<!-- <a href="mailto:{{ comentario.usuario.email }}">{{ comentario.usuario.nick }}</a> -->
+									</strong>
+									{% trans %}video.en{% endtrans %}
+									{{ comentario.fecha|date("Y-m-d H:i:s") }}:
+								</div>
+								<div class="col">
+									{{ comentario.texto|raw }}
+								</div>
+							</li>
+						{% else %}
+							<div class="col">
+								<li>{% trans %}video.comentarioMensaje{% endtrans %}</li>
+							</div>
+						{% endfor %}
+					</ul>
 				</div>
-			{% endif %}
 
-			<div class="row-cols-1 mt-3">
-				<div class="col">
-					<h2>{% trans %}video.comentario{% endtrans %}</h2>
-				</div>
-				<ul>
-					{% for comentario in video.comentarios %}
-						<li class='bloqueComentario'>
-							<div class="col">
-								<strong>
-									<a id="{% if video.usuario == comentario.usuario %}usuarioVideo{% else %}nickUsuario{% endif %}" href="{{ path('verPerfil', {'id': video.usuario.id}) }}">{{ comentario.usuario.nick }}</a>
-									<!-- <a href="mailto:{{ comentario.usuario.email }}">{{ comentario.usuario.nick }}</a> -->
-								</strong>
-								{% trans %}video.en{% endtrans %}
-								{{ comentario.fecha|date("Y-m-d H:i:s") }}:
+			</div>
+		</div>
+
+		<div id="lateralDerecho" class="col-3">
+			<div class="container">
+				<ul class="listaVideos">
+					{% for videoLateral in videos %}
+						{% if videoLateral.id != video.id %}
+							<div class="row">
+								<div class="col">
+									<li class='bloqueVideo'>
+										<div class="row">
+											<div class="col">
+												<a href='{{ path('verVideo', {'id': videoLateral.id}) }}'><img id="video" src="{{ asset('images/videos/img-' ~ videoLateral.id ~ '.jpg') }}"/></a>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col">
+												<h4 id="tituloVideo">
+													<a href='{{ path('verVideo', {'id': videoLateral.id}) }}'>{{videoLateral.titulo}}</a>
+												</h4>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col">
+												<a id="nickUsuario" href="{{ path('verPerfil', {'id': videoLateral.usuario.id}) }}">{{videoLateral.usuario.nick}}</a>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col">
+												{{videoLateral.fecha|date("Y-m-d H:i:s")}}
+											</div>
+										</div>
+										<div class="row">
+											<div class="col">
+												{{videoLateral.comentarios|length}}
+												{% trans %}index.comentarios{% endtrans %}
+											</div>
+										</div>
+									</li>
+								</div>
 							</div>
-							<div class="col">
-								{{ comentario.texto|raw }}
-							</div>
-						</li>
+						{% endif %}
 					{% else %}
 						<div class="col">
-							<li>{% trans %}video.comentarioMensaje{% endtrans %}</li>
+							<li class='bloqueVideo'>{% trans %}index.videos{% endtrans %}</li>
 						</div>
 					{% endfor %}
 				</ul>
 			</div>
-
 		</div>
 	</div>
-</div>{% endblock %}{% block derecha %}
-<div id="lateralDerecho" class="col-3">
-	<div class="container">
-		<ul class="listaVideos">
-			{% for videoLateral in videos %}
-				{% if videoLateral.id != video.id %}
-					<div class="row">
-						<div class="col">
-							<li class='bloqueVideo'>
-								<div class="row">
-									<div class="col">
-										<a href='{{ path('verVideo', {'id': videoLateral.id}) }}'><img id="video" src="{{ asset('images/videos/img-' ~ videoLateral.id ~ '.jpg') }}"/></a>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col">
-										<h4 id="tituloVideo">
-											<a href='{{ path('verVideo', {'id': videoLateral.id}) }}'>{{videoLateral.titulo}}</a>
-										</h4>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col">
-										<a id="nickUsuario" href="{{ path('verPerfil', {'id': videoLateral.usuario.id}) }}">{{videoLateral.usuario.nick}}</a>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col">
-										{{videoLateral.fecha|date("Y-m-d H:i:s")}}
-									</div>
-								</div>
-								<div class="row">
-									<div class="col">
-										{{videoLateral.comentarios|length}}
-										{% trans %}index.comentarios{% endtrans %}
-									</div>
-								</div>
-							</li>
-						</div>
-					</div>
-				{% endif %}
-			{% else %}
-				<div class="col">
-					<li class='bloqueVideo'>{% trans %}index.videos{% endtrans %}</li>
-				</div>
-			{% endfor %}
-		</ul>
-	</div>
-</div>{% endblock %}{% block javascripts %}
-{{ parent() }}<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-<script>
-	tinymce.init({selector: 'textarea'});
-</script>{% endblock %}
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+	<script>
+		tinymce.init({selector: 'textarea'});
+	</script>
+{% endblock %}
