@@ -10,12 +10,15 @@
 			{% endblock %}
 		</title>
 		{% block stylesheets %}
-			{% if is_granted('ROLE_USER') %}
-				<link id="cssClaro" href="{{ asset('css/' ~ app.user.tema ~ '.css') }}" rel="stylesheet"/>
-			{% else %}
-				<link id="cssClaro" href="{{ asset('css/claro.css') }}" rel="stylesheet"/>
-				<link id="cssOscuro" href="{{ asset('css/oscuro.css') }}" rel="stylesheet" disabled/>
-			{% endif %}
+			<!--{% if is_granted('ROLE_USER') %}
+																																		<link id="cssClaro" href="{{ asset('css/' ~ app.user.tema ~ '.css') }}" rel="stylesheet"/>
+																																	{% else %}
+																																		
+																																	{% endif %} -->
+
+			<link id="cssClaro" href="{{ asset('css/claro.css') }}" rel="stylesheet"/>
+			<link
+			id="cssOscuro" href="{{ asset('css/oscuro.css') }}" rel="stylesheet" disabled/>
 
 			<!-- Bootstrap -->
 			<link

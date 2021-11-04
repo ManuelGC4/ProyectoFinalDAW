@@ -13,6 +13,8 @@
     background-color: #181818;
     padding: 1%;
     color: #EEE;
+    display: flex;
+    align-items: center;
 }
 
 #perfilInfo #avatar {
@@ -25,14 +27,13 @@
 
 #avatarPerfil {
     display: flex;
-    align-items: center;
     justify-content: center;
 }
 
-#lateral {
+#lateralDerecho * {
     margin: auto;
     background-color: #212121;
-    padding: 1%;
+    padding: 0.15%;
     color: #EEE;
 }
 
@@ -97,7 +98,8 @@ footer a {
 }
 
 h2>a,
-h3>a {
+h3>a,
+h4>a {
     font-weight: 800;
     color: #EEE;
     text-decoration: none;
@@ -137,7 +139,6 @@ h3>a {
 
 #vidcover {
     text-align: center;
-    background-color: #EEE;
 }
 
 .small {
@@ -169,8 +170,9 @@ footer span {
     width: 100%;
 }
 
-p.usuario a {
-    color: red;
+#usuarioVideo {
+    color: #A46A1F;
+    text-decoration: none;
 }
 
 #sol {
@@ -198,4 +200,27 @@ p.usuario a {
 #dropdownMenu * {
     display: flex;
     justify-content: left;
+}
+
+#video {
+    border: 2px solid #2C3DB7;
+}
+
+#videoInfo {
+    margin: auto;
+    padding: 1%;
+}
+
+#videoInfo a {
+    text-decoration: none;
+}
+
+#modificarVideo * {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#comentario_save {
+    color: #EEE;
+    background-color: #2C3DB7;
 }

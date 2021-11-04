@@ -13,11 +13,11 @@ class ComentarioType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('texto', TextareaType::class, array('label' => 'formulario.texto', 'required' => false))
+            ->add('texto', TextareaType::class, array('label' => 'formulario.texto', 'required' => false, 'attr' => ['class' => 'form-control']))
             ->add(
                 'save',
                 SubmitType::class,
-                array('label' => 'formulario.añadirComentario')
+                array('label' => 'formulario.añadirComentario', 'attr' => ['class' => 'btn'])
             );
     }
 }

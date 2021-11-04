@@ -20,7 +20,7 @@ class ViewtubeController extends AbstractController
 
         $videos = $entityManager->getRepository(Video::class)->findAll();
 
-        return $this->render('blog/index.html.twig', array(
+        return $this->render('viewtube/index.html.twig', array(
             'videos' => $videos,
         ));
     }
@@ -66,8 +66,10 @@ class ViewtubeController extends AbstractController
             return $this->redirectToRoute('verVideo', array('id' => $id));
         }
 
-        return $this->render('blog/video.html.twig', array(
-            'video' => $video, 'form' => $form->createView(),
+        $videos = $entityManager->getRepository(Video::class)->findAll();
+
+        return $this->render('viewtube/video.html.twig', array(
+            'video' => $video, 'form' => $form->createView(), 'videos' => $videos,
         ));
     }
 
@@ -101,7 +103,7 @@ class ViewtubeController extends AbstractController
             return $this->redirectToRoute('videoCreada');
         }
 
-        return $this->render('blog/nuevaVideo.html.twig', array(
+        return $this->render('viewtube/nuevaVideo.html.twig', array(
             'form' => $form->createView(),
         ));
     }
@@ -113,7 +115,7 @@ class ViewtubeController extends AbstractController
 
     public function videoCreada()
     {
-        return $this->render('blog/videoCreada.html.twig');
+        return $this->render('viewtube/videoCreada.html.twig');
     }
 
     public function videoCreadaSinLocale()
@@ -145,7 +147,7 @@ class ViewtubeController extends AbstractController
             return $this->redirectToRoute('verVideo', array('id' => $id));
         }
 
-        return $this->render('blog/editarVideo.html.twig', array(
+        return $this->render('viewtube/editarVideo.html.twig', array(
             'form' => $form->createView(),
         ));
     }
@@ -168,7 +170,7 @@ class ViewtubeController extends AbstractController
         }
         $entityManager->remove($video);
         $entityManager->flush();
-        return $this->render('blog/videoBorrada.html.twig');
+        return $this->render('viewtube/videoBorrada.html.twig');
     }
 
     public function borrarVideoSinLocale()
@@ -190,7 +192,7 @@ class ViewtubeController extends AbstractController
 
         $videos = $entityManager->getRepository(Video::class)->findAll();
 
-        return $this->render('blog/perfil.html.twig', array('usuario' => $usuario, 'videos' => $videos));
+        return $this->render('viewtube/perfil.html.twig', array('usuario' => $usuario, 'videos' => $videos));
     }
 
     public function verPerfilSinLocale()

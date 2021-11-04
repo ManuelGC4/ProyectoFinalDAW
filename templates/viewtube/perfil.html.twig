@@ -1,0 +1,113 @@
+{% extends 'viewtube/viewtubeBase.html.twig' %}
+
+{% block titulo %}
+	{{usuario.nick}}
+	-
+	{{ parent() }}
+{% endblock %}
+
+{% block perfil %}
+	<div id="perfilInfo" class="row">
+		<div id="avatarPerfil" class="col-3">
+			{% if asset('images/avatares/avatar-' ~ usuario.id ~ '.png') %}
+				<img id="avatar" class="dropdown-toggle img-thumbnail" src="{{ asset('images/avatares/sinFoto.png') }}" title="{{ usuario.nick }}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+			{% else %}
+				<img id="avatar" class="dropdown-toggle img-thumbnail" src="{{ asset('images/avatares/sinFoto.png') }}" title="{{ usuario.nick }}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+			{% endif %}
+		</div>
+		<div class="col-6">
+			<div class="row row-cols-1">
+				<div class="col">
+					<h3>{{usuario.nick}}</h3>
+				</div>
+			</div>
+			{% if is_granted('ROLE_USER') %}
+				{% if app.user.id == usuario.id %}
+					<div class="row row-cols-1">
+						<div class="col">
+							<p>{% trans %}usuario.correo{% endtrans %}:
+								{{usuario.nick}}</p>
+						</div>
+					</div>
+					<div class="row row-cols-2">
+						<div class="col">
+							<p>{% trans %}usuario.nombre{% endtrans %}:
+								{{usuario.nombre}}</p>
+						</div>
+						<div class="col">
+							<p>{% trans %}usuario.apellidos{% endtrans %}:
+								{{usuario.apellidos}}</p>
+						</div>
+					</div>
+					<div class="row row-cols-2">
+						<div class="col">
+							<p>{% trans %}usuario.idioma{% endtrans %}:
+								{{usuario.idioma}}</p>
+						</div>
+						<div class="col">
+							<p>{% trans %}usuario.temaColor{% endtrans %}:
+								{{usuario.tema}}</p>
+						</div>
+					</div>
+				{% endif %}
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}
+
+{% block izquierda %}
+	<div id="lateral" class="col-2"></div>
+{% endblock %}
+
+{% block main %}
+	<div id="main" class="col-10">
+		<ul class="listaVideos">
+			<div class="row">
+				{% for video in videos %}
+					<div class="col-4">
+						<li class='bloqueVideo'>
+							<div class="row">
+								<div class="col">
+									<a href='{{ path('verVideo', {'id': video.id}) }}'><img id="video" src="{{ asset('images/videos/img-' ~ video.id ~ '.jpg') }}"/></a>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col">
+									<h3 id="tituloVideo">
+										<a href='{{ path('verVideo', {'id': video.id}) }}'>{{video.titulo}}</a>
+									</h3>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col">
+									<a id="nickUsuario" href="{{ path('verPerfil', {'id': video.usuario.id}) }}">{{video.usuario.nick}}</a>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col">
+									{{video.fecha|date("Y-m-d H:i:s")}}
+								</div>
+							</div>
+							<div class="row">
+								<div class="col">
+									{{video.comentarios|length}}
+									{% trans %}index.comentarios{% endtrans %}
+								</div>
+							</div>
+						</li>
+					</div>
+					{% if (video.id % 3) == 0 %}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+					{% endif %}
+				{% else %}
+					<div class="col">
+						<li class='bloqueVideo'>{% trans %}index.videos{% endtrans %}</li>
+					</div>
+				{% endfor %}
+			</div>
+		</ul>
+	</div>
+{% endblock %}

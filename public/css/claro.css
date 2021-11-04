@@ -29,10 +29,10 @@
     justify-content: center;
 }
 
-#lateral {
+#lateralDerecho * {
     margin: auto;
     background-color: #F9F9F9;
-    padding: 1%;
+    padding: 0.15%;
     color: #181818;
 }
 
@@ -90,7 +90,8 @@ footer a {
 }
 
 h2>a,
-h3>a {
+h3>a,
+h4>a {
     font-weight: 800;
     color: #333;
     text-decoration: none;
@@ -130,7 +131,6 @@ h3>a {
 
 #vidcover {
     text-align: center;
-    background-color: #181818;
 }
 
 .small {
@@ -191,4 +191,32 @@ p.usuario a {
 #dropdownMenu * {
     display: flex;
     justify-content: left;
+}
+
+#video {
+    border: 2px solid #2C3DB7;
+}
+
+#videoInfo {
+    margin: auto;
+    padding: 1%;
+}
+
+#videoInfo a {
+    text-decoration: none;
+}
+
+#modificarVideo * {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#comentario_save {
+    color: #EEE;
+    background-color: #2C3DB7;
+}
+
+#usuarioVideo {
+    color: #A46A1F;
+    text-decoration: none;
 }

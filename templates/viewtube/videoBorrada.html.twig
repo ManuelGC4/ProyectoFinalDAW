@@ -1,14 +1,10 @@
-{% extends 'blog/blogBase.html.twig' %}
-
+{% extends 'viewtube/viewtubeBase.html.twig' %}
 {% block titulo %}
-	{% trans %}nuevaVideo.titulo{% endtrans %}
-	-
-	{{ parent() }}
+	{% trans %}videoBorrada.titulo{% endtrans %}
 {% endblock %}
-
 {% block main %}
 	<p class="small">
 		<a href="{{ path('index') }}">← {% trans %}video.volver{% endtrans %}</a>
 	</p>
-	<strong>{% trans %}videoCreada.mensaje{% endtrans %}</strong>
+	<strong>{% trans %}videoBorrada.mensaje{% endtrans %}</strong>
 {% endblock %}
