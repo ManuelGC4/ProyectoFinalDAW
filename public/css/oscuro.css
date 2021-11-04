@@ -55,6 +55,7 @@ body {
 header {
     background-color: #202020;
     color: #EEE;
+    padding: 1%;
     border-bottom: 5px solid #2C3DB7;
     text-align: center;
 }
@@ -163,7 +164,7 @@ footer span {
 .bloqueComentario {
     list-style: none;
     margin-bottom: 10px;
-    border-left: 3px dashed #2C3DB7;
+    border: 1px solid #2C3DB7;
     padding-left: 10px;
 }
 

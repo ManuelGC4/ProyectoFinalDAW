@@ -13,10 +13,12 @@
     background-color: #EEE;
     padding: 1%;
     color: #181818;
+    display: flex;
+    align-items: center;
 }
 
 #perfilInfo #avatar {
-    width: 40%;
+    width: 30%;
     height: auto;
     border-radius: 50%;
     border-color: #2C3DB7;
@@ -25,7 +27,6 @@
 
 #avatarPerfil {
     display: flex;
-    align-items: center;
     justify-content: center;
 }
 
@@ -87,6 +88,11 @@ header a,
 footer a {
     color: #181818;
     text-decoration: none;
+}
+
+header a:hover,
+footer a:hover {
+    color: #2C3DB7;
 }
 
 h2>a,
@@ -154,7 +160,7 @@ footer span {
 .bloqueComentario {
     list-style: none;
     margin-bottom: 10px;
-    border-left: 3px dashed #2C3DB7;
+    border: 1px solid #2C3DB7;
     padding-left: 10px;
 }
 
@@ -162,8 +168,19 @@ footer span {
     width: 100%;
 }
 
-p.usuario a {
-    color: red;
+#usuarioVideo {
+    color: #A46A1F;
+    text-decoration: none;
+}
+
+#sol {
+    width: 70%;
+    height: auto;
+}
+
+#luna {
+    width: 60%;
+    height: auto;
 }
 
 #avatar {
@@ -176,16 +193,6 @@ p.usuario a {
 
 #avatar:hover {
     opacity: 0.3;
-}
-
-#sol {
-    width: 70%;
-    height: auto;
-}
-
-#luna {
-    width: 50%;
-    height: auto;
 }
 
 #dropdownMenu * {
@@ -214,11 +221,6 @@ p.usuario a {
 #comentario_save {
     color: #EEE;
     background-color: #2C3DB7;
-}
-
-#usuarioVideo {
-    color: #A46A1F;
-    text-decoration: none;
 }
 
 #logo {
