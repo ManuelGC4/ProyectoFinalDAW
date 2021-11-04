@@ -65,10 +65,6 @@ header * {
     justify-content: center;
 }
 
-#tituloCabecera * {
-    justify-content: flex-start;
-}
-
 #menus * {
     justify-content: flex-end;
 }
@@ -95,6 +91,11 @@ header a,
 footer a {
     color: #EEE;
     text-decoration: none;
+}
+
+header a:hover,
+footer a:hover {
+    color: #2C3DB7;
 }
 
 h2>a,
@@ -223,4 +224,9 @@ footer span {
 #comentario_save {
     color: #EEE;
     background-color: #2C3DB7;
+}
+
+#logo {
+    width: 30%;
+    height: auto;
 }

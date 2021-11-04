@@ -11,10 +11,10 @@
 		</title>
 		{% block stylesheets %}
 			<!--{% if is_granted('ROLE_USER') %}
-																																																																																					<link id="cssClaro" href="{{ asset('css/' ~ app.user.tema ~ '.css') }}" rel="stylesheet"/>
-																																																																																				{% else %}
-																																																																																					
-																																																																																				{% endif %} -->
+																																																																																								<link id="cssClaro" href="{{ asset('css/' ~ app.user.tema ~ '.css') }}" rel="stylesheet"/>
+																																																																																							{% else %}
+																																																																																								
+																																																																																							{% endif %} -->
 
 			<link id="cssClaro" href="{{ asset('css/claro.css') }}" rel="stylesheet"/>
 			<link
@@ -33,6 +33,7 @@
 		<header>
 			<div class="row">
 				<div id="tituloCabecera" class="col-3">
+					<a href="{{ path('index') }}"><img id="logo" class="img-fluid" src="{{ asset('images/icons/logo.png') }}"></a>
 					<h1>
 						<a href="{{ path('index') }}">ViewTube</a>
 					</h1>
