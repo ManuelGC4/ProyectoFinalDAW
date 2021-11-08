@@ -1,4 +1,4 @@
-{% extends 'viewtube/viewtubeBase.html.twig' %}
+{% extends 'viewtubeBase.html.twig' %}
 
 {% block titulo %}
 	{{usuario.nick}}
@@ -22,11 +22,11 @@
 				</div>
 			</div>
 			{% if is_granted('ROLE_USER') %}
-				{% if app.user.id == usuario.id %}
+				{% if (is_granted('ROLE_ADMIN') or app.user.id == usuario.id) %}
 					<div class="row row-cols-1">
 						<div class="col">
 							<p>{% trans %}usuario.correo{% endtrans %}:
-								{{usuario.nick}}</p>
+								{{usuario.email}}</p>
 						</div>
 					</div>
 					<div class="row row-cols-2">
@@ -53,7 +53,7 @@
 			{% endif %}
 		</div>
 	</div>
-	
+
 	<div class="row">
 
 		<div id="lateral" class="col-2"></div>
@@ -65,32 +65,32 @@
 						<div class="col-4">
 							<li class='bloqueVideo'>
 								<div class="row">
-									<div class="col">
-										<a href='{{ path('verVideo', {'id': video.id}) }}'><img id="video" src="{{ asset('images/videos/img-' ~ video.id ~ '.jpg') }}"/></a>
+									<div class="col-12">
+										<a href='{{ path('verVideo', {'id': video.id}) }}'><img id="video" src="{{ asset('images/thumbnailsVideos/thumbnailVideo-' ~ video.id ~ '.jpg') }}"/></a>
 									</div>
-								</div>
-								<div class="row">
-									<div class="col">
+									<div class="col-12">
 										<h3 id="tituloVideo">
 											<a href='{{ path('verVideo', {'id': video.id}) }}'>{{video.titulo}}</a>
 										</h3>
 									</div>
-								</div>
-								<div class="row">
-									<div class="col">
+									<div class="col-12">
 										<a id="nickUsuario" href="{{ path('verPerfil', {'id': video.usuario.id}) }}">{{video.usuario.nick}}</a>
 									</div>
-								</div>
-								<div class="row">
-									<div class="col">
-										{{video.fecha|date("Y-m-d H:i:s")}}
+									<div class="col-12">
+										{{video.fecha|date("Y-m-d H:i")}}
 									</div>
-								</div>
-								<div class="row">
-									<div class="col">
+									<div class="col-12">
 										{{video.comentarios|length}}
 										{% trans %}index.comentarios{% endtrans %}
 									</div>
+									{% if is_granted('ROLE_USER') %}
+										{% if (is_granted('ROLE_ADMIN') or app.user.id == video.usuario.id) %}
+											<div class="col-12 text-end">
+												<a id="videoEditar" class="btn" href='{{ path('editarVideo', {'id': video.id}) }}'>{% trans %}video.editar{% endtrans %}</a>
+												<a id="videoBorrar" class="btn" href='#'>{% trans %}video.borrar{% endtrans %}</a>
+											</div>
+										{% endif %}
+									{% endif %}
 								</div>
 							</li>
 						</div>

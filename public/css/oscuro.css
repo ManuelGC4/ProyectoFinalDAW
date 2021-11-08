@@ -231,3 +231,17 @@ footer span {
     width: 30%;
     height: auto;
 }
+
+#editarVideo,
+#borrarVideo {
+    width: 10%;
+    height: auto;
+    margin-left: 1%;
+}
+
+#videoEditar,
+#videoBorrar {
+    color: #EEE;
+    background-color: #2C3DB7;
+    margin-bottom: 2%;
+}

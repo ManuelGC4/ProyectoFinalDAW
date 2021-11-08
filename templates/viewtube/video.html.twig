@@ -1,4 +1,4 @@
-{% extends 'viewtube/viewtubeBase.html.twig' %}
+{% extends 'viewtubeBase.html.twig' %}
 
 {% block titulo %}
 	{{video.titulo}}
@@ -33,7 +33,7 @@
 								{% endif %}
 								<span class="small">
 									{% trans %}video.en{% endtrans %}
-									{{video.fecha|date("Y-m-d H:i:s")}}
+									{{video.fecha|date("Y-m-d H:i")}}
 								</span>
 							</div>
 						</div>
@@ -121,7 +121,7 @@
 									<li class='bloqueVideo'>
 										<div class="row">
 											<div class="col">
-												<a href='{{ path('verVideo', {'id': videoLateral.id}) }}'><img id="video" src="{{ asset('images/videos/img-' ~ videoLateral.id ~ '.jpg') }}"/></a>
+												<a href='{{ path('verVideo', {'id': videoLateral.id}) }}'><img id="video" src="{{ asset('images/thumbnailsVideos/thumbnailVideo-' ~ videoLateral.id ~ '.jpg') }}"/></a>
 											</div>
 										</div>
 										<div class="row">
@@ -138,7 +138,7 @@
 										</div>
 										<div class="row">
 											<div class="col">
-												{{videoLateral.fecha|date("Y-m-d H:i:s")}}
+												{{videoLateral.fecha|date("Y-m-d H:i")}}
 											</div>
 										</div>
 										<div class="row">

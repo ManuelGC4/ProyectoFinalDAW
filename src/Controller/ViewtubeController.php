@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+require 'vendor/autoload.php';
+
 use App\Entity\Usuario;
 use App\Entity\Video;
 use App\Entity\Comentario;
@@ -192,11 +194,24 @@ class ViewtubeController extends AbstractController
 
         $videos = $entityManager->getRepository(Video::class)->findAll();
 
-        return $this->render('viewtube/perfil.html.twig', array('usuario' => $usuario, 'videos' => $videos));
+        return $this->render('viewtube/perfil.html.twig', array('usuario' => $usuario, 'videos' => $videos, 'thumbnail' => $thumbnail));
     }
 
     public function verPerfilSinLocale()
     {
         return $this->redirectToRoute('verPerfil', ['_locale' => 'es']);
     }
+
+    /*
+    public function crearThumbnailVideo($id)
+    {
+
+        $ffmpeg = FFMpeg\FFMpeg::create();
+        $video = $ffmpeg->open($assetPackage->getUrl('videos/video-' . $id . '.mp4'));
+        $frame = $video->frame(FFMpeg\Coordinate\TimeCode::fromSeconds(1));
+        $frame->save($assetPackage->getUrl('videos/video-' . $id . '.mp4'));
+
+        return $frame;
+    }
+    */
 }

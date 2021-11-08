@@ -1,4 +1,4 @@
-{% extends 'viewtube/viewtubeBase.html.twig' %}
+{% extends 'viewtubeBase.html.twig' %}
 
 {% block titulo %}
 	{{ parent() }}
@@ -16,7 +16,7 @@
 							<li class='bloqueVideo'>
 								<div class="row">
 									<div class="col">
-										<a href='{{ path('verVideo', {'id': video.id}) }}'><img id="video" src="{{ asset('images/videos/img-' ~ video.id ~ '.jpg') }}"/></a>
+										<a href='{{ path('verVideo', {'id': video.id}) }}'><img id="video" src="{{ asset('images/thumbnailsVideos/thumbnailVideo-' ~ video.id ~ '.jpg') }}"/></a>
 									</div>
 								</div>
 								<div class="row">
@@ -33,7 +33,7 @@
 								</div>
 								<div class="row">
 									<div class="col">
-										{{video.fecha|date("Y-m-d H:i:s")}}
+										{{video.fecha|date("Y-m-d H:i")}}
 									</div>
 								</div>
 								<div class="row">

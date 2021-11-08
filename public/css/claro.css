@@ -227,3 +227,10 @@ footer span {
     width: 30%;
     height: auto;
 }
+
+#editarVideo,
+#borrarVideo {
+    width: 10%;
+    height: auto;
+    margin-left: 1%;
+}
