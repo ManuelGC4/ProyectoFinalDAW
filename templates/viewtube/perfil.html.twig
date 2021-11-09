@@ -60,45 +60,45 @@
 
 		<div id="main" class="col-10">
 			<ul class="listaVideos">
-				<div class="row">
+				<div class="row justify-content-center justify-content-xl-start">
 					{% for video in videos %}
-						<div class="col-4">
-							<li class='bloqueVideo'>
-								<div class="row">
-									<div class="col-12">
-										<a href='{{ path('verVideo', {'id': video.id}) }}'><img id="video" src="{{ asset('images/thumbnailsVideos/thumbnailVideo-' ~ video.id ~ '.jpg') }}"/></a>
-									</div>
-									<div class="col-12">
-										<h3 id="tituloVideo">
-											<a href='{{ path('verVideo', {'id': video.id}) }}'>{{video.titulo}}</a>
-										</h3>
-									</div>
-									<div class="col-12">
-										<a id="nickUsuario" href="{{ path('verPerfil', {'id': video.usuario.id}) }}">{{video.usuario.nick}}</a>
-									</div>
-									<div class="col-12">
-										{{video.fecha|date("Y-m-d H:i")}}
-									</div>
-									<div class="col-12">
-										{{video.comentarios|length}}
-										{% trans %}index.comentarios{% endtrans %}
-									</div>
-									{% if is_granted('ROLE_USER') %}
-										{% if (is_granted('ROLE_ADMIN') or app.user.id == video.usuario.id) %}
-											<div class="col-12 text-end">
-												<a id="videoEditar" class="btn" href='{{ path('editarVideo', {'id': video.id}) }}'>{% trans %}video.editar{% endtrans %}</a>
-												<a id="videoBorrar" class="btn" href='#'>{% trans %}video.borrar{% endtrans %}</a>
-											</div>
+						{% if usuario.id == video.usuario.id %}
+							<div class="col-10 col-xl-4">
+								<li class='bloqueVideo'>
+									<div class="row">
+										<div class="col-12">
+											<a href='{{ path('verVideo', {'id': video.id}) }}'><img id="video" src="{{ asset('images/thumbnailsVideos/thumbnailVideo-' ~ video.id ~ '.jpg') }}"/></a>
+										</div>
+										<div class="col-12">
+											<h3 id="tituloVideo">
+												<a href='{{ path('verVideo', {'id': video.id}) }}'>{{video.titulo}}</a>
+											</h3>
+										</div>
+										<div class="col-12">
+											<a id="nickUsuario" href="{{ path('verPerfil', {'id': video.usuario.id}) }}">{{video.usuario.nick}}</a>
+										</div>
+										<div class="col-12">
+											{{video.fecha|date("Y-m-d H:i")}}
+										</div>
+										<div class="col-12">
+											{{video.comentarios|length}}
+											{% trans %}index.comentarios{% endtrans %}
+										</div>
+										{% if is_granted('ROLE_USER') %}
+											{% if (is_granted('ROLE_ADMIN') or app.user.id == video.usuario.id) %}
+												<div class="col-12 text-end">
+													<a id="videoEditar" class="btn" href='{{ path('editarVideo', {'id': video.id}) }}'>{% trans %}video.editar{% endtrans %}</a>
+													<a id="videoBorrar" class="btn" href='{{ path('borrarVideo', {'id': video.id}) }}'>{% trans %}video.borrar{% endtrans %}</a>
+												</div>
+											{% endif %}
 										{% endif %}
-									{% endif %}
-								</div>
-							</li>
-						</div>
+									</div>
+								</li>
+							</div>
+						{% endif %}
 						{% if (video.id % 3) == 0 %}
 						</div>
-					</div>
-					<div class="row">
-						<div class="col">
+						<div class="row justify-content-center justify-content-xl-start">
 						{% endif %}
 					{% else %}
 						<div class="col">

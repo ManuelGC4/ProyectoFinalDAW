@@ -1,5 +1,5 @@
 videoCreada.mensaje: 'Su petición ha sido efectuada correctamente'
-nuevaVideo.titulo: 'Nuevo Video'
+nuevoVideo.titulo: 'Nuevo Video'
 videoBorrada.titulo: 'Video Borrado'
 video.volver: 'Volver a portada'
 videoBorrada.mensaje: 'Su video ha sido borrado correctamente'
@@ -44,3 +44,7 @@ usuario.idioma: "Idioma"
 usuario.temaColor: "Tema de color"
 video.noSesion: "Debes iniciar sesión para comentar"
 video.descripcion: Descripcion
+formulario.thumbnail: Imagen
+formulario.video: Video
+formulario.mimeThumbnail: "Por favor seleccione un archivo de imagen válido"
+formulario.mimeVideo: "Por favor seleccione un archivo de video válido"

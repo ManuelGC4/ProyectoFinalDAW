@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-require 'vendor/autoload.php';
-
 use App\Entity\Usuario;
 use App\Entity\Video;
 use App\Entity\Comentario;
@@ -80,7 +78,7 @@ class ViewtubeController extends AbstractController
         return $this->redirectToRoute('verVideo', ['_locale' => 'es']);
     }
 
-    public function nuevaVideo(Request $request)
+    public function nuevoVideo(Request $request)
     {
         $video = new Video();
 
@@ -96,23 +94,45 @@ class ViewtubeController extends AbstractController
             $usuario = $this->getUser();
             $video->setUsuario($usuario);
 
+            /*
+            $thumbnail = $form->get('thumbnail')->getData();
+
+            if ($thumbnail) {
+                $originalFilename = pathinfo($thumbnail->getClientOriginalName(), PATHINFO_FILENAME);
+
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$thumbnail->guessExtension();
+
+                try {
+                    $thumbnail->move(
+                        $this->getParameter('thumbnails_videos'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                $product->setNombreThumbnail($newFilename);
+            }
+            */
+
             $entityManager = $this->getDoctrine()->getManager();
 
             $entityManager->persist($video);
 
             $entityManager->flush();
 
-            return $this->redirectToRoute('videoCreada');
+            return $this->redirectToRoute('verPerfil', array('id' => $usuario->getId()));
         }
 
-        return $this->render('viewtube/nuevaVideo.html.twig', array(
+        return $this->render('viewtube/nuevoVideo.html.twig', array(
             'form' => $form->createView(),
         ));
     }
 
-    public function nuevaVideoSinLocale()
+    public function nuevoVideoSinLocale()
     {
-        return $this->redirectToRoute('nuevaVideo', ['_locale' => 'es']);
+        return $this->redirectToRoute('nuevoVideo', ['_locale' => 'es']);
     }
 
     public function videoCreada()
@@ -130,6 +150,7 @@ class ViewtubeController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
 
         $video = $entityManager->getRepository(Video::class)->find($id);
+        $usuario = $video->getUsuario();
 
         if (!$video) {
             throw $this->createNotFoundException(
@@ -146,7 +167,7 @@ class ViewtubeController extends AbstractController
 
             $entityManager->flush();
 
-            return $this->redirectToRoute('verVideo', array('id' => $id));
+            return $this->redirectToRoute('verPerfil', array('id' => $usuario->getId()));
         }
 
         return $this->render('viewtube/editarVideo.html.twig', array(
@@ -164,6 +185,7 @@ class ViewtubeController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
 
         $video = $entityManager->getRepository(Video::class)->find($id);
+        $usuario = $video->getUsuario();
 
         if (!$video) {
             throw $this->createNotFoundException(
@@ -172,7 +194,7 @@ class ViewtubeController extends AbstractController
         }
         $entityManager->remove($video);
         $entityManager->flush();
-        return $this->render('viewtube/videoBorrada.html.twig');
+        return $this->redirectToRoute('verPerfil', array('id' => $usuario->getId()));
     }
 
     public function borrarVideoSinLocale()
@@ -194,7 +216,7 @@ class ViewtubeController extends AbstractController
 
         $videos = $entityManager->getRepository(Video::class)->findAll();
 
-        return $this->render('viewtube/perfil.html.twig', array('usuario' => $usuario, 'videos' => $videos, 'thumbnail' => $thumbnail));
+        return $this->render('viewtube/perfil.html.twig', array('usuario' => $usuario, 'videos' => $videos));
     }
 
     public function verPerfilSinLocale()

@@ -19,15 +19,15 @@ verVideoSinLocale:
     path: /video/{id}
     controller: App\Controller\ViewtubeController::verVideoSinLocale
 
-nuevaVideo:
+nuevoVideo:
     path: /{_locale}/video/nueva
-    controller: App\Controller\ViewtubeController::nuevaVideo
+    controller: App\Controller\ViewtubeController::nuevoVideo
     requirements:
         _locale: en|es
 
-nuevaVideoSinLocale:
+nuevoVideoSinLocale:
     path: /video/nueva
-    controller: App\Controller\ViewtubeController::nuevaVideoSinLocale
+    controller: App\Controller\ViewtubeController::nuevoVideoSinLocale
 
 videoCreada:
     path: /{_locale}/video/creada

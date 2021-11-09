@@ -10,9 +10,9 @@
 
 		<div id="main" class="col-10">
 			<ul class="listaVideos">
-				<div class="row">
+				<div class="row justify-content-center justify-content-xl-start">
 					{% for video in videos %}
-						<div class="col-4">
+						<div class="col-10 col-xl-4">
 							<li class='bloqueVideo'>
 								<div class="row">
 									<div class="col">
@@ -46,9 +46,7 @@
 						</div>
 						{% if (video.id % 3) == 0 %}
 						</div>
-					</div>
-					<div class="row">
-						<div class="col">
+						<div class="row justify-content-center justify-content-xl-start">
 						{% endif %}
 					{% else %}
 						<div class="col">

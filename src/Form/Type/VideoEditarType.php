@@ -14,11 +14,12 @@ class VideoEditarType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('fecha', DateType::class, ['label' => 'formulario.fecha', 'widget' => 'single_text'])
+            ->add('titulo', TextType::class, array('attr' => ['class' => 'form-control']))
+            ->add('descripcion', TextareaType::class, array('attr' => ['class' => 'form-control'], 'required' => false))
             ->add(
                 'save',
                 SubmitType::class,
-                array('label' => 'formulario.editar')
+                array('label' => 'formulario.editar', 'attr' => ['class' => 'btn'])
             );
     }
 }

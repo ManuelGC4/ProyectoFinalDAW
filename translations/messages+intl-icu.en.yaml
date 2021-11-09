@@ -1,5 +1,5 @@
 videoCreada.mensaje: 'Your request was completed correctly'
-nuevaVideo.titulo: 'Adding videos'
+nuevoVideo.titulo: 'Adding videos'
 videoBorrada.titulo: 'Videos deleted'
 video.volver: 'Return to the main page'
 videoBorrada.mensaje: 'Your videos was deleted correctly'
@@ -18,10 +18,10 @@ index.videos: 'There are no videos'
 formulario.texto: 'Leave a comment:'
 formulario.añadirComentario: 'Add comment'
 formulario.titulo: Title
-formulario.añadirVideo: 'Add videos'
-formulario.editar: 'Edit videos'
+formulario.añadirVideo: 'Add video'
+formulario.editar: 'Edit video'
 formulario.fecha: Date
-editarVideo.titulo: 'Editing videos'
+editarVideo.titulo: 'Editing video'
 base.añadir: 'Add Video'
 video.desconocido: unknown
 login.titulo: "Log In"
@@ -44,3 +44,7 @@ usuario.idioma: "Language"
 usuario.temaColor: "Color theme"
 video.noSesion: "Log in to leave a comment"
 video.descripcion: Description
+formulario.thumbnail: Image
+formulario.video: Video
+formulario.mimeThumbnail: "Please upload a valid image file"
+formulario.mimeVideo: "Please upload a valid video file"

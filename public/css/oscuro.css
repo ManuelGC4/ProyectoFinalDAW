@@ -1,7 +1,6 @@
 #main {
     margin: auto;
-    border-left: 1px solid #666;
-    border-right: 1px solid #666;
+    border: 1px solid #666;
     background-color: #181818;
     padding: 1%;
     color: #EEE;
@@ -222,26 +221,17 @@ footer span {
     justify-content: flex-end;
 }
 
-#comentario_save {
-    color: #EEE;
-    background-color: #2C3DB7;
-}
-
 #logo {
     width: 30%;
     height: auto;
 }
 
-#editarVideo,
-#borrarVideo {
-    width: 10%;
-    height: auto;
-    margin-left: 1%;
-}
-
+#botonLogin,
 #videoEditar,
-#videoBorrar {
+#videoBorrar,
+#video_anadir_save,
+#video_editar_save,
+#comentario_save {
     color: #EEE;
     background-color: #2C3DB7;
-    margin-bottom: 2%;
 }
