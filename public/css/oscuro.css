@@ -1,6 +1,8 @@
 #main {
     margin: auto;
-    border: 1px solid #666;
+    border-left: 1px solid #666;
+    border-right: 1px solid #666;
+    border-bottom: 1px solid #666;
     background-color: #181818;
     padding: 1%;
     color: #EEE;
@@ -227,6 +229,7 @@ footer span {
 }
 
 #botonLogin,
+#videoAñadir,
 #videoEditar,
 #videoBorrar,
 #video_anadir_save,
@@ -234,4 +237,8 @@ footer span {
 #comentario_save {
     color: #EEE;
     background-color: #2C3DB7;
+}
+
+#lateralAñadir {
+    border-bottom: 1px solid #2C3DB7;
 }

@@ -56,7 +56,17 @@
 
 	<div class="row">
 
-		<div id="lateral" class="col-2"></div>
+		<div id="lateral" class="col-2">
+			{% if is_granted('ROLE_USER') %}
+				{% if (is_granted('ROLE_ADMIN') or app.user.id == video.usuario.id) %}
+					<div id="lateralAñadir" class="row">
+						<div class="col text-center">
+							<a id="videoAñadir" href="{{ path('nuevoVideo') }}" class="btn m-3">{% trans %}base.añadir{% endtrans %}</a>
+						</div>
+					</div>
+				{% endif %}
+			{% endif %}
+		</div>
 
 		<div id="main" class="col-10">
 			<ul class="listaVideos">

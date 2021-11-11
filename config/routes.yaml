@@ -29,16 +29,6 @@ nuevoVideoSinLocale:
     path: /video/nueva
     controller: App\Controller\ViewtubeController::nuevoVideoSinLocale
 
-videoCreada:
-    path: /{_locale}/video/creada
-    controller: App\Controller\ViewtubeController::videoCreada
-    requirements:
-        _locale: en|es
-
-videoCreadaSinLocale:
-    path: /video/creada
-    controller: App\Controller\ViewtubeController::videoCreadaSinLocale
-
 editarVideo:
     path: /{_locale}/video/editar/{id}
     controller: App\Controller\ViewtubeController::editarVideo

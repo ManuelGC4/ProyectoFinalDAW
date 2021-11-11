@@ -52,12 +52,12 @@ class Usuario implements UserInterface
     private $apellidos;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comentario::class, mappedBy="usuario")
+     * @ORM\OneToMany(targetEntity=Comentario::class, mappedBy="usuario", orphanRemoval=true)
      */
     private $comentarios;
 
     /**
-     * @ORM\OneToMany(targetEntity=Video::class, mappedBy="usuario")
+     * @ORM\OneToMany(targetEntity=Video::class, mappedBy="usuario", orphanRemoval=true)
      */
     private $videos;
 

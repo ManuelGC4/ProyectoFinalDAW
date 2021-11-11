@@ -36,7 +36,7 @@ class Video
     private $usuario;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comentario::class, mappedBy="video")
+     * @ORM\OneToMany(targetEntity=Comentario::class, mappedBy="video", orphanRemoval=true)
      */
     private $comentarios;
 

@@ -135,16 +135,6 @@ class ViewtubeController extends AbstractController
         return $this->redirectToRoute('nuevoVideo', ['_locale' => 'es']);
     }
 
-    public function videoCreada()
-    {
-        return $this->render('viewtube/videoCreada.html.twig');
-    }
-
-    public function videoCreadaSinLocale()
-    {
-        return $this->redirectToRoute('videoCreada', ['_locale' => 'es']);
-    }
-
     public function editarVideo(Request $request, $id, TranslatorInterface $translator)
     {
         $entityManager = $this->getDoctrine()->getManager();
@@ -185,16 +175,18 @@ class ViewtubeController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
 
         $video = $entityManager->getRepository(Video::class)->find($id);
-        $usuario = $video->getUsuario();
+        $usuarioId = $video->getUsuario()->getId();
 
         if (!$video) {
             throw $this->createNotFoundException(
                 $translator->trans('video.noEncontrada')
             );
         }
+
         $entityManager->remove($video);
         $entityManager->flush();
-        return $this->redirectToRoute('verPerfil', array('id' => $usuario->getId()));
+
+        return $this->redirectToRoute('verPerfil', array('id' => $usuarioId));
     }
 
     public function borrarVideoSinLocale()
