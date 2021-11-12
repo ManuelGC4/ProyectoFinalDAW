@@ -48,3 +48,7 @@ formulario.thumbnail: Imagen
 formulario.video: Video
 formulario.mimeThumbnail: "Por favor seleccione un archivo de imagen válido"
 formulario.mimeVideo: "Por favor seleccione un archivo de video válido"
+formulario.registro: Registrarse
+formulario.nick: "Nombre de usuario"
+formulario.editarUsuario: "Modificar usuario"
+registro.titulo: Registro

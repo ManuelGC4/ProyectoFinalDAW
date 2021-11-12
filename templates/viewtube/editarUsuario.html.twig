@@ -1,0 +1,78 @@
+{% extends 'viewtubeBase.html.twig' %}
+
+{% block titulo %}
+	{% trans %}formulario.editarUsuario{% endtrans %}
+	-
+	{{ parent() }}
+{% endblock %}
+
+{% block main %}
+	<div class="row row-cols-1 justify-content-center">
+		<div class="col-11 col-xl-7 mt-4">
+			<h3>{% trans %}formulario.editarUsuario{% endtrans %}</h3>
+		</div>
+
+		<div class="col-10 col-xl-6 m-4">
+
+			{{ form_start(form) }}
+
+			<div class="mb-3">
+				{{ form_label(form.nick, 'formulario.nick', {'label_attr': {'class': 'form-label'}}) }}
+				{{ form_widget(form.nick) }}
+				{{ form_help(form.nick) }}
+				<div class="form-error">
+					{{ form_errors(form.nick) }}
+				</div>
+			</div>
+
+			<div class="mb-3">
+				{{ form_label(form.nombre, 'usuario.nombre', {'label_attr': {'class': 'form-label'}}) }}
+				{{ form_widget(form.nombre) }}
+				{{ form_help(form.nombre) }}
+				<div class="form-error">
+					{{ form_errors(form.nombre) }}
+				</div>
+			</div>
+
+			<div class="mb-3">
+				{{ form_label(form.apellidos, 'usuario.apellidos', {'label_attr': {'class': 'form-label'}}) }}
+				{{ form_widget(form.apellidos) }}
+				{{ form_help(form.apellidos) }}
+				<div class="form-error">
+					{{ form_errors(form.apellidos) }}
+				</div>
+			</div>
+
+			<div class="mb-3">
+				{{ form_label(form.email, 'usuario.correo', {'label_attr': {'class': 'form-label'}}) }}
+				{{ form_widget(form.email) }}
+				{{ form_help(form.email) }}
+				<div class="form-error">
+					{{ form_errors(form.email) }}
+				</div>
+			</div>
+
+			<div class="mb-3">
+				{{ form_label(form.password, 'login.contraseña', {'label_attr': {'class': 'form-label'}}) }}
+				{{ form_widget(form.password) }}
+				{{ form_help(form.password) }}
+				<div class="form-error">
+					{{ form_errors(form.password) }}
+				</div>
+			</div>
+
+			{{form_row(form.save) }}
+
+			{{ form_end(form) }}
+
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+	<script>
+		tinymce.init({selector: 'textarea'});
+	</script>
+{% endblock %}

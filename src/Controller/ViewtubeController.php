@@ -5,12 +5,14 @@ namespace App\Controller;
 use App\Entity\Usuario;
 use App\Entity\Video;
 use App\Entity\Comentario;
+use App\Form\Type\UsuarioEditarType;
 use App\Form\Type\VideoAnadirType;
 use App\Form\Type\VideoEditarType;
 use App\Form\Type\ComentarioType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class ViewtubeController extends AbstractController
 {
@@ -214,6 +216,42 @@ class ViewtubeController extends AbstractController
     public function verPerfilSinLocale()
     {
         return $this->redirectToRoute('verPerfil', ['_locale' => 'es']);
+    }
+
+    public function editarUsuario(Request $request, $id, TranslatorInterface $translator)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $usuario = $entityManager->getRepository(Usuario::class)->find($id);
+
+        if (!$usuario) {
+            throw $this->createNotFoundException(
+                $translator->trans('usuario.noEncontrado')
+            );
+        }
+
+        $form = $this->createForm(UsuarioEditarType::class, $usuario);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $usuario = $form->getData();
+
+            $usuario->setPassword($this->passwordEncoder->encodePassword($usuario, $form['password']->getData()));
+
+            $entityManager->flush();
+
+            return $this->redirectToRoute('verPerfil', array('id' => $id));
+        }
+
+        return $this->render('viewtube/editarUsuario.html.twig', array(
+            'form' => $form->createView(),
+        ));
+    }
+
+    public function editarUsuarioSinLocale()
+    {
+        return $this->redirectToRoute('editarUsuario', ['_locale' => 'es']);
     }
 
     /*

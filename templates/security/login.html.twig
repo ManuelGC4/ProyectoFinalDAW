@@ -7,6 +7,7 @@
 {% block main %}
 	<div class="container">
 		<div class="row justify-content-center">
+
 			<div class="col-11 col-xl-7 m-4">
 				<form method="post">
 					{% if error %}
@@ -36,21 +37,29 @@
 					type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
 					{#
-																				        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-																				        See https://symfony.com/doc/current/security/remember_me.html
-																				
-																				        <div class="checkbox mb-3">
-																				            <label>
-																				                <input type="checkbox" name="_remember_me"> Remember me
-																				            </label>
-																				        </div>
-																				    #}
+																																			        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+																																			        See https://symfony.com/doc/current/security/remember_me.html
+																																			
+																																			        <div class="checkbox mb-3">
+																																			            <label>
+																																			                <input type="checkbox" name="_remember_me"> Remember me
+																																			            </label>
+																																			        </div>
+																																			    #}
 
 					<button id="botonLogin" class="btn" type="submit">
 						{% trans %}login.boton{% endtrans %}
 					</button>
 				</form>
 			</div>
+
+			<div class="col-11 col-xl-7">
+				<hr class="dropdown-divider">
+				<div class="mb-3 text-center">
+					<a id="registro" href="{{ path('registro') }}">{% trans %}formulario.registro{% endtrans %}</a>
+				</div>
+			</div>
+
 		</div>
 	</div>
 {% endblock %}

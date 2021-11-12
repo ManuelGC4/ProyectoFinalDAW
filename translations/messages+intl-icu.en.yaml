@@ -30,7 +30,7 @@ login.cerrar: "Logout"
 login.mensaje: "Sign in"
 login.contraseña: "Password"
 login.boton: "Login"
-video.noEncontrado: 'It has not been possible find the user'
+usuario.noEncontrado: 'It has not been possible find the user'
 base.iniciar: "Log in"
 base.cerrar: "Log out"
 base.perfil: "Your profile"
@@ -48,3 +48,7 @@ formulario.thumbnail: Image
 formulario.video: Video
 formulario.mimeThumbnail: "Please upload a valid image file"
 formulario.mimeVideo: "Please upload a valid video file"
+formulario.registro: "Sign up"
+formulario.nick: Username
+formulario.editarUsuario: "Modify user"
+registro.titulo: "Sign up"

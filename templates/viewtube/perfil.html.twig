@@ -22,7 +22,7 @@
 				</div>
 			</div>
 			{% if is_granted('ROLE_USER') %}
-				{% if (is_granted('ROLE_ADMIN') or app.user.id == usuario.id) %}
+				{% if (is_granted('ROLE_ADMIN')) or (app.user.id == usuario.id) %}
 					<div class="row row-cols-1">
 						<div class="col">
 							<p>{% trans %}usuario.correo{% endtrans %}:
@@ -58,7 +58,7 @@
 
 		<div id="lateral" class="col-2">
 			{% if is_granted('ROLE_USER') %}
-				{% if (is_granted('ROLE_ADMIN') or app.user.id == video.usuario.id) %}
+				{% if (is_granted('ROLE_ADMIN')) or (app.user.id == usuario.id) %}
 					<div id="lateralAñadir" class="row">
 						<div class="col text-center">
 							<a id="videoAñadir" href="{{ path('nuevoVideo') }}" class="btn m-3">{% trans %}base.añadir{% endtrans %}</a>

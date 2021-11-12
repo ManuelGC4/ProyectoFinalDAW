@@ -59,3 +59,13 @@ verPerfil:
 verPerfilSinLocale:
     path: /perfil/{id}
     controller: App\Controller\ViewtubeController::verPerfilSinLocale
+
+editarUsuario:
+    path: /{_locale}/usuario/editar/{id}
+    controller: App\Controller\ViewtubeController::editarUsuario
+    requirements:
+        _locale: en|es
+
+editarUsuarioSinLocale:
+    path: /usuario/editar/{id}
+    controller: App\Controller\ViewtubeController::editarUsuarioSinLocale

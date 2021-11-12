@@ -234,6 +234,8 @@ footer span {
 #videoBorrar,
 #video_anadir_save,
 #video_editar_save,
+#registro_save,
+#usuario_editar_save,
 #comentario_save {
     color: #EEE;
     background-color: #2C3DB7;
@@ -241,4 +243,14 @@ footer span {
 
 #lateralAñadir {
     border-bottom: 1px solid #2C3DB7;
+}
+
+#registro {
+    color: #EEE;
+    text-decoration: none;
+}
+
+#registro:hover {
+    color: #2C3DB7;
+    text-decoration: none;
 }
