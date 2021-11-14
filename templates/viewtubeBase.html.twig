@@ -48,6 +48,30 @@
 									<li>
 										<a href="{{ path('nuevoVideo') }}" class="dropdown-item">{% trans %}base.añadir{% endtrans %}</a>
 									</li>
+
+									{#
+																											{% set path = app.request.get('_route') %}
+																											{{ render(controller('App\\Controller\\UtilController::temaUsuario', {'id': app.user.id, 'path': path})) }}
+																											{{ form_start(temaForm) }}
+																											<li>
+																												<button id="claro" class="dropdown-item" type="button">
+																													<div class="row">
+																														<div class="col-9">{{form_row(temaForm.claro) }}</div>
+																														<div id="solDiv" class="col-3"><img id="sol" class="img-fluid" src="{{ asset('images/icons/sol.png') }}"></div>
+																													</div>
+																												</button>
+																											</li>
+																											<li>
+																												<button id="oscuro" class="dropdown-item" type="button">
+																													<div class="row">
+																														<div class="col-9">{{form_row(temaForm.oscuro) }}</div>
+																														<div id="lunaDiv" class="col-3"><img id="luna" class="img-fluid" src="{{ asset('images/icons/luna.png') }}"></div>
+																													</div>
+																												</button>
+																											</li>
+																											{{ form_end(temaForm) }}
+																		#}
+
 									<li>
 										<button id="claro" class="dropdown-item" onclick="cambiarTemaColor('claro')" type="button">
 											<div class="row">
@@ -64,6 +88,7 @@
 											</div>
 										</button>
 									</li>
+
 									<li><hr class="dropdown-divider"></li>
 									<li>
 										<a href="{{ path("app_logout") }}" class="dropdown-item">{% trans %}base.cerrar{% endtrans %}</a>

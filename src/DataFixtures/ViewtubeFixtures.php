@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\Video;
 use App\Entity\Comentario;
 use App\Entity\Usuario;
+use App\Entity\Categoria;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -25,16 +26,25 @@ class ViewtubeFixtures extends Fixture
         $connection->exec("ALTER TABLE usuario AUTO_INCREMENT = 1;");
         $connection->exec("ALTER TABLE video AUTO_INCREMENT = 1;");
         $connection->exec("ALTER TABLE comentario AUTO_INCREMENT = 1;");
+        $connection->exec("ALTER TABLE categoria AUTO_INCREMENT = 1;");
+
+        $categoria1 = new Categoria();
+        $categoria1->setNombre("Naturaleza");
+
+        $categoria2 = new Categoria();
+        $categoria2->setNombre("Animales");
 
         $video1 = new Video();
         $video1->setTitulo("Lago en el valle");
         $video1->setDescripcion("Perspectiva aérea del lago de un valle");
         $video1->setFecha(new \DateTime('2021-11-01 20:17:26'));
+        $video1->setCategoria($categoria1);
 
         $video2 = new Video();
         $video2->setTitulo("Lago en la montaña");
         $video2->setDescripcion("Perspectiva aérea del lago en una montaña");
         $video2->setFecha(new \DateTime('2021-11-01 21:20:35'));
+        $video2->setCategoria($categoria1);
 
         // Usuario administrador
         $usuario = new Usuario();
@@ -61,6 +71,8 @@ class ViewtubeFixtures extends Fixture
         $usuario->addVideo($video1);
         $usuario->addVideo($video2);
 
+        $manager->persist($categoria1);
+        $manager->persist($categoria2);
         $manager->persist($comentario);
         $manager->persist($usuario);
         $manager->persist($video1);

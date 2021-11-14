@@ -2,28 +2,29 @@
 
 namespace App\Controller;
 
+use App\Entity\Categoria;
 use App\Entity\Usuario;
 use App\Entity\Video;
 use App\Entity\Comentario;
-use App\Form\Type\UsuarioEditarType;
 use App\Form\Type\VideoAnadirType;
 use App\Form\Type\VideoEditarType;
 use App\Form\Type\ComentarioType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class ViewtubeController extends AbstractController
 {
+
     public function index()
     {
         $entityManager = $this->getDoctrine()->getManager();
 
         $videos = $entityManager->getRepository(Video::class)->findAll();
+        $categorias = $entityManager->getRepository(Categoria::class)->findAll();
 
         return $this->render('viewtube/index.html.twig', array(
-            'videos' => $videos,
+            'videos' => $videos, 'categorias' => $categorias,
         ));
     }
 
@@ -201,6 +202,7 @@ class ViewtubeController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
 
         $usuario = $entityManager->getRepository(Usuario::class)->find($id);
+        $categorias = $entityManager->getRepository(Categoria::class)->findAll();
 
         if (!$usuario) {
             throw $this->createNotFoundException(
@@ -208,50 +210,12 @@ class ViewtubeController extends AbstractController
             );
         }
 
-        $videos = $entityManager->getRepository(Video::class)->findAll();
-
-        return $this->render('viewtube/perfil.html.twig', array('usuario' => $usuario, 'videos' => $videos));
+        return $this->render('viewtube/perfil.html.twig', array('usuario' => $usuario, 'categorias' => $categorias));
     }
 
     public function verPerfilSinLocale()
     {
         return $this->redirectToRoute('verPerfil', ['_locale' => 'es']);
-    }
-
-    public function editarUsuario(Request $request, $id, TranslatorInterface $translator)
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-
-        $usuario = $entityManager->getRepository(Usuario::class)->find($id);
-
-        if (!$usuario) {
-            throw $this->createNotFoundException(
-                $translator->trans('usuario.noEncontrado')
-            );
-        }
-
-        $form = $this->createForm(UsuarioEditarType::class, $usuario);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $usuario = $form->getData();
-
-            $usuario->setPassword($this->passwordEncoder->encodePassword($usuario, $form['password']->getData()));
-
-            $entityManager->flush();
-
-            return $this->redirectToRoute('verPerfil', array('id' => $id));
-        }
-
-        return $this->render('viewtube/editarUsuario.html.twig', array(
-            'form' => $form->createView(),
-        ));
-    }
-
-    public function editarUsuarioSinLocale()
-    {
-        return $this->redirectToRoute('editarUsuario', ['_locale' => 'es']);
     }
 
     /*

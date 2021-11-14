@@ -5,10 +5,22 @@
 {% endblock %}
 
 {% block main %}
-	<div class="row">
-		<div id="lateral" class="col-2"></div>
+	<div id="content" class="row">
+		<div id="lateralIzquierdo" class="col-12 col-xl-2">
+			<div class="row">
+				<div class="col-4 col-xl-10 m-4">
+					<label class="form-label" for="selCategoria">{% trans %}video.categoria{% endtrans %}</label>
+					<select class="form-select mt-2" name="selCategoria" onchange="actualizaCategoria(this.value)">
+						<option value="">{% trans %}categoria.none{% endtrans %}</option>
+						{% for categoria in categorias %}
+							<option value="{{ categoria.id }}">{{ categoria.nombre }}</option>
+						{% endfor %}
+					</select>
+				</div>
+			</div>
+		</div>
 
-		<div id="main" class="col-10">
+		<div id="main" class="col-12 col-xl-10">
 			<ul class="listaVideos">
 				<div class="row justify-content-center justify-content-xl-start">
 					{% for video in videos %}
@@ -44,7 +56,7 @@
 								</div>
 							</li>
 						</div>
-						{% if (video.id % 3) == 0 %}
+						{% if (loop.index % 3) == 0 %}
 						</div>
 						<div class="row justify-content-center justify-content-xl-start">
 						{% endif %}
@@ -57,4 +69,9 @@
 			</ul>
 		</div>
 	</div>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{ asset('js/actualizaVideos.js') }}"></script>
 {% endblock %}

@@ -4,7 +4,7 @@ videoBorrada.titulo: 'Videos deleted'
 video.volver: 'Return to the main page'
 videoBorrada.mensaje: 'Your videos was deleted correctly'
 video.publicado: 'Publish by '
-video.editar: Edit
+general.editar: Edit
 video.borrar: Delete
 video.comentario: Comments
 video.en: 'on'
@@ -44,6 +44,7 @@ usuario.idioma: "Language"
 usuario.temaColor: "Color theme"
 video.noSesion: "Log in to leave a comment"
 video.descripcion: Description
+video.categoria: Category
 formulario.thumbnail: Image
 formulario.video: Video
 formulario.mimeThumbnail: "Please upload a valid image file"
@@ -52,3 +53,6 @@ formulario.registro: "Sign up"
 formulario.nick: Username
 formulario.editarUsuario: "Modify user"
 registro.titulo: "Sign up"
+video.mas: "More videos"
+video.propios: "Yours videos"
+categoria.none: None

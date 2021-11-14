@@ -1,11 +1,14 @@
 #main {
     margin: auto;
-    border-left: 1px solid #666;
-    border-right: 1px solid #666;
-    border-bottom: 1px solid #666;
+    border: 1px solid #666;
     background-color: #EEE;
     padding: 1%;
     color: #181818;
+}
+
+#content {
+    margin: auto;
+    display: flex;
 }
 
 #perfilInfo {
@@ -31,11 +34,17 @@
     justify-content: center;
 }
 
+#lateralIzquierdo *,
 #lateralDerecho * {
     margin: auto;
     background-color: #F9F9F9;
     padding: 0.15%;
     color: #181818;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
 }
 
 body {
@@ -231,6 +240,7 @@ footer span {
 #video_anadir_save,
 #video_editar_save,
 #registro_save,
+#editarUsuario,
 #usuario_editar_save,
 #comentario_save {
     color: #EEE;
