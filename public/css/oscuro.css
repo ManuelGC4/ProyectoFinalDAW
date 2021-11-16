@@ -187,18 +187,8 @@ footer span {
     text-decoration: none;
 }
 
-#sol {
-    width: 70%;
-    height: auto;
-}
-
-#luna {
-    width: 60%;
-    height: auto;
-}
-
 #avatar {
-    width: 15%;
+    width: 100%;
     height: auto;
     border-radius: 50%;
     border-color: #2C3DB7;
@@ -238,6 +228,7 @@ footer span {
 }
 
 #botonLogin,
+#buscar,
 #videoAñadir,
 #videoEditar,
 #videoBorrar,
@@ -263,4 +254,8 @@ footer span {
 #registro:hover {
     color: #2C3DB7;
     text-decoration: none;
+}
+
+#buscador {
+    width: 75%;
 }

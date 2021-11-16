@@ -1,8 +1,7 @@
-function actualizaCategoria(categoria, videos) {
+function actualizaIndex(categoria) {
 
-    if (categoria == "" || categoria == null) {
-        return videos;
-    } else {
-
-    }
+    $.post("/", {
+            "data": categoria
+        },
+        function() {});
 }

@@ -34,10 +34,13 @@
 							<a href="{{ path('index') }}">ViewTube</a>
 						</h1>
 					</div>
-					<div id="buscador" class="col-6">
-						Buscador
+					<div class="col-8">
+						<div id="buscador" class="input-group">
+							<input type="text" class="form-control" aria-describedby="buscar">
+							<button class="btn" type="button" id="buscar">{% trans %}base.buscar{% endtrans %}</button>
+						</div>
 					</div>
-					<div id="menus" class="col-3">
+					<div id="menus" class="col-1">
 						{% if is_granted('ROLE_USER') %}
 							<div class="dropdown">
 								<img id="avatar" class="dropdown-toggle img-thumbnail" src="{{ asset('images/avatares/sinFoto.png') }}" title="{{ app.user.nick }}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -50,42 +53,36 @@
 									</li>
 
 									{#
-																											{% set path = app.request.get('_route') %}
-																											{{ render(controller('App\\Controller\\UtilController::temaUsuario', {'id': app.user.id, 'path': path})) }}
-																											{{ form_start(temaForm) }}
-																											<li>
-																												<button id="claro" class="dropdown-item" type="button">
-																													<div class="row">
-																														<div class="col-9">{{form_row(temaForm.claro) }}</div>
-																														<div id="solDiv" class="col-3"><img id="sol" class="img-fluid" src="{{ asset('images/icons/sol.png') }}"></div>
-																													</div>
-																												</button>
-																											</li>
-																											<li>
-																												<button id="oscuro" class="dropdown-item" type="button">
-																													<div class="row">
-																														<div class="col-9">{{form_row(temaForm.oscuro) }}</div>
-																														<div id="lunaDiv" class="col-3"><img id="luna" class="img-fluid" src="{{ asset('images/icons/luna.png') }}"></div>
-																													</div>
-																												</button>
-																											</li>
-																											{{ form_end(temaForm) }}
-																		#}
+																																																															{% set path = app.request.get('_route') %}
+																																																															{{ render(controller('App\\Controller\\UtilController::temaUsuario', {'id': app.user.id, 'path': path})) }}
+																																																															{{ form_start(temaForm) }}
+																																																															<li>
+																																																																<button id="claro" class="dropdown-item" type="button">
+																																																																	<div class="row">
+																																																																		<div class="col-9">{{form_row(temaForm.claro) }}</div>
+																																																																		<div id="solDiv" class="col-3"><img id="sol" class="img-fluid" src="{{ asset('images/icons/sol.png') }}"></div>
+																																																																	</div>
+																																																																</button>
+																																																															</li>
+																																																															<li>
+																																																																<button id="oscuro" class="dropdown-item" type="button">
+																																																																	<div class="row">
+																																																																		<div class="col-9">{{form_row(temaForm.oscuro) }}</div>
+																																																																		<div id="lunaDiv" class="col-3"><img id="luna" class="img-fluid" src="{{ asset('images/icons/luna.png') }}"></div>
+																																																																	</div>
+																																																																</button>
+																																																															</li>
+																																																															{{ form_end(temaForm) }}
+																																																						#}
 
 									<li>
 										<button id="claro" class="dropdown-item" onclick="cambiarTemaColor('claro')" type="button">
-											<div class="row">
-												<div class="col-9">{% trans %}base.claro{% endtrans %}</div>
-												<div id="solDiv" class="col-3"><img id="sol" class="img-fluid" src="{{ asset('images/icons/sol.png') }}"></div>
-											</div>
+											{% trans %}base.claro{% endtrans %}
 										</button>
 									</li>
 									<li>
 										<button id="oscuro" class="dropdown-item" onclick="cambiarTemaColor('oscuro')" type="button">
-											<div class="row">
-												<div class="col-9">{% trans %}base.oscuro{% endtrans %}</div>
-												<div id="lunaDiv" class="col-3"><img id="luna" class="img-fluid" src="{{ asset('images/icons/luna.png') }}"></div>
-											</div>
+											{% trans %}base.oscuro{% endtrans %}
 										</button>
 									</li>
 
@@ -116,18 +113,12 @@
 									<li><hr class="dropdown-divider"></li>
 									<li>
 										<button id="claro" class="dropdown-item" onclick="cambiarTemaColor('claro')" type="button">
-											<div class="row">
-												<div class="col-9">{% trans %}base.claro{% endtrans %}</div>
-												<div id="solDiv" class="col-3"><img id="sol" class="img-fluid" src="{{ asset('images/icons/sol.png') }}"></div>
-											</div>
+											{% trans %}base.claro{% endtrans %}
 										</button>
 									</li>
 									<li>
 										<button id="oscuro" class="dropdown-item" onclick="cambiarTemaColor('oscuro')" type="button">
-											<div class="row">
-												<div class="col-9">{% trans %}base.oscuro{% endtrans %}</div>
-												<div id="lunaDiv" class="col-3"><img id="luna" class="img-fluid" src="{{ asset('images/icons/luna.png') }}"></div>
-											</div>
+											{% trans %}base.oscuro{% endtrans %}
 										</button>
 									</li>
 								</ul>

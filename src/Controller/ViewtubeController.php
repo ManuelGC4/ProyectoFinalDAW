@@ -16,11 +16,19 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class ViewtubeController extends AbstractController
 {
 
-    public function index()
+    public function index(Request $request)
     {
         $entityManager = $this->getDoctrine()->getManager();
 
-        $videos = $entityManager->getRepository(Video::class)->findAll();
+        $categoriaId = $request->request->get('data');
+
+        if ($categoriaId != null || $categoriaId != '') {
+            $categoria = $entityManager->getRepository(Categoria::class)->find($categoriaId);
+            $videos = $entityManager->getRepository(Video::class)->findBy($categoria);
+        } else {
+            $videos = $entityManager->getRepository(Video::class)->findAll();
+        }
+
         $categorias = $entityManager->getRepository(Categoria::class)->findAll();
 
         return $this->render('viewtube/index.html.twig', array(

@@ -10,7 +10,7 @@
 			<div class="row">
 				<div class="col-4 col-xl-10 m-4">
 					<label class="form-label" for="selCategoria">{% trans %}video.categoria{% endtrans %}</label>
-					<select class="form-select mt-2" name="selCategoria" onchange="actualizaCategoria(this.value)">
+					<select class="form-select mt-2" name="selCategoria" onchange="actualizaIndex(this.value)">
 						<option value="">{% trans %}categoria.none{% endtrans %}</option>
 						{% for categoria in categorias %}
 							<option value="{{ categoria.id }}">{{ categoria.nombre }}</option>
@@ -73,5 +73,6 @@
 
 {% block javascripts %}
 	{{ parent() }}
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 	<script src="{{ asset('js/actualizaVideos.js') }}"></script>
 {% endblock %}
