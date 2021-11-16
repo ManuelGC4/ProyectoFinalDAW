@@ -1,7 +1,6 @@
-function actualizaIndex(categoria) {
+function actualizaIndex(categoria, videos) {
 
-    $.post("/", {
-            "data": categoria
-        },
-        function() {});
+    var listaVideos = document.getElementById('listaVideos');
+
+    listaVideos.innerHTML = videos[0].categoria
 }

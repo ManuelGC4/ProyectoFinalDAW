@@ -12,6 +12,9 @@ use App\Form\Type\ComentarioType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class ViewtubeController extends AbstractController
 {
@@ -20,16 +23,23 @@ class ViewtubeController extends AbstractController
     {
         $entityManager = $this->getDoctrine()->getManager();
 
-        $categoriaId = $request->request->get('data');
+        $categorias = $entityManager->getRepository(Categoria::class)->findAll();
+
+        $categoriaId = $request->request->get('categoria');
 
         if ($categoriaId != null || $categoriaId != '') {
-            $categoria = $entityManager->getRepository(Categoria::class)->find($categoriaId);
-            $videos = $entityManager->getRepository(Video::class)->findBy($categoria);
+
+            if ($request->isXMLHttpRequest()) {
+
+                $categoria = $entityManager->getRepository(Categoria::class)->find($categoriaId);
+                $videos = $entityManager->getRepository(Video::class)->findBy($categoria);
+                return new JsonResponse(array('videos' => $videos, 'categorias' => $categorias));
+            }
+
+            return new Response('This is not ajax!', 400);
         } else {
             $videos = $entityManager->getRepository(Video::class)->findAll();
         }
-
-        $categorias = $entityManager->getRepository(Categoria::class)->findAll();
 
         return $this->render('viewtube/index.html.twig', array(
             'videos' => $videos, 'categorias' => $categorias,
@@ -89,12 +99,10 @@ class ViewtubeController extends AbstractController
         return $this->redirectToRoute('verVideo', ['_locale' => 'es']);
     }
 
-    public function nuevoVideo(Request $request)
+    public function nuevoVideo(Request $request, SluggerInterface $slugger)
     {
         $video = new Video();
-
         $form = $this->createForm(VideoAnadirType::class, $video);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -105,27 +113,22 @@ class ViewtubeController extends AbstractController
             $usuario = $this->getUser();
             $video->setUsuario($usuario);
 
-            /*
             $thumbnail = $form->get('thumbnail')->getData();
 
             if ($thumbnail) {
-                $originalFilename = pathinfo($thumbnail->getClientOriginalName(), PATHINFO_FILENAME);
-
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename.'-'.uniqid().'.'.$thumbnail->guessExtension();
+                $filename = 'thumbnailVideo-' . $video . getId() . '.' . $thumbnail->guessExtension();
 
                 try {
                     $thumbnail->move(
                         $this->getParameter('thumbnails_videos'),
-                        $newFilename
+                        $filename
                     );
                 } catch (FileException $e) {
                     // ... handle exception if something happens during file upload
                 }
 
-                $product->setNombreThumbnail($newFilename);
+                $video->setThumbnail($filename);
             }
-            */
 
             $entityManager = $this->getDoctrine()->getManager();
 
