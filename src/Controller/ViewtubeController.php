@@ -25,18 +25,10 @@ class ViewtubeController extends AbstractController
 
         $categorias = $entityManager->getRepository(Categoria::class)->findAll();
 
-        $categoriaId = $request->request->get('categoria');
+        $categoriaId = $request->get('categoria');
 
-        if ($categoriaId != null || $categoriaId != '') {
-
-            if ($request->isXMLHttpRequest()) {
-
-                $categoria = $entityManager->getRepository(Categoria::class)->find($categoriaId);
-                $videos = $entityManager->getRepository(Video::class)->findBy($categoria);
-                return new JsonResponse(array('videos' => $videos, 'categorias' => $categorias));
-            }
-
-            return new Response('This is not ajax!', 400);
+        if ($categoriaId != null || $categoriaId != '' || $categoriaId != 0) {
+            $videos = $entityManager->getRepository(Video::class)->findByCategoria($categoriaId);
         } else {
             $videos = $entityManager->getRepository(Video::class)->findAll();
         }

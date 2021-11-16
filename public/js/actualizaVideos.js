@@ -1,6 +1,20 @@
-function actualizaIndex(categoria, videos) {
+function actualizaIndex(categoria) {
 
-    var listaVideos = document.getElementById('listaVideos');
 
-    listaVideos.innerHTML = videos[0].categoria
+    $.ajax({
+        type: "POST",
+        url: "/es",
+        data: {
+            categoria: categoria
+        },
+        dataType: "json",
+        success: function(response) {
+            console.log(response);
+        }
+    });
+
+
+    // var render = document.getElementById('actualizaIndexRender');
+
+    // render.innerHTML = "{{ render(path('index', {categoriaId: " + categoria + "})) }}";
 }
