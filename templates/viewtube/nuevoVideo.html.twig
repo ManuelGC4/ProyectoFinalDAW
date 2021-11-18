@@ -6,6 +6,8 @@
 	{{ parent() }}
 {% endblock %}
 
+{% block buscador %}{% endblock %}
+
 {% block main %}
 	<div class="row row-cols-1 justify-content-center">
 		<div class="col-11 col-xl-7 mt-4">
@@ -31,6 +33,24 @@
 				{{ form_help(form.descripcion) }}
 				<div class="form-error">
 					{{ form_errors(form.descripcion) }}
+				</div>
+			</div>
+
+			<div class="mb-3">
+				{{ form_label(form.thumbnail, 'formulario.thumbnail', {'label_attr': {'class': 'form-label'}}) }}
+				{{ form_widget(form.thumbnail) }}
+				{{ form_help(form.thumbnail) }}
+				<div class="form-error">
+					{{ form_errors(form.thumbnail) }}
+				</div>
+			</div>
+
+			<div class="col-3 mb-3">
+				{{ form_label(form.categoria, 'video.categoria', {'label_attr': {'class': 'form-label'}}) }}
+				{{ form_widget(form.categoria, {'attr': {'class': 'form-select'}}) }}
+				{{ form_help(form.categoria) }}
+				<div class="form-error">
+					{{ form_errors(form.categoria) }}
 				</div>
 			</div>
 

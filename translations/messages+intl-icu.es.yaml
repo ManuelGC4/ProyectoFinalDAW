@@ -4,7 +4,7 @@ videoBorrada.titulo: 'Video Borrado'
 video.volver: 'Volver a portada'
 videoBorrada.mensaje: 'Su video ha sido borrado correctamente'
 video.publicado: 'Publicado por'
-video.editar: Editar
+general.editar: Editar
 video.borrar: Borrar
 video.comentario: Comentarios
 video.en: en
@@ -44,7 +44,19 @@ usuario.idioma: "Idioma"
 usuario.temaColor: "Tema de color"
 video.noSesion: "Debes iniciar sesión para comentar"
 video.descripcion: Descripcion
+video.categoria: Categoría
 formulario.thumbnail: Imagen
 formulario.video: Video
 formulario.mimeThumbnail: "Por favor seleccione un archivo de imagen válido"
 formulario.mimeVideo: "Por favor seleccione un archivo de video válido"
+formulario.registro: Registrarse
+formulario.nick: "Nombre de usuario"
+formulario.editarUsuario: "Modificar usuario"
+registro.titulo: Registro
+video.mas: "Más videos"
+video.propios: "Tus videos"
+categoria.none: Ninguna
+base.buscar: Buscar
+categoria.seleccione: "Seleccione..."
+fecha.ascendente: "Ascendente"
+fecha.descendente: "Descendente"

@@ -45,6 +45,22 @@ class Video
      */
     private $descripcion;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Categoria::class, inversedBy="videos")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $categoria;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $thumbnail;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $video;
+
     public function __construct()
     {
         $this->comentarios = new ArrayCollection();
@@ -129,6 +145,42 @@ class Video
     public function setDescripcion(?string $descripcion): self
     {
         $this->descripcion = $descripcion;
+
+        return $this;
+    }
+
+    public function getCategoria(): ?Categoria
+    {
+        return $this->categoria;
+    }
+
+    public function setCategoria(?Categoria $categoria): self
+    {
+        $this->categoria = $categoria;
+
+        return $this;
+    }
+
+    public function getThumbnail(): ?string
+    {
+        return $this->thumbnail;
+    }
+
+    public function setThumbnail(string $thumbnail): self
+    {
+        $this->thumbnail = $thumbnail;
+
+        return $this;
+    }
+
+    public function getVideo(): ?string
+    {
+        return $this->video;
+    }
+
+    public function setVideo(string $video): self
+    {
+        $this->video = $video;
 
         return $this;
     }

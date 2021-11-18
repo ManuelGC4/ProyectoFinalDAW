@@ -7,10 +7,9 @@
 {% endblock %}
 
 {% block main %}
-	<div class="row justify-content-center justify-content-xl-start">
+	<div id="content" class="row">
 		<div id="main" class="col-12 col-xl-9">
 			<div class="container">
-
 				<div class="row-cols-1">
 					<div class="col">
 						<h2>{{video.titulo}}</h2>
@@ -33,8 +32,12 @@
 								{% endif %}
 								<span class="small">
 									{% trans %}video.en{% endtrans %}
-									{{video.fecha|date("Y-m-d H:i")}}
+									{{video.fecha|date("d-m-Y H:i")}}
 								</span>
+							</div>
+							<div class="col text-end">
+								{% trans %}video.categoria{% endtrans %}:
+								{{video.categoria.nombre}}
 							</div>
 						</div>
 						<div class="row mt-2">
@@ -52,20 +55,23 @@
 					{% if is_granted('ROLE_USER') %}
 						{% if (is_granted('ROLE_ADMIN') or app.user.id == video.usuario.id) %}
 							<div class="col-12 text-end">
-								<a id="videoEditar" class="btn" href='{{ path('editarVideo', {'id': video.id}) }}'>{% trans %}video.editar{% endtrans %}</a>
+								<a id="videoEditar" class="btn" href='{{ path('editarVideo', {'id': video.id}) }}'>{% trans %}general.editar{% endtrans %}</a>
 								<a id="videoBorrar" class="btn" href='{{ path('borrarVideo', {'id': video.id}) }}'>{% trans %}video.borrar{% endtrans %}</a>
 							</div>
 						{% endif %}
 					{% endif %}
 
 					{% if is_granted('ROLE_USER') %}
-						<div class="row-cols-1 mt-3">
+						<div class="row mt-3">
 							{{ form_start(form) }}
-							<div class="col mb-2">{{ form_label(form.texto) }}</div>
-							<div class="col mb-2">{{ form_widget(form.texto) }}</div>
-							<div class="col mb-2">{{ form_help(form.texto) }}</div>
-							<div class="col mb-2 form-error">{{ form_errors(form.texto) }}</div>
-							<div class="col mb-2">{{form_row(form.save) }}{{ form_end(form) }}</div>
+							<div class="col mb-2">
+								{{ form_label(form.texto, 'formulario.texto', {'label_attr': {'class': 'form-label'}}) }}
+								{{ form_widget(form.texto) }}
+								{{ form_help(form.texto) }}
+								<div class="form-error">{{ form_errors(form.texto) }}</div>
+							</div>
+							{{form_row(form.save) }}
+							{{ form_end(form) }}
 						</div>
 					{% else %}
 						<div class="row-cols-1 mt-3" align="center">
@@ -91,7 +97,7 @@
 											<!-- <a href="mailto:{{ comentario.usuario.email }}">{{ comentario.usuario.nick }}</a> -->
 										</strong>
 										{% trans %}video.en{% endtrans %}
-										{{ comentario.fecha|date("Y-m-d H:i") }}
+										{{ comentario.fecha|date("d-m-Y H:i") }}
 									</div>
 									<div class="col">
 										{{ comentario.texto|raw }}
@@ -111,36 +117,43 @@
 
 		<div id="lateralDerecho" class="col-12 col-xl-3">
 			<div class="container">
+				<div class="row mt-3">
+					<div class="col">
+						<h4>{% trans %}video.mas{% endtrans %}</h4>
+					</div>
+				</div>
 				<ul class="listaVideos">
 					{% for videoLateral in videos %}
-						{% if (videoLateral.id != video.id) and (video.usuario.id == videoLateral.usuario.id) %}
-							<div class="row">
-								<div class="col">
-									<li class='bloqueVideo'>
-										<div class="row">
-											<div class="col-12">
-												<a href='{{ path('verVideo', {'id': videoLateral.id}) }}'><img id="video" src="{{ asset('images/thumbnailsVideos/thumbnailVideo-' ~ videoLateral.id ~ '.jpg') }}"/></a>
-											</div>
-											<div class="col-12">
-												<h4 id="tituloVideo">
-													<a href='{{ path('verVideo', {'id': videoLateral.id}) }}'>{{videoLateral.titulo}}</a>
-												</h4>
-											</div>
+						{% if (videoLateral.id != video.id) %}
+							{% if (video.usuario.id == videoLateral.usuario.id) or (video.categoria.nombre == videoLateral.categoria.nombre) %}
+								<div class="row">
+									<div class="col">
+										<li class='bloqueVideo'>
+											<div class="row">
+												<div class="col-12">
+													<a href='{{ path('verVideo', {'id': videoLateral.id}) }}'><img id="video" src="{{ asset('images/thumbnailsVideos/thumbnailVideo-' ~ videoLateral.id ~ '.jpg') }}"/></a>
+												</div>
+												<div class="col-12">
+													<h4 id="tituloVideo">
+														<a href='{{ path('verVideo', {'id': videoLateral.id}) }}'>{{videoLateral.titulo}}</a>
+													</h4>
+												</div>
 
-											<div class="col-12">
-												<a id="nickUsuario" href="{{ path('verPerfil', {'id': videoLateral.usuario.id}) }}">{{videoLateral.usuario.nick}}</a>
+												<div class="col-12">
+													<a id="nickUsuario" href="{{ path('verPerfil', {'id': videoLateral.usuario.id}) }}">{{videoLateral.usuario.nick}}</a>
+												</div>
+												<div class="col-12">
+													{{videoLateral.fecha|date("d-m-Y H:i")}}
+												</div>
+												<div class="col-12">
+													{{videoLateral.comentarios|length}}
+													{% trans %}index.comentarios{% endtrans %}
+												</div>
 											</div>
-											<div class="col-12">
-												{{videoLateral.fecha|date("Y-m-d H:i")}}
-											</div>
-											<div class="col-12">
-												{{videoLateral.comentarios|length}}
-												{% trans %}index.comentarios{% endtrans %}
-											</div>
-										</div>
-									</li>
+										</li>
+									</div>
 								</div>
-							</div>
+							{% endif %}
 						{% endif %}
 					{% else %}
 						<div class="col">

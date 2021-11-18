@@ -1,11 +1,14 @@
 #main {
     margin: auto;
-    border-left: 1px solid #666;
-    border-right: 1px solid #666;
-    border-bottom: 1px solid #666;
+    border: 1px solid #666;
     background-color: #181818;
     padding: 1%;
     color: #EEE;
+}
+
+#content {
+    margin: auto;
+    display: flex;
 }
 
 #perfilInfo {
@@ -31,6 +34,7 @@
     justify-content: center;
 }
 
+#lateralIzquierdo *,
 #lateralDerecho * {
     margin: auto;
     background-color: #212121;
@@ -40,11 +44,12 @@
 
 html {
     background-color: #181818;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
     background-color: #212121;
-    margin: 0px;
     font-family: Verdana, sans-serif;
 }
 
@@ -178,18 +183,8 @@ footer span {
     text-decoration: none;
 }
 
-#sol {
-    width: 70%;
-    height: auto;
-}
-
-#luna {
-    width: 60%;
-    height: auto;
-}
-
 #avatar {
-    width: 15%;
+    width: 100%;
     height: auto;
     border-radius: 50%;
     border-color: #2C3DB7;
@@ -229,11 +224,17 @@ footer span {
 }
 
 #botonLogin,
+#buscar,
+#fechaAsc,
+#fechaDes,
 #videoAñadir,
 #videoEditar,
 #videoBorrar,
 #video_anadir_save,
 #video_editar_save,
+#registro_save,
+#editarUsuario,
+#usuario_editar_save,
 #comentario_save {
     color: #EEE;
     background-color: #2C3DB7;
@@ -241,4 +242,18 @@ footer span {
 
 #lateralAñadir {
     border-bottom: 1px solid #2C3DB7;
+}
+
+#registro {
+    color: #EEE;
+    text-decoration: none;
+}
+
+#registro:hover {
+    color: #2C3DB7;
+    text-decoration: none;
+}
+
+#buscador {
+    width: 75%;
 }
