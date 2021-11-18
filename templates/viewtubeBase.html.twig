@@ -1,0 +1,143 @@
+<!doctype html>
+
+<html lang="es">
+
+	<head>
+		<meta charset="utf-8">
+		<title>
+			{% block titulo %}
+				ViewTube
+			{% endblock %}
+		</title>
+		{% block stylesheets %}
+
+			<link id="cssClaro" href="{{ asset('css/claro.css') }}" rel="stylesheet"/>
+			<link
+			id="cssOscuro" href="{{ asset('css/oscuro.css') }}" rel="stylesheet" disabled/>
+
+			<!-- Bootstrap -->
+			<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+		<!-- Favicon (Logo en <title>) -->
+
+		{% endblock %}
+	</head>
+
+	<body>
+		{% block header %}
+			<header>
+				<div class="row">
+					<div id="tituloCabecera" class="col-5 col-xl-3">
+						<a href="{{ path('index') }}"><img id="logo" class="img-fluid" src="{{ asset('images/icons/logo.png') }}"></a>
+						<h1>
+							<a href="{{ path('index') }}">ViewTube</a>
+						</h1>
+					</div>
+					<div class="col-5 col-xl-8">
+						{% block buscador %}
+							<div class="input-group">
+								<form id="buscador" method="post">
+									<input name="textTitulo" type="text" class="form-control" aria-describedby="buscar">
+									<button onclick="this.form.submit()" onchange="this.form.submit()" class="btn" type="button" id="buscar">{% trans %}base.buscar{% endtrans %}</button>
+								</form>
+							</div>
+						{% endblock %}
+					</div>
+					<div id="menus" class="col-2 col-xl-1">
+						{% if is_granted('ROLE_USER') %}
+							<div class="dropdown">
+								<img id="avatar" class="dropdown-toggle img-thumbnail" src="{{ asset('images/avatares/sinFoto.png') }}" title="{{ app.user.nick }}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<ul id="dropdownMenu" class="dropdown-menu" aria-labelledby="menuAvatar">
+									<li>
+										<a href="{{ path('verPerfil', {'id': app.user.id}) }}" class="dropdown-item">{% trans %}base.perfil{% endtrans %}</a>
+									</li>
+									<li>
+										<a href="{{ path('nuevoVideo') }}" class="dropdown-item">{% trans %}base.añadir{% endtrans %}</a>
+									</li>
+									<li>
+										<button id="claro" class="dropdown-item" onclick="cambiarTemaColor('claro')" type="button">
+											{% trans %}base.claro{% endtrans %}
+										</button>
+									</li>
+									<li>
+										<button id="oscuro" class="dropdown-item" onclick="cambiarTemaColor('oscuro')" type="button">
+											{% trans %}base.oscuro{% endtrans %}
+										</button>
+									</li>
+									<li><hr class="dropdown-divider"></li>
+									<li>
+										<a href="{{ path("app_logout") }}" class="dropdown-item">{% trans %}base.cerrar{% endtrans %}</a>
+									</li>
+								</ul>
+							</div>
+							<div class="dropdown">
+								<button id="idiomaDrop" class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+								<ul id="dropdownIdioma" class="dropdown-menu" aria-labelledby="idiomaDrop">
+									<li>
+										<button class="dropdown-item" onclick="cambiarIdioma('ES')" type="button">ES</button>
+									</li>
+									<li>
+										<button class="dropdown-item" onclick="cambiarIdioma('EN')" type="button">EN</button>
+									</li>
+								</ul>
+							</div>
+						{% else %}
+							<div class="dropdown">
+								<img id="avatar" class="dropdown-toggle img-thumbnail" src="{{ asset('images/avatares/sinFoto.png') }}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<ul id="dropdownMenu" class="dropdown-menu" aria-labelledby="menuAvatar">
+									<li>
+										<a href="{{ path("app_login") }}" class="dropdown-item" {# data-bs-toggle="modal" data-bs-target="#loginModal" #}>{% trans %}base.iniciar{% endtrans %}</a>
+									</li>
+									<li><hr class="dropdown-divider"></li>
+									<li>
+										<button id="claro" class="dropdown-item" onclick="cambiarTemaColor('claro')" type="button">
+											{% trans %}base.claro{% endtrans %}
+										</button>
+									</li>
+									<li>
+										<button id="oscuro" class="dropdown-item" onclick="cambiarTemaColor('oscuro')" type="button">
+											{% trans %}base.oscuro{% endtrans %}
+										</button>
+									</li>
+								</ul>
+							</div>
+							<div class="dropdown">
+								<button id="idiomaDrop" class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+								<ul id="dropdownIdioma" class="dropdown-menu" aria-labelledby="idiomaDrop">
+									<li>
+										<button class="dropdown-item" onclick="cambiarIdioma('ES')" type="button">ES</button>
+									</li>
+									<li>
+										<button class="dropdown-item" onclick="cambiarIdioma('EN')" type="button">EN</button>
+									</li>
+								</ul>
+							</div>
+						{% endif %}
+					</div>
+				</div>
+			</header>
+		{% endblock %}
+
+		<div id="container"> {% block main %}{% endblock %}
+			<span></span>
+		</div>
+
+		{% block footer %}
+			<footer>Copyright ©
+				{{ "now"|date("Y") }}
+				<span>
+					<a href='{{ path('index') }}'>ViewTube</a>
+				</span>
+			</footer>
+		{% endblock %}
+
+		{% block javascripts %}
+			<!-- Bootstrap -->
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+			<!-- Mis scripts -->
+			<script src="{{ asset('js/menuBase.js') }}"></script>
+		{% endblock %}
+	</body>
+</html>

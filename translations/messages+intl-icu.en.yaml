@@ -1,33 +1,62 @@
 videoCreada.mensaje: 'Your request was completed correctly'
-nuevaVideo.titulo: 'Adding videos'
+nuevoVideo.titulo: 'Adding videos'
 videoBorrada.titulo: 'Videos deleted'
 video.volver: 'Return to the main page'
 videoBorrada.mensaje: 'Your videos was deleted correctly'
 video.publicado: 'Publish by '
-video.editar: Edit
+general.editar: Edit
 video.borrar: Delete
 video.comentario: Comments
 video.en: 'on'
 video.comentarioMensaje: 'There are no comments'
-video.noEncontrada: 'There is no videos with id '
-index.entradas: 'Last videos'
+video.noEncontrada: 'It has not been possible find the video'
 index.leer: 'Read more'
 index.publicada: 'Publish on'
+index.comentario: comment
 index.comentarios: comments
 index.videos: 'There are no videos'
 formulario.texto: 'Leave a comment:'
 formulario.añadirComentario: 'Add comment'
 formulario.titulo: Title
-formulario.añadirVideo: 'Add videos'
-formulario.editar: 'Edit videos'
+formulario.añadirVideo: 'Add video'
+formulario.editar: 'Edit video'
 formulario.fecha: Date
-editarVideo.titulo: 'Editing videos'
-index.añadir: 'Add Videos'
+editarVideo.titulo: 'Editing video'
+base.añadir: 'Add Video'
 video.desconocido: unknown
 login.titulo: "Log In"
 login.aviso: "You are logged in as"
 login.cerrar: "Logout"
 login.mensaje: "Sign in"
-login.correo: "Email"
 login.contraseña: "Password"
 login.boton: "Login"
+usuario.noEncontrado: 'It has not been possible find the user'
+base.iniciar: "Log in"
+base.cerrar: "Log out"
+base.perfil: "Your profile"
+base.claro: "Light theme"
+base.oscuro: "Dark theme"
+base.idioma: "Change language"
+usuario.correo: "Email"
+usuario.nombre: "Name"
+usuario.apellidos: "Surnames"
+usuario.idioma: "Language"
+usuario.temaColor: "Color theme"
+video.noSesion: "Log in to leave a comment"
+video.descripcion: Description
+video.categoria: Category
+formulario.thumbnail: Image
+formulario.video: Video
+formulario.mimeThumbnail: "Please upload a valid image file"
+formulario.mimeVideo: "Please upload a valid video file"
+formulario.registro: "Sign up"
+formulario.nick: Username
+formulario.editarUsuario: "Modify user"
+registro.titulo: "Sign up"
+video.mas: "More videos"
+video.propios: "Yours videos"
+categoria.none: None
+base.buscar: Search
+categoria.seleccione: "Select..."
+fecha.ascendente: "Ascendant"
+fecha.descendente: "Descendant"

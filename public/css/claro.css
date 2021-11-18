@@ -1,0 +1,259 @@
+#main {
+    margin: auto;
+    border: 1px solid #666;
+    background-color: #EEE;
+    padding: 1%;
+    color: #181818;
+}
+
+#content {
+    margin: auto;
+    display: flex;
+}
+
+#perfilInfo {
+    margin: auto;
+    border-bottom: 5px solid #2C3DB7;
+    background-color: #EEE;
+    padding: 1%;
+    color: #181818;
+    display: flex;
+    align-items: center;
+}
+
+#perfilInfo #avatar {
+    width: 30%;
+    height: auto;
+    border-radius: 50%;
+    border-color: #2C3DB7;
+    border-width: 2px;
+}
+
+#avatarPerfil {
+    display: flex;
+    justify-content: center;
+}
+
+#lateralIzquierdo *,
+#lateralDerecho * {
+    margin: auto;
+    background-color: #F9F9F9;
+    padding: 0.15%;
+    color: #181818;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    background-color: #F9F9F9;
+    margin: 0px;
+    font-family: Verdana, sans-serif;
+}
+
+#container {
+    background-color: #F9F9F9;
+    color: #181818;
+}
+
+header {
+    background-color: #F9F9F9;
+    color: #181818;
+    padding: 1%;
+    border-bottom: 5px solid #2C3DB7;
+    text-align: center;
+}
+
+header * {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#menus * {
+    justify-content: flex-end;
+}
+
+header h1 {
+    margin: 0px;
+    font-size: 40px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: "Segoe UI", Arial, sans-serif;
+    text-transform: uppercase;
+}
+
+a {
+    color: #2C3DB7;
+    text-decoration: none;
+}
+
+header a,
+footer a {
+    color: #181818;
+    text-decoration: none;
+}
+
+header a:hover,
+footer a:hover {
+    color: #2C3DB7;
+}
+
+h2>a,
+h3>a,
+h4>a {
+    font-weight: 800;
+    color: #333;
+    text-decoration: none;
+}
+
+#main h2 {
+    font-size: 30px;
+}
+
+#h3 {
+    font-size: 20px;
+}
+
+.listaVideos {
+    padding: 1%;
+}
+
+.bloqueVideo img {
+    float: left;
+    border: 1px solid #666;
+    margin-bottom: 1%;
+    width: 100%;
+    height: auto;
+}
+
+#nickUsuario {
+    color: #2C3DB7;
+    text-decoration: none;
+}
+
+.bloqueVideo {
+    clear: both;
+    list-style: none;
+    min-height: 200px;
+    padding: 1%;
+}
+
+#vidcover {
+    text-align: center;
+}
+
+.small {
+    font-size: 10px;
+}
+
+footer {
+    background-color: #F9F9F9;
+    border-top: 5px solid #2C3DB7;
+    text-align: center;
+    padding: 5px 5px;
+    color: #181818;
+    font-size: 10px;
+}
+
+footer span {
+    padding-left: 5px;
+    border-left: 1px solid #2C3DB7;
+}
+
+.bloqueComentario {
+    list-style: none;
+    margin-bottom: 10px;
+    border: 1px solid #2C3DB7;
+    padding-left: 10px;
+}
+
+#frmComentario textarea {
+    width: 100%;
+}
+
+#usuarioVideo {
+    color: #A46A1F;
+    text-decoration: none;
+}
+
+#avatar {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    border-color: #2C3DB7;
+    border-width: 2px;
+}
+
+#avatar:hover {
+    opacity: 0.3;
+}
+
+#dropdownMenu * {
+    display: flex;
+    justify-content: left;
+}
+
+#video {
+    border: 2px solid #2C3DB7;
+}
+
+#videoInfo {
+    margin: auto;
+    padding: 1%;
+}
+
+#videoInfo a {
+    text-decoration: none;
+}
+
+#modificarVideo * {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#logo {
+    width: 30%;
+    height: auto;
+}
+
+#botonLogin,
+#buscar,
+#fechaAsc,
+#fechaDes,
+#videoAñadir,
+#videoEditar,
+#videoBorrar,
+#video_anadir_save,
+#video_editar_save,
+#registro_save,
+#editarUsuario,
+#usuario_editar_save,
+#comentario_save {
+    color: #EEE;
+    background-color: #2C3DB7;
+}
+
+#lateralAñadir {
+    border-bottom: 1px solid #2C3DB7;
+}
+
+#registro {
+    color: #181818;
+    text-decoration: none;
+}
+
+#registro:hover {
+    color: #2C3DB7;
+    text-decoration: none;
+}
+
+#buscador {
+    width: 75%;
+}

@@ -36,9 +36,30 @@ class Video
     private $usuario;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comentario::class, mappedBy="video")
+     * @ORM\OneToMany(targetEntity=Comentario::class, mappedBy="video", orphanRemoval=true)
      */
     private $comentarios;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $descripcion;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Categoria::class, inversedBy="videos")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $categoria;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $thumbnail;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $video;
 
     public function __construct()
     {
@@ -112,6 +133,54 @@ class Video
     public function setTitulo(string $titulo): self
     {
         $this->titulo = $titulo;
+
+        return $this;
+    }
+
+    public function getDescripcion(): ?string
+    {
+        return $this->descripcion;
+    }
+
+    public function setDescripcion(?string $descripcion): self
+    {
+        $this->descripcion = $descripcion;
+
+        return $this;
+    }
+
+    public function getCategoria(): ?Categoria
+    {
+        return $this->categoria;
+    }
+
+    public function setCategoria(?Categoria $categoria): self
+    {
+        $this->categoria = $categoria;
+
+        return $this;
+    }
+
+    public function getThumbnail(): ?string
+    {
+        return $this->thumbnail;
+    }
+
+    public function setThumbnail(string $thumbnail): self
+    {
+        $this->thumbnail = $thumbnail;
+
+        return $this;
+    }
+
+    public function getVideo(): ?string
+    {
+        return $this->video;
+    }
+
+    public function setVideo(string $video): self
+    {
+        $this->video = $video;
 
         return $this;
     }

@@ -1,60 +1,61 @@
 index:
     path: /{_locale}
-    controller: App\Controller\BlogController::index
+    controller: App\Controller\ViewtubeController::index
     requirements:
         _locale: en|es
 
 indexSinLocale:
     path: /
-    controller: App\Controller\BlogController::indexSinLocale
+    controller: App\Controller\ViewtubeController::indexSinLocale
 
 verVideo:
     path: /{_locale}/video/{id}
-    controller: App\Controller\BlogController::verVideo
+    controller: App\Controller\ViewtubeController::verVideo
     requirements:
         _locale: en|es
         id: '\d+'
 
 verVideoSinLocale:
     path: /video/{id}
-    controller: App\Controller\BlogController::verVideoSinLocale
+    controller: App\Controller\ViewtubeController::verVideoSinLocale
 
-nuevaVideo:
+nuevoVideo:
     path: /{_locale}/video/nueva
-    controller: App\Controller\BlogController::nuevaVideo
+    controller: App\Controller\ViewtubeController::nuevoVideo
     requirements:
         _locale: en|es
 
-nuevaVideoSinLocale:
+nuevoVideoSinLocale:
     path: /video/nueva
-    controller: App\Controller\BlogController::nuevaVideoSinLocale
-
-videoCreada:
-    path: /{_locale}/video/creada
-    controller: App\Controller\BlogController::videoCreada
-    requirements:
-        _locale: en|es
-
-videoCreadaSinLocale:
-    path: /video/creada
-    controller: App\Controller\BlogController::videoCreadaSinLocale
+    controller: App\Controller\ViewtubeController::nuevoVideoSinLocale
 
 editarVideo:
     path: /{_locale}/video/editar/{id}
-    controller: App\Controller\BlogController::editarVideo
+    controller: App\Controller\ViewtubeController::editarVideo
     requirements:
         _locale: en|es
 
 editarVideoSinLocale:
     path: /video/editar/{id}
-    controller: App\Controller\BlogController::editarVideoSinLocale
+    controller: App\Controller\ViewtubeController::editarVideoSinLocale
 
 borrarVideo:
     path: /{_locale}/video/borrar/{id}
-    controller: App\Controller\BlogController::borrarVideo
+    controller: App\Controller\ViewtubeController::borrarVideo
     requirements:
         _locale: en|es
 
 borrarVideoSinLocale:
     path: /video/borrar/{id}
-    controller: App\Controller\BlogController::borrarVideoSinLocale
+    controller: App\Controller\ViewtubeController::borrarVideoSinLocale
+
+verPerfil:
+    path: /{_locale}/perfil/{id}
+    controller: App\Controller\ViewtubeController::verPerfil
+    requirements:
+        _locale: en|es
+        id: '\d+'
+
+verPerfilSinLocale:
+    path: /perfil/{id}
+    controller: App\Controller\ViewtubeController::verPerfilSinLocale
