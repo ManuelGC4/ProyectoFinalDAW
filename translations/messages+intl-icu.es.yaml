@@ -57,3 +57,6 @@ video.mas: "Más videos"
 video.propios: "Tus videos"
 categoria.none: Ninguna
 base.buscar: Buscar
+categoria.seleccione: "Seleccione..."
+fecha.ascendente: "Ascendente"
+fecha.descendente: "Descendente"

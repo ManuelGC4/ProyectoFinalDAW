@@ -8,15 +8,41 @@
 	<div id="content" class="row">
 		<div id="lateralIzquierdo" class="col-12 col-xl-2">
 			<div class="row">
-				<div class="col-4 col-xl-10 m-4">
-					<label class="form-label" for="selCategoria">{% trans %}video.categoria{% endtrans %}</label>
-					<select class="form-select mt-2" name="selCategoria" onchange="actualizaIndex(this.value)">
-						<option value="">{% trans %}categoria.none{% endtrans %}</option>
-						{% for categoria in categorias %}
-							<option value="{{ categoria.id }}">{{ categoria.nombre }}</option>
-						{% endfor %}
-					</select>
-					<div id="actualizaIndexRender"></div>
+				<div class="col-4 col-xl-12">
+					<div class="m-3">
+						<form method="post">
+							<label class="form-label" for="selCategoria">{% trans %}video.categoria{% endtrans %}</label>
+							<select class="form-select mt-2" name="selCategoria" onchange="this.form.submit()">
+								<option value="">{% trans %}categoria.seleccione{% endtrans %}</option>
+								<option value="0">{% trans %}categoria.none{% endtrans %}</option>
+								{% for categoria in categorias %}
+									<option value="{{ categoria.id }}">{{ categoria.nombre }}</option>
+								{% endfor %}
+							</select>
+						</form>
+					</div>
+				</div>
+				<div class="col-4 col-xl-12">
+					<div class="m-3">
+						<form method="post">
+							<label class="form-label" for="inputFecha">{% trans %}formulario.fecha{% endtrans %}</label>
+							<input onchange="this.form.submit()" class="form-control" type="date" name="inputFecha" value="" min="2021-09-15">
+						</form>
+					</div>
+				</div>
+				<div class="col-4 col-xl-12">
+					<div class="m-3">
+						<form method="post">
+							<div class="row">
+								<div class="col">
+									<button onclick="this.form.submit()" onchange="this.form.submit()" class="btn p-1" type="button" value="ASC" name="fechaAsc" id="fechaAsc">{% trans %}fecha.ascendente{% endtrans %}</button>
+								</div>
+								<div class="col text-end">
+									<button onclick="this.form.submit()" onchange="this.form.submit()" class="btn p-1" type="button" value="DESC" name="fechaDes" id="fechaDes">{% trans %}fecha.descendente{% endtrans %}</button>
+								</div>
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -46,7 +72,7 @@
 								</div>
 								<div class="row">
 									<div class="col">
-										{{video.fecha|date("Y-m-d H:i")}}
+										{{video.fecha|date("d-m-Y H:i")}}
 									</div>
 								</div>
 								<div class="row">
@@ -70,10 +96,4 @@
 			</ul>
 		</div>
 	</div>
-{% endblock %}
-
-{% block javascripts %}
-	{{ parent() }}
-	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-	<script src="{{ asset('js/actualizaVideos.js') }}"></script>
 {% endblock %}

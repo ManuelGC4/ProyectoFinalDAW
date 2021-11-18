@@ -3,14 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Usuario;
-use App\Form\Type\TemaType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class UtilController extends AbstractController
 {
-    public function temaUsuario($id, $path, Request $request, TranslatorInterface $translator)
+    public function temaUsuario($id, Request $request, TranslatorInterface $translator)
     {
         $entityManager = $this->getDoctrine()->getManager();
 
@@ -22,15 +21,19 @@ class UtilController extends AbstractController
             );
         }
 
-        $form = $this->createForm(TemaType::class);
-        $form->handleRequest($request);
+        $request = $this->container->get('request');
+        $ruta = $request->get('_route');
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            if ($form->get('claro')->isClicked()) {
-                $usuario->setTema('claro');
-            } else {
-                $usuario->setTema('oscuro');
-            }
+        $tema = null;
+        if (isset($_POST["claro"])) {
+            $tema = "claro";
+        }
+        if (isset($_POST["oscuro"])) {
+            $tema = "oscuro";
+        }
+
+        if ($tema != null) {
+            $usuario->setTema($tema);
 
             $entityManager = $this->getDoctrine()->getManager();
 
@@ -38,9 +41,7 @@ class UtilController extends AbstractController
 
             $entityManager->flush();
 
-            return $this->redirectToRoute($this->generateUrl($path));
+            return $this->redirectToRoute($this->generateUrl($ruta));
         }
-
-        return $this->render('viewtube/index.html.twig', array('temaForm' => $form->createView()));
     }
 }

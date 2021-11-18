@@ -95,7 +95,7 @@
 										<a id="nickUsuario" href="{{ path('verPerfil', {'id': video.usuario.id}) }}">{{video.usuario.nick}}</a>
 									</div>
 									<div class="col-12">
-										{{video.fecha|date("Y-m-d H:i")}}
+										{{video.fecha|date("d-m-Y H:i")}}
 									</div>
 									<div class="col-12">
 										{{video.comentarios|length}}

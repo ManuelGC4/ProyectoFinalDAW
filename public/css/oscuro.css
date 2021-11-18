@@ -160,10 +160,6 @@ footer {
     padding: 5px 5px;
     color: #EEE;
     font-size: 10px;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: auto;
 }
 
 footer span {
@@ -229,6 +225,8 @@ footer span {
 
 #botonLogin,
 #buscar,
+#fechaAsc,
+#fechaDes,
 #videoAñadir,
 #videoEditar,
 #videoBorrar,

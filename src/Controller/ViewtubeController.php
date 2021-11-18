@@ -25,17 +25,51 @@ class ViewtubeController extends AbstractController
 
         $categorias = $entityManager->getRepository(Categoria::class)->findAll();
 
-        $categoriaId = $request->get('categoria');
+        if (isset($_POST["textTitulo"])) {
+            $titulo = $_POST["textTitulo"];
+            if ($titulo != null || $titulo != '') {
+                $videos = $entityManager->getRepository(Video::class)->findByTitulo($titulo);
 
-        if ($categoriaId != null || $categoriaId != '' || $categoriaId != 0) {
-            $videos = $entityManager->getRepository(Video::class)->findByCategoria($categoriaId);
-        } else {
-            $videos = $entityManager->getRepository(Video::class)->findAll();
+                return $this->render('viewtube/index.html.twig', array(
+                    'videos' => $videos, 'categorias' => $categorias
+                ));
+            }
         }
 
+        // if (isset($_POST["selCategoria"])) {
+        //     $categoriaId = $_POST["selCategoria"];
+        //     if ($categoriaId != null || $categoriaId != '' || $categoriaId != 0) {
+        //         $videos = $entityManager->getRepository(Video::class)->findByCategoria($categoriaId);
+
+        //         return $this->render('viewtube/index.html.twig', array(
+        //             'videos' => $videos, 'categorias' => $categorias, 'mierda' => $categoriaId
+        //         ));
+        //     }
+        // }
+
+        // if (isset($_POST["inputFecha"])) {
+        //     $fecha = $_POST["inputFecha"];
+        //     if ($fecha != null || $fecha != '') {
+        //         $videos = $entityManager->getRepository(Video::class)->findByFecha($fecha);
+
+        //         return $this->render('viewtube/index.html.twig', array(
+        //             'videos' => $videos, 'categorias' => $categorias
+        //         ));
+        //     }
+        // }
+
+        $videos = $entityManager->getRepository(Video::class)->findAll();
+
         return $this->render('viewtube/index.html.twig', array(
-            'videos' => $videos, 'categorias' => $categorias,
+            'videos' => $videos, 'categorias' => $categorias
         ));
+
+        // if (isset($_POST["fechaAsc"])) {
+        //     $videos = $entityManager->getRepository(Video::class)->findBy(array('fecha' => 'ASC'));
+        // }
+        // if (isset($_POST["fechaDes"])) {
+        //     $videos = $entityManager->getRepository(Video::class)->findBy(array('fecha' => 'DESC'));
+        // }
     }
 
     public function indexSinLocale()
@@ -80,6 +114,19 @@ class ViewtubeController extends AbstractController
         }
 
         $videos = $entityManager->getRepository(Video::class)->findAll();
+
+        $categorias = $entityManager->getRepository(Categoria::class)->findAll();
+
+        if (isset($_POST["textTitulo"])) {
+            $titulo = $_POST["textTitulo"];
+            if ($titulo != null || $titulo != '') {
+                $videos = $entityManager->getRepository(Video::class)->findByTitulo($titulo);
+
+                return $this->render('viewtube/index.html.twig', array(
+                    'videos' => $videos, 'categorias' => $categorias
+                ));
+            }
+        }
 
         return $this->render('viewtube/video.html.twig', array(
             'video' => $video, 'form' => $form->createView(), 'videos' => $videos,
@@ -211,6 +258,19 @@ class ViewtubeController extends AbstractController
             throw $this->createNotFoundException(
                 $translator->trans('usuario.noEncontrado')
             );
+        }
+
+        $categorias = $entityManager->getRepository(Categoria::class)->findAll();
+
+        if (isset($_POST["textTitulo"])) {
+            $titulo = $_POST["textTitulo"];
+            if ($titulo != null || $titulo != '') {
+                $videos = $entityManager->getRepository(Video::class)->findByTitulo($titulo);
+
+                return $this->render('viewtube/index.html.twig', array(
+                    'videos' => $videos, 'categorias' => $categorias
+                ));
+            }
         }
 
         return $this->render('viewtube/perfil.html.twig', array('usuario' => $usuario, 'categorias' => $categorias));
