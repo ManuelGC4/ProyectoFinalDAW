@@ -42,36 +42,48 @@ class ViewtubeFixtures extends Fixture
         $video1->setDescripcion("Perspectiva aérea del lago de un valle");
         $video1->setFecha(new \DateTime('2021-11-01 20:17:26'));
         $video1->setCategoria($categoria1);
+        $video1->setThumbnail(".");
+        $video1->setVideo(".");
 
         $video2 = new Video();
         $video2->setTitulo("Lago en la montaña");
         $video2->setDescripcion("Perspectiva aérea del lago en una montaña");
         $video2->setFecha(new \DateTime('2021-11-01 21:20:35'));
         $video2->setCategoria($categoria1);
+        $video2->setThumbnail(".");
+        $video2->setVideo(".");
 
         $video3 = new Video();
         $video3->setTitulo("Vaca pastando");
         $video3->setDescripcion("Vaca pastando tranquilamente");
         $video3->setFecha(new \DateTime('2021-11-15 18:06:25'));
         $video3->setCategoria($categoria2);
+        $video3->setThumbnail(".");
+        $video3->setVideo(".");
 
         $video4 = new Video();
         $video4->setTitulo("Anochecer en la costa");
         $video4->setDescripcion("Perspectiva de una ciudad portuaria mientras anochece");
         $video4->setFecha(new \DateTime('2021-11-15 18:11:58'));
         $video4->setCategoria($categoria3);
+        $video4->setThumbnail(".");
+        $video4->setVideo(".");
 
         $video5 = new Video();
         $video5->setTitulo("Bullicio de autos");
         $video5->setDescripcion("Vehículos recorriendo la ciudad mientras anochece");
         $video5->setFecha(new \DateTime('2021-11-15 18:12:14'));
         $video5->setCategoria($categoria3);
+        $video5->setThumbnail(".");
+        $video5->setVideo(".");
 
         $video6 = new Video();
         $video6->setTitulo("Mirada felina");
         $video6->setDescripcion("Gato mirando a la cámara");
         $video6->setFecha(new \DateTime('2021-11-16 17:09:42'));
         $video6->setCategoria($categoria2);
+        $video6->setThumbnail(".");
+        $video6->setVideo(".");
 
         // Usuario administrador
         $usuario = new Usuario();
