@@ -25,8 +25,19 @@ class VideoAnadirType extends AbstractType
                     new File([
                         'maxSize' => '1024k',
                         'mimeTypes' => [
-                            'image/jpg',
-                            'image/png'
+                            'image/jpeg',
+                            'image/png',
+                        ],
+                        'mimeTypesMessage' => 'formulario.mimeThumbnail',
+                    ])
+                ],
+            ])
+            ->add('video', FileType::class, ['mapped' => false, 'required' => false, 'attr' => ['class' => 'form-control'],
+                'constraints' => [
+                    new File([
+                        'maxSize' => '200M',
+                        'mimeTypes' => [
+                            'video/mp4',
                         ],
                         'mimeTypesMessage' => 'formulario.mimeThumbnail',
                     ])

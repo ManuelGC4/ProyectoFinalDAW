@@ -45,6 +45,15 @@
 				</div>
 			</div>
 
+			<div class="mb-3">
+				{{ form_label(form.video, 'formulario.video', {'label_attr': {'class': 'form-label'}}) }}
+				{{ form_widget(form.video) }}
+				{{ form_help(form.video) }}
+				<div class="form-error">
+					{{ form_errors(form.video) }}
+				</div>
+			</div>
+
 			<div class="col-3 mb-3">
 				{{ form_label(form.categoria, 'video.categoria', {'label_attr': {'class': 'form-label'}}) }}
 				{{ form_widget(form.categoria, {'attr': {'class': 'form-select'}}) }}
