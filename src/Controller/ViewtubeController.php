@@ -164,7 +164,7 @@ class ViewtubeController extends AbstractController
 
                 try {
                     $thumbnail->move(
-                        $this->getParameter('thumbnails_videos'),
+                        $this->getParameter('rutaThumbnails'),
                         $filename
                     );
                 } catch (FileException $e) {
@@ -172,7 +172,6 @@ class ViewtubeController extends AbstractController
                 }
 
                 $video->setThumbnail($filename);
-                $video->setVideo(".");
             }
 
             $videoFile = $form->get('video')->getData();
@@ -182,7 +181,7 @@ class ViewtubeController extends AbstractController
 
                 try {
                     $videoFile->move(
-                        $this->getParameter('videos'),
+                        $this->getParameter('rutaVideos'),
                         $filenameVideo
                     );
                 } catch (FileException $e) {
@@ -228,6 +227,42 @@ class ViewtubeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $video = $form->getData();
+
+            $video->setFecha(new \DateTime());
+
+            $thumbnail = $form->get('thumbnail')->getData();
+
+            if ($thumbnail) {
+                $filename = 'thumbnailVideo-' . $id . '.' . $thumbnail->guessExtension();
+
+                try {
+                    $thumbnail->move(
+                        $this->getParameter('rutaThumbnails'),
+                        $filename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                $video->setThumbnail($filename);
+            }
+
+            $videoFile = $form->get('video')->getData();
+
+            if ($videoFile) {
+                $filenameVideo = 'video-' . $id . '.' . $videoFile->guessExtension();
+
+                try {
+                    $videoFile->move(
+                        $this->getParameter('rutaVideos'),
+                        $filenameVideo
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                $video->setVideo($filenameVideo);
+            }
 
             $entityManager->flush();
 
