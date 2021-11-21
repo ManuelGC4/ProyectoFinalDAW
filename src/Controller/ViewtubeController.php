@@ -140,6 +140,8 @@ class ViewtubeController extends AbstractController
 
     public function nuevoVideo(Request $request, SluggerInterface $slugger)
     {
+        $entityManager = $this->getDoctrine()->getManager();
+
         $video = new Video();
         $form = $this->createForm(VideoAnadirType::class, $video);
         $form->handleRequest($request);
@@ -152,14 +154,17 @@ class ViewtubeController extends AbstractController
             $usuario = $this->getUser();
             $video->setUsuario($usuario);
 
+            $videos = $entityManager->getRepository(Video::class)->findAll();
+            $videoId = end($videos)->getId() + 1;
+
             $thumbnail = $form->get('thumbnail')->getData();
 
             if ($thumbnail) {
-                $filename = 'thumbnailVideo-' . $video . getId() . '.' . $thumbnail->guessExtension();
+                $filename = 'thumbnailVideo-' . $videoId . '.' . $thumbnail->guessExtension();
 
                 try {
                     $thumbnail->move(
-                        $this->getParameter('thumbnails_videos'),
+                        $this->getParameter('rutaThumbnails'),
                         $filename
                     );
                 } catch (FileException $e) {
@@ -169,7 +174,22 @@ class ViewtubeController extends AbstractController
                 $video->setThumbnail($filename);
             }
 
-            $entityManager = $this->getDoctrine()->getManager();
+            $videoFile = $form->get('video')->getData();
+
+            if ($videoFile) {
+                $filenameVideo = 'video-' . $videoId . '.' . $videoFile->guessExtension();
+
+                try {
+                    $videoFile->move(
+                        $this->getParameter('rutaVideos'),
+                        $filenameVideo
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                $video->setVideo($filenameVideo);
+            }
 
             $entityManager->persist($video);
 
@@ -207,6 +227,42 @@ class ViewtubeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $video = $form->getData();
+
+            $video->setFecha(new \DateTime());
+
+            $thumbnail = $form->get('thumbnail')->getData();
+
+            if ($thumbnail) {
+                $filename = 'thumbnailVideo-' . $id . '.' . $thumbnail->guessExtension();
+
+                try {
+                    $thumbnail->move(
+                        $this->getParameter('rutaThumbnails'),
+                        $filename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                $video->setThumbnail($filename);
+            }
+
+            $videoFile = $form->get('video')->getData();
+
+            if ($videoFile) {
+                $filenameVideo = 'video-' . $id . '.' . $videoFile->guessExtension();
+
+                try {
+                    $videoFile->move(
+                        $this->getParameter('rutaVideos'),
+                        $filenameVideo
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                $video->setVideo($filenameVideo);
+            }
 
             $entityManager->flush();
 
