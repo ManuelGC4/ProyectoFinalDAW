@@ -23,7 +23,7 @@ class VideoAnadirType extends AbstractType
             ->add('thumbnail', FileType::class, ['mapped' => false, 'required' => false, 'attr' => ['class' => 'form-control'],
                 'constraints' => [
                     new File([
-                        'maxSize' => '50M',
+                        'maxSize' => '500M',
                         'mimeTypes' => [
                             'image/jpeg',
                             'image/png',
@@ -35,7 +35,7 @@ class VideoAnadirType extends AbstractType
             ->add('video', FileType::class, ['mapped' => false, 'required' => false, 'attr' => ['class' => 'form-control'],
                 'constraints' => [
                     new File([
-                        'maxSize' => '200M',
+                        'maxSize' => '5000M',
                         'mimeTypes' => [
                             'video/mp4',
                         ],
