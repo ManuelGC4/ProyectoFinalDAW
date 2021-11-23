@@ -333,13 +333,57 @@ class ViewtubeController extends AbstractController
             if ($titulo != null || $titulo != '') {
                 $videos = $entityManager->getRepository(Video::class)->findByTitulo($titulo);
 
-                return $this->render('viewtube/index.html.twig', array(
-                    'videos' => $videos, 'categorias' => $categorias
-                ));
+                return $this->render('viewtube/perfil.html.twig', array('usuario' => $usuario, 'categorias' => $categorias, 'videos' => $videos));
             }
         }
 
-        return $this->render('viewtube/perfil.html.twig', array('usuario' => $usuario, 'categorias' => $categorias));
+        if ($request->request->get("textTitulo")) {
+            $titulo = $request->request->get("textTitulo");
+            if ($titulo != null || $titulo != '') {
+                $videos = $entityManager->getRepository(Video::class)->findByTitulo($titulo);
+
+                return $this->render('viewtube/perfil.html.twig', array('usuario' => $usuario, 'categorias' => $categorias, 'videos' => $videos));
+            }
+        }
+
+        if ($request->request->get("selCategoria")) {
+            $categoriaId = $request->request->get("selCategoria");
+            if ($categoriaId != null && $categoriaId != '' && $categoriaId != 0) {
+                $videos = $entityManager->getRepository(Video::class)->findByCategoria($categoriaId);
+
+                return $this->render('viewtube/perfil.html.twig', array('usuario' => $usuario, 'categorias' => $categorias, 'videos' => $videos));
+            }
+        }
+
+        if ($request->request->get("inputFecha")) {
+            $fecha = $request->request->get("inputFecha");
+            if ($fecha != null && $fecha != '') {
+                $videos = $entityManager->getRepository(Video::class)->findBy(array(), array('fecha' => 'DESC'));
+                $videosFecha = array();
+
+                foreach ($videos as $video) {
+                    $videoFecha = $video->getFecha()->format('Y-m-d');
+                    if ($videoFecha == $fecha) {
+                        $videosFecha[] = $video;
+                    }
+                }
+
+                return $this->render('viewtube/perfil.html.twig', array('usuario' => $usuario, 'categorias' => $categorias, 'videos' => $videosFecha));
+            }
+        }
+
+        if ($request->request->get("ordenFecha")) {
+            $ordenFecha = $request->request->get("ordenFecha");
+            if ($ordenFecha != null && $ordenFecha != "") {
+                $videos = $entityManager->getRepository(Video::class)->findBy(array(), array('fecha' => $ordenFecha));
+
+                return $this->render('viewtube/perfil.html.twig', array('usuario' => $usuario, 'categorias' => $categorias, 'videos' => $videos));
+            }
+        }
+
+        $videos = $entityManager->getRepository(Video::class)->findBy(array(), array('fecha' => 'DESC'));
+
+        return $this->render('viewtube/perfil.html.twig', array('usuario' => $usuario, 'categorias' => $categorias, 'videos' => $videos));
     }
 
     public function verPerfilSinLocale()

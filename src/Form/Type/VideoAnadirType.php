@@ -49,11 +49,4 @@ class VideoAnadirType extends AbstractType
                 array('label' => 'formulario.añadirVideo', 'attr' => ['class' => 'btn'])
             );
     }
-
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults([
-            'data_class' => Video::class,
-        ]);
-    }
 }

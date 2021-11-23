@@ -10,7 +10,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/login", name="app_login")
+     * @Route("/{_locale}/login", name="app_login")
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
@@ -27,10 +27,26 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/logout", name="app_logout")
+     * @Route("/login", name="app_loginSinLocale")
+     */
+    public function loginSinLocale()
+    {
+        return $this->redirectToRoute('app_login', ['_locale' => 'es']);
+    }
+
+    /**
+     * @Route("/{_locale}/logout", name="app_logout")
      */
     public function logout()
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+    }
+
+    /**
+     * @Route("/logout", name="app_logoutSinLocale")
+     */
+    public function logoutSinLocale()
+    {
+        return $this->redirectToRoute('app_logout', ['_locale' => 'es']);
     }
 }
