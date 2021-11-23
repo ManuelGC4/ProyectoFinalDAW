@@ -47,53 +47,6 @@ class VideoRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    /**
-     * @return Video[] Returns an array of Video objects
-     */
-    public function findByFecha($fecha)
-    {
-        return $this->createQueryBuilder('v')
-            ->andWhere('v.fecha = :fecha')
-            ->setParameter('fecha', $fecha)
-            ->orderBy('v.id', 'ASC')
-            ->getQuery()
-            ->getResult();
-    }
-
-    /**
-     * @return Video[] Returns an array of Video objects
-     */
-    public function findByOrdenFecha($ordenFecha)
-    {
-        return $this->createQueryBuilder('v')
-            ->orderBy('v.fecha', ':ordenFecha')
-            ->setParameter('ordenFecha', $ordenFecha)
-            ->getQuery()
-            ->getResult();
-    }
-
-    /**
-     * @return Video[] Returns an array of Video objects
-     */
-    public function findByFechaAsc()
-    {
-        return $this->createQueryBuilder('v')
-            ->orderBy('v.fecha', 'ASC')
-            ->getQuery()
-            ->getResult();
-    }
-
-    /**
-     * @return Video[] Returns an array of Video objects
-     */
-    public function findByFechaDesc()
-    {
-        return $this->createQueryBuilder('v')
-            ->orderBy('v.fecha', 'DESC')
-            ->getQuery()
-            ->getResult();
-    }
-
     // /**
     //  * @return Video[] Returns an array of Video objects
     //  */

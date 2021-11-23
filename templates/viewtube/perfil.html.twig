@@ -9,8 +9,8 @@
 {% block main %}
 	<div id="perfilInfo" class="row">
 		<div id="avatarPerfil" class="col-3">
-			{% if asset('images/avatares/avatar-' ~ usuario.id ~ '.png') %}
-				<img id="avatar" class="dropdown-toggle img-thumbnail" src="{{ asset('images/avatares/sinFoto.png') }}" title="{{ usuario.nick }}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+			{% if (usuario.avatar != "" or usuario.avatar != null) %}
+				<img id="avatar" class="dropdown-toggle img-thumbnail" src="{{ asset('images/avatares/' ~ usuario.avatar) }}" title="{{ usuario.nick }}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 			{% else %}
 				<img id="avatar" class="dropdown-toggle img-thumbnail" src="{{ asset('images/avatares/sinFoto.png') }}" title="{{ usuario.nick }}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 			{% endif %}

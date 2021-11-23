@@ -63,6 +63,15 @@
 				</div>
 			</div>
 
+			<div class="mb-3">
+				{{ form_label(form.avatar, 'formulario.avatar', {'label_attr': {'class': 'form-label'}}) }}
+				{{ form_widget(form.avatar) }}
+				{{ form_help(form.avatar) }}
+				<div class="form-error">
+					{{ form_errors(form.avatar) }}
+				</div>
+			</div>
+
 			{{form_row(form.save) }}
 
 			{{ form_end(form) }}
