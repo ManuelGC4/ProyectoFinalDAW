@@ -8,6 +8,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\File;
 
 class RegistroType extends AbstractType
 {
@@ -19,6 +21,18 @@ class RegistroType extends AbstractType
             ->add('apellidos', TextType::class, array('attr' => ['class' => 'form-control']))
             ->add('email', EmailType::class, array('attr' => ['class' => 'form-control']))
             ->add('password', PasswordType::class, array('attr' => ['class' => 'form-control']))
+            ->add('avatar', FileType::class, ['mapped' => false, 'required' => false, 'attr' => ['class' => 'form-control'],
+                'constraints' => [
+                    new File([
+                        'maxSize' => '50M',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                        ],
+                        'mimeTypesMessage' => 'formulario.mimeThumbnail',
+                    ])
+                ],
+            ])
             ->add(
                 'save',
                 SubmitType::class,

@@ -44,6 +44,26 @@ class RegistroController extends AbstractController
 
             $entityManager = $this->getDoctrine()->getManager();
 
+            $usuarios = $entityManager->getRepository(Usuario::class)->findAll();
+            $usuarioId = end($usuarios)->getId() + 1;
+
+            $avatar = $form->get('avatar')->getData();
+
+            if ($avatar) {
+                $filename = 'avatar-' . $usuarioId . '.' . $avatar->guessExtension();
+
+                try {
+                    $avatar->move(
+                        $this->getParameter('rutaAvatares'),
+                        $filename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                $usuario->setAvatar($filename);
+            }
+
             $entityManager->persist($usuario);
 
             $entityManager->flush();
@@ -87,6 +107,23 @@ class RegistroController extends AbstractController
             $usuario = $form->getData();
 
             $usuario->setPassword($this->passwordEncoder->encodePassword($usuario, $form['password']->getData()));
+
+            $avatar = $form->get('avatar')->getData();
+
+            if ($avatar) {
+                $filename = 'avatar-' . $usuario->getId() . '.' . $avatar->guessExtension();
+
+                try {
+                    $avatar->move(
+                        $this->getParameter('rutaAvatares'),
+                        $filename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                $usuario->setAvatar($filename);
+            }
 
             $entityManager->flush();
 

@@ -54,9 +54,11 @@ formulario.nick: "Nombre de usuario"
 formulario.editarUsuario: "Modificar usuario"
 registro.titulo: Registro
 video.mas: "Más videos"
-video.propios: "Tus videos"
+video.propios: "Videos del usuario"
 categoria.none: Ninguna
 base.buscar: Buscar
 categoria.seleccione: "Seleccione..."
 fecha.ascendente: "Ascendente"
 fecha.descendente: "Descendente"
+formulario.avatar: "Foto de perfil"
+video.ordenFecha: "Ordenar por fecha"

@@ -47,7 +47,11 @@
 					<div id="menus" class="col-2 col-xl-1">
 						{% if is_granted('ROLE_USER') %}
 							<div class="dropdown">
-								<img id="avatar" class="dropdown-toggle img-thumbnail" src="{{ asset('images/avatares/sinFoto.png') }}" title="{{ app.user.nick }}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+								{% if (app.user.avatar != "" or app.user.avatar != null) %}
+									<img id="avatar" class="dropdown-toggle img-thumbnail" src="{{ asset('images/avatares/' ~ app.user.avatar) }}" title="{{ app.user.nick }}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+								{% else %}
+									<img id="avatar" class="dropdown-toggle img-thumbnail" src="{{ asset('images/avatares/sinFoto.png') }}" title="{{ app.user.nick }}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+								{% endif %}
 								<ul id="dropdownMenu" class="dropdown-menu" aria-labelledby="menuAvatar">
 									<li>
 										<a href="{{ path('verPerfil', {'id': app.user.id}) }}" class="dropdown-item">{% trans %}base.perfil{% endtrans %}</a>

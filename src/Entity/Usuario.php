@@ -71,6 +71,11 @@ class Usuario implements UserInterface
      */
     private $idioma;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $avatar;
+
     public function __construct()
     {
         $this->comentarios = new ArrayCollection();
@@ -271,6 +276,18 @@ class Usuario implements UserInterface
     public function setIdioma(string $idioma): self
     {
         $this->idioma = $idioma;
+
+        return $this;
+    }
+
+    public function getAvatar(): ?string
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(?string $avatar): self
+    {
+        $this->avatar = $avatar;
 
         return $this;
     }

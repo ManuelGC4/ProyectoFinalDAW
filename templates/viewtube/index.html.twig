@@ -33,14 +33,12 @@
 				<div class="col-4 col-xl-12">
 					<div class="m-3">
 						<form method="post">
-							<div class="row">
-								<div class="col">
-									<button onclick="this.form.submit()" onchange="this.form.submit()" class="btn p-1" type="button" value="ASC" name="fechaAsc" id="fechaAsc">{% trans %}fecha.ascendente{% endtrans %}</button>
-								</div>
-								<div class="col text-end">
-									<button onclick="this.form.submit()" onchange="this.form.submit()" class="btn p-1" type="button" value="DESC" name="fechaDes" id="fechaDes">{% trans %}fecha.descendente{% endtrans %}</button>
-								</div>
-							</div>
+							<label class="form-label" for="ordenFecha">{% trans %}video.ordenFecha{% endtrans %}</label>
+							<select class="form-select mt-2" name="ordenFecha" onchange="this.form.submit()">
+								<option value="">{% trans %}categoria.seleccione{% endtrans %}</option>
+								<option value="ASC">{% trans %}fecha.ascendente{% endtrans %}</option>
+								<option value="DESC">{% trans %}fecha.descendente{% endtrans %}</option>
+							</select>
 						</form>
 					</div>
 				</div>

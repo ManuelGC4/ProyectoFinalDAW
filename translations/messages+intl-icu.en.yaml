@@ -54,9 +54,11 @@ formulario.nick: Username
 formulario.editarUsuario: "Modify user"
 registro.titulo: "Sign up"
 video.mas: "More videos"
-video.propios: "Yours videos"
+video.propios: "User's videos"
 categoria.none: None
 base.buscar: Search
 categoria.seleccione: "Select..."
 fecha.ascendente: "Ascendant"
 fecha.descendente: "Descendant"
+formulario.avatar: "Profile picture"
+video.ordenFecha: "Order by date"

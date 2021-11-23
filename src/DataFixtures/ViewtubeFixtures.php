@@ -101,6 +101,7 @@ class ViewtubeFixtures extends Fixture
         ));
         $usuario->setTema("claro");
         $usuario->setIdioma("ES");
+        $usuario->setAvatar("avatar-1.png");
 
         // Le damos el rol de administrador (ROLE_ADMIN).
         $usuario->setRoles(array("ROLE_ADMIN"));
