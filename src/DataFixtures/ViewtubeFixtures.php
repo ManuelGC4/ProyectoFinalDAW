@@ -42,6 +42,7 @@ class ViewtubeFixtures extends Fixture
         $video1->setDescripcion("Perspectiva aérea del lago de un valle");
         $video1->setFecha(new \DateTime('2021-11-01 20:17:26'));
         $video1->setCategoria($categoria1);
+
         $video1->setThumbnail("thumbnailVideo-1.jpg");
         $video1->setVideo("video-1.mp4");
 
@@ -50,6 +51,7 @@ class ViewtubeFixtures extends Fixture
         $video2->setDescripcion("Perspectiva aérea del lago en una montaña");
         $video2->setFecha(new \DateTime('2021-11-01 21:20:35'));
         $video2->setCategoria($categoria1);
+
         $video2->setThumbnail("thumbnailVideo-2.jpg");
         $video2->setVideo("video-2.mp4");
 
@@ -58,6 +60,7 @@ class ViewtubeFixtures extends Fixture
         $video3->setDescripcion("Vaca pastando tranquilamente");
         $video3->setFecha(new \DateTime('2021-11-15 18:06:25'));
         $video3->setCategoria($categoria2);
+
         $video3->setThumbnail("thumbnailVideo-3.jpg");
         $video3->setVideo("video-3.mp4");
 
@@ -66,6 +69,7 @@ class ViewtubeFixtures extends Fixture
         $video4->setDescripcion("Perspectiva de una ciudad portuaria mientras anochece");
         $video4->setFecha(new \DateTime('2021-11-15 18:11:58'));
         $video4->setCategoria($categoria3);
+
         $video4->setThumbnail("thumbnailVideo-4.jpg");
         $video4->setVideo("video-4.mp4");
 
