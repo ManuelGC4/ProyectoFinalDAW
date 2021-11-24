@@ -39,15 +39,15 @@
 								{{usuario.apellidos}}</p>
 						</div>
 					</div>
-					<div class="row row-cols-3">
-						<div class="col-4">
+					<div class="row row-cols-1">
+						{# <div class="col-4">
 							<p>{% trans %}usuario.idioma{% endtrans %}:
 								{{usuario.idioma}}</p>
 						</div>
 						<div class="col-4">
 							<p>{% trans %}usuario.temaColor{% endtrans %}:
 								{{usuario.tema}}</p>
-						</div>
+						</div> #}
 						<div class="col-4 text-end">
 							<a id="editarUsuario" href="{{ path('editarUsuario', {'id': usuario.id}) }}" class="btn">{% trans %}general.editar{% endtrans %}</a>
 						</div>
