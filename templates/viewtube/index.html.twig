@@ -12,7 +12,7 @@
 					<div class="m-3">
 						<form method="post">
 							<label class="form-label" for="selCategoria">{% trans %}video.categoria{% endtrans %}</label>
-							<select class="form-select mt-2" name="selCategoria" onchange="this.form.submit()">
+							<select title="Categorias" class="form-select mt-2" name="selCategoria" onchange="this.form.submit()">
 								<option value="">{% trans %}categoria.seleccione{% endtrans %}</option>
 								<option value="0">{% trans %}categoria.none{% endtrans %}</option>
 								{% for categoria in categorias %}
@@ -34,7 +34,7 @@
 					<div class="m-3">
 						<form method="post">
 							<label class="form-label" for="ordenFecha">{% trans %}video.ordenFecha{% endtrans %}</label>
-							<select class="form-select mt-2" name="ordenFecha" onchange="this.form.submit()">
+							<select title="Orden por fecha" class="form-select mt-2" name="ordenFecha" onchange="this.form.submit()">
 								<option value="">{% trans %}categoria.seleccione{% endtrans %}</option>
 								<option value="ASC">{% trans %}fecha.ascendente{% endtrans %}</option>
 								<option value="DESC">{% trans %}fecha.descendente{% endtrans %}</option>
@@ -53,7 +53,7 @@
 							<li class='bloqueVideo'>
 								<div class="row">
 									<div class="col">
-										<a href='{{ path('verVideo', {'id': video.id}) }}'><img id="video" src="{{ asset('images/thumbnailsVideos/' ~ video.thumbnail) }}"/></a>
+										<a href='{{ path('verVideo', {'id': video.id}) }}'><img id="video" src="{{ asset('images/thumbnailsVideos/' ~ video.thumbnail) }}" alt="Thumbnail video {{ video.id }}"/></a>
 									</div>
 								</div>
 								<div class="row">
