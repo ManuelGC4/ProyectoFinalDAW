@@ -29,7 +29,7 @@
 			<header>
 				<div class="row">
 					<div id="tituloCabecera" class="col-5 col-xl-3">
-						<a href="{{ path('index') }}"><img id="logo" class="img-fluid" src="{{ asset('images/icons/logo.png') }}" alt="Logo"></a>
+						<a href="{{ path('index') }}"><img id="logo" class="img-fluid" src="{{ asset('images/icons/logo.png') }}"></a>
 						<h1>
 							<a href="{{ path('index') }}">ViewTube</a>
 						</h1>
@@ -38,7 +38,7 @@
 						{% block buscador %}
 							<div class="input-group">
 								<form id="buscador" method="post">
-									<input title="Buscador" name="textTitulo" type="text" class="form-control" aria-describedby="buscar">
+									<input name="textTitulo" type="text" class="form-control" aria-describedby="buscar">
 									<button onclick="this.form.submit()" onchange="this.form.submit()" class="btn" type="button" id="buscar">{% trans %}base.buscar{% endtrans %}</button>
 								</form>
 							</div>
@@ -48,9 +48,9 @@
 						{% if is_granted('ROLE_USER') %}
 							<div class="dropdown">
 								{% if (app.user.avatar != "" or app.user.avatar != null) %}
-									<img id="avatar" class="dropdown-toggle img-thumbnail" src="{{ asset('images/avatares/' ~ app.user.avatar) }}" title="{{ app.user.nick }}" type="button" data-bs-toggle="dropdown" aria-expanded="false" alt="Avatar del usuario">
+									<img id="avatar" class="dropdown-toggle img-thumbnail" src="{{ asset('images/avatares/' ~ app.user.avatar) }}" title="{{ app.user.nick }}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 								{% else %}
-									<img id="avatar" class="dropdown-toggle img-thumbnail" src="{{ asset('images/avatares/sinFoto.png') }}" title="{{ app.user.nick }}" type="button" data-bs-toggle="dropdown" aria-expanded="false" alt="Avatar por defecto">
+									<img id="avatar" class="dropdown-toggle img-thumbnail" src="{{ asset('images/avatares/sinFoto.png') }}" title="{{ app.user.nick }}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 								{% endif %}
 								<ul id="dropdownMenu" class="dropdown-menu" aria-labelledby="menuAvatar">
 									<li>
@@ -88,7 +88,7 @@
 							</div>
 						{% else %}
 							<div class="dropdown">
-								<img id="avatar" class="dropdown-toggle img-thumbnail" src="{{ asset('images/avatares/sinFoto.png') }}" type="button" data-bs-toggle="dropdown" aria-expanded="false" alt="Avatar por defecto">
+								<img id="avatar" class="dropdown-toggle img-thumbnail" src="{{ asset('images/avatares/sinFoto.png') }}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 								<ul id="dropdownMenu" class="dropdown-menu" aria-labelledby="menuAvatar">
 									<li>
 										<a href="{{ path("app_login") }}" class="dropdown-item" {# data-bs-toggle="modal" data-bs-target="#loginModal" #}>{% trans %}base.iniciar{% endtrans %}</a>
@@ -128,8 +128,9 @@
 		</div>
 
 		{% block footer %}
-			<footer>Copyright ©
-				{{ "now"|date("Y") }}
+			<footer>
+				<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licencia de Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"/></a><br/>Este obra está bajo una
+				<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">licencia de Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional</a>.
 				<span>
 					<a href='{{ path('index') }}'>ViewTube</a>
 				</span>
