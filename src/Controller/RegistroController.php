@@ -13,7 +13,6 @@ use App\Form\Type\RegistroType;
 use App\Form\Type\UsuarioEditarType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
-use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
 class RegistroController extends AbstractController
 {
@@ -38,18 +37,6 @@ class RegistroController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $usuario = $form->getData();
-
-            $nick = $form['nick']->getData();
-            $nickRepetido = $this->entityManager->getRepository(Usuario::class)->findOneBy(['nick' => $nick]);
-            if ($nickRepetido) {
-                throw new CustomUserMessageAuthenticationException('El nombre de usuario que ha introducido ya existe');
-            }
-
-            $email = $form['correo']->getData();
-            $emailRepetido = $this->entityManager->getRepository(Usuario::class)->findOneBy(['email' => $email]);
-            if ($emailRepetido) {
-                throw new CustomUserMessageAuthenticationException('El correo que ha introducido ya existe');
-            }
 
             $usuario->setPassword($this->passwordEncoder->encodePassword($usuario, $form['password']->getData()));
             $usuario->setTema("claro");
@@ -118,18 +105,6 @@ class RegistroController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $usuario = $form->getData();
-
-            $nick = $form['nick']->getData();
-            $nickRepetido = $this->entityManager->getRepository(Usuario::class)->findOneBy(['nick' => $nick]);
-            if ($nickRepetido) {
-                throw new CustomUserMessageAuthenticationException('El nombre de usuario que ha introducido ya existe');
-            }
-
-            $email = $form['correo']->getData();
-            $emailRepetido = $this->entityManager->getRepository(Usuario::class)->findOneBy(['email' => $email]);
-            if ($emailRepetido) {
-                throw new CustomUserMessageAuthenticationException('El correo que ha introducido ya existe');
-            }
 
             $usuario->setPassword($this->passwordEncoder->encodePassword($usuario, $form['password']->getData()));
 
