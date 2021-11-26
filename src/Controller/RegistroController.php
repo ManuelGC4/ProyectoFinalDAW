@@ -148,6 +148,8 @@ class RegistroController extends AbstractController
                 }
 
                 $usuario->setAvatar($filename);
+            } else {
+                $usuario->setAvatar(null);
             }
 
             $entityManager->flush();
