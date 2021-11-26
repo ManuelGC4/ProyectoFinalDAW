@@ -71,7 +71,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
 
         if (!$user) {
             // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException('El correo o la contraseña que ha introducido no son correctas');
+            throw new CustomUserMessageAuthenticationException('El correo que ha introducido no es correcto');
         }
 
         return $user;

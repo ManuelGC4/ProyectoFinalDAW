@@ -1,7 +1,7 @@
 'An authentication exception occurred.': 'Ocurrió un error de autenticación.'
 'Authentication credentials could not be found.': 'No se encontraron las credenciales de autenticación.'
 'Authentication request could not be processed due to a system problem.': 'La solicitud de autenticación no se pudo procesar debido a un problema del sistema.'
-'Invalid credentials.': 'Credenciales no válidas.'
+'Invalid credentials.': 'La contraseña es incorrecta'
 'Cookie has already been used by someone else.': 'La cookie ya ha sido usada por otra persona.'
 'Not privileged to request the resource.': 'No tiene privilegios para solicitar el recurso.'
 'Invalid CSRF token.': 'Token CSRF no válido.'

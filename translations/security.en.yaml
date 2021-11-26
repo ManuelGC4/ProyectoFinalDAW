@@ -1,7 +1,7 @@
 'An authentication exception occurred.': 'An authentication exception occurred.'
 'Authentication credentials could not be found.': 'Authentication credentials could not be found.'
 'Authentication request could not be processed due to a system problem.': 'Authentication request could not be processed due to a system problem.'
-'Invalid credentials.': 'Invalid credentials.'
+'Invalid credentials.': 'The password is incorrect'
 'Cookie has already been used by someone else.': 'Cookie has already been used by someone else.'
 'Not privileged to request the resource.': 'Not privileged to request the resource.'
 'Invalid CSRF token.': 'Invalid CSRF token.'
