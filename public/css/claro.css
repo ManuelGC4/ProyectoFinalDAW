@@ -100,7 +100,11 @@ footer a {
 }
 
 header a:hover,
-footer a:hover {
+footer a:hover,
+h1 a:hover,
+h2 a:hover,
+h3 a:hover,
+h4 a:hover {
     color: #2C3DB7;
 }
 
