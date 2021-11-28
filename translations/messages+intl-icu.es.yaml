@@ -43,7 +43,7 @@ usuario.apellidos: "Apellidos"
 usuario.idioma: "Idioma"
 usuario.temaColor: "Tema de color"
 video.noSesion: "Debes iniciar sesión para comentar"
-video.descripcion: Descripcion
+video.descripcion: Descripción
 video.categoria: Categoría
 formulario.thumbnail: Imagen
 formulario.video: Video
@@ -58,7 +58,7 @@ video.propios: "Videos del usuario"
 categoria.none: Ninguna
 base.buscar: Buscar
 categoria.seleccione: "Seleccione..."
-fecha.ascendente: "Ascendente"
-fecha.descendente: "Descendente"
+fecha.ascendente: "De más antigua a más reciente"
+fecha.descendente: "De más reciente a más antigua"
 formulario.avatar: "Foto de perfil"
 video.ordenFecha: "Ordenar por fecha"

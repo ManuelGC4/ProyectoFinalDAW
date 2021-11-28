@@ -58,7 +58,7 @@ video.propios: "User's videos"
 categoria.none: None
 base.buscar: Search
 categoria.seleccione: "Select..."
-fecha.ascendente: "Ascendant"
-fecha.descendente: "Descendant"
+fecha.ascendente: "From oldest to newest"
+fecha.descendente: "From newest to oldest"
 formulario.avatar: "Profile picture"
 video.ordenFecha: "Order by date"
